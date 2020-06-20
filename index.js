@@ -90,9 +90,17 @@ EXAMPLE: !setgame apocalypse-world *or* !setgame motw");
                 for (i in moves) {
                     if (moves[i]['key'].includes(userMessage[0])){
                         if(query){
-                            message.channel.send(moves[i].text)
+                            message.channel.send({embed: {
+                                color: 000000,
+                                description: moves[i].text}})
                         } else {
-                            message.channel.send(moves[i].method(userMessage, userId, channelId, userNickname, moves, userData, i, gameList))
+                            message.channel.send({embed: {
+                                author: {
+                                    name: `• ${userData[userId]['NAME']} •`
+                                },
+                                color: 000000,
+                                description: moves[i].method(userMessage, userId, channelId, userNickname, moves, userData, i, gameList)
+                            }})
                         storage.set(channelId, userData);
                         }
 			        };

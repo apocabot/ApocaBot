@@ -246,6 +246,7 @@ function characterSheet(userMessage, userId, channelId, userNickname, moves, use
     for(let [key, value] of Object.entries(userData[userId])){
         statPrintout.push(`${key}: ${value}`)
     }
+    statPrintout = statPrintout.toString().split(",").join("\n")
     return statPrintout
 }
 

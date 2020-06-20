@@ -287,6 +287,7 @@ function characterSheet(userMessage, userId, channelId, userNickname, moves, use
         statPrintout.push(`${key}: ${value}`)
     }
     statPrintout.push(`TEAM: ${userData['TEAM']}`)
+    statPrintout = statPrintout.toString().split(",").join("\n")
     return statPrintout
 }
 
