@@ -29,7 +29,6 @@ client.on('message', async message => {
     //load existing userData
         userData = await storage.get(channelId);
         userData = userData || {}
-        console.log(userData)
         
         if(!userData['GAME']){
             if(message.content.startsWith("!setgame")){
@@ -95,7 +94,6 @@ EXAMPLE: !setgame apocalypse-world *or* !setgame motw");
                         } else {
                             message.channel.send(moves[i].method(userMessage, userId, channelId, userNickname, moves, userData, i, gameList))
                         storage.set(channelId, userData);
-                        console.log(userData)
                         }
 			        };
 		        };
