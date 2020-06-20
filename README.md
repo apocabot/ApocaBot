@@ -8,7 +8,7 @@ Althought this project is a labor of love, it's still labor. If you'd like to su
 
 ## For Discord Users
 
-To add ApocaBot to your Discord server, click [Add ApocaBot](https://discord.com/api/oauth2/authorize?client_id=712847626386669568&permissions=0&scope=bot). Once the bot is logged in, type `!` in the chat to get started.
+To add ApocaBot to your Discord server, click [Add ApocaBot](https://discord.com/api/oauth2/authorize?client_id=723981824455344180&permissions=0&scope=bot). Once the bot is logged in, type `!` in the chat to get started.
 
 ### Commands
 

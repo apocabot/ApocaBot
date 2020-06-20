@@ -21,7 +21,6 @@ client.on('message', async message => {
     if (message.webhookID) return;
 
 //establish universal variables regarding message
-    
     const userId = message.member.id;
     const channelId = message.channel.id;
     const userNickname = message.member.nickname;
