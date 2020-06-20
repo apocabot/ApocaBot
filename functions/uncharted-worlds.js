@@ -239,7 +239,7 @@ function newCharacter(userMessage, userId, channelId, userNickname, moves, userD
     userData[userId] = person;
     storage.set(channelId, userData);
     return 'CREATED A BLANK CHARACTER:\n\
-Type __!character__ to view character sheet, or __?set__ to learn\
+Type __!character__ to view character sheet, or __!set?__ to learn\
  how to set your character stat.'
 }
 

@@ -45,8 +45,8 @@ Use this command to create a new blank character or to zero out your character s
     noCharacter: {
        key: ['nocharacter'],
        text: 'Before using ApocaBot MOVES, you must set up a CHARACTER SHEET.\n\
-Type __!newcharacter__ to create a blank CHARACTER SHEET, __?set__ to learn about\
-setting your character stats, or __?menu__ to learn more about the different\
+Type __!newcharacter__ to create a blank CHARACTER SHEET, __!set?__ to learn about\
+setting your character stats, or __!menu__ to learn more about the different\
 moves and commands.',
        method: function(){return this.text}
    },

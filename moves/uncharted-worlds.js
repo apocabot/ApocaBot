@@ -20,7 +20,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
     },
     basicMoves: {
        key: ['basic', 'basicmoves'],
-       text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default **!** ).\n\
+       text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
 ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - FACE ADVERSITY: !face\n\
  - ASSESSMENT: !assess\n\
@@ -35,7 +35,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
    },
    enterpriseMoves: {
        key: ['enterprise', 'enterprisemoves'],
-       text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default **!** ).\n\
+       text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
 ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - SHIELDS UP: !shields\n\
  - WILD JUMP: !wild\n\
