@@ -11,18 +11,46 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - SET CHARACTER STATS: !set\n\
  - SHIFT CHARACTER STATS: !shift\n\
  - ROLL SOME DICE: !roll\n\
+ - BASIC MOVES LIST: !basic\n\
+ - OTHER MOVES LIST: !other\n\
  - SET APOCABOT PREFIX: !setprefix\n\
- - SET APOCABOT GAME: !setgame\n\
- - DO SOMETHING UNDER FIRE: !underfire\n\
+ - SET APOCABOT GAME: !setgame',
+        method: function(){return this.text}
+    },
+    basicMoves: {
+       key: ['basic', 'basicmoves'],
+       text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
+ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
+ - ACT UNDER FIRE: !act\n\
  - GO AGGRO: !aggro\n\
  - SEDUCE OR MANIPULATE: !seduce *or* !manipulate\n\
- - HELP OR INTERFERE: !help *or* !interfere\n\
+ - HELP OR INTERFERE: !hoi\n\
  - READ A SITCH: !readsitch\n\
  - READ A PERSON: !readperson\n\
  - OPEN YOUR BRAIN: !open\n\
  - END SESSION: !endsession',
-        method: function(){return this.text}
-    },
+       method: function(){return this.text}
+   },
+   otherMoves: {
+       key: ['other', 'othermoves'],
+       text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
+ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
+ - SUFFER HARM: !suffer\n\
+ - SHOP AT MARKET: !market\n\
+ - DROP JINGLE: !jingle\n\
+ - INSIGHT: !insight\n\
+ - AUGURY: !augury\n\
+ - SEIZE BY FORCE: !seize\n\
+ - SINGLE COMBAT: !single\n\
+ - LAY DOWN FIRE: !lay\n\
+ - STAND OVERWATCH: !watch\n\
+ - KEEP AN EYE OUT: !eye\n\
+ - BAIT A TRAP: !bait\n\
+ - HUNT PREY: !hunt\n\
+ - ESCAPE A HUNTER: !escape\n\
+ - TURN THE TABLES: !turn',
+       method: function(){return this.text}
+   },
     abilities: {
         key: 'abilities',
         stats: {
@@ -119,9 +147,9 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +sharp  OR !roll 2d6 +1d4 (SPACES MATTER!)'
 EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +sharp (SPACES MATTER!)',
         method: functions.xdyRoll
     },
-    doSomethingUnderFire: {
-        key: ['do', 'dosomething', 'dosomethingunderfire', 'underfire', 'fire'],
-        text: 'DO SOMETHING UNDER FIRE: !underfire\n\
+    actUnderFire: {
+        key: ['act', 'actunderfire', 'underfire', 'fire'],
+        text: 'ACT UNDER FIRE: !act\n\
 When you do something under fire, or dig in to endure fire.',
         greatSuccess: 'On a 12+, you transcend the danger, the pressure,\
  the possibility of harm. You do what you set out to do, and the MC will\
@@ -186,7 +214,7 @@ When you try to seduce, manipulate, bluff, fast-talk, or lie to someone,\
         method: functions.moveRoll
     },
     helpOrInterfere: {
-        key: ['help', 'interfere', 'helporinterfere'],
+        key: ['hoi', 'interfere', 'helporinterfere'],
         text: 'HELP OR INTERFERE: !help *or* !interfere\n\
 When you help or interfere with someone who\'s making a roll.',
         greatSuccess: 'On a 10+, they take +2(help) or -2(interfere)\
@@ -295,5 +323,284 @@ When you open your brain to the world\'s psychic maelstrom.',
  Tell that player to **take -1 to their Hx with you** on their sheet. If this\
  brings them to **Hx -3, they reset to Hx=0 (and therefore mark experience)**.',
        method: function(){return this.text}
+   },
+   sufferHarm: {
+       key: ['suffer', 'sufferharm', 'harm'],
+       text: 'SUFFER HARM: !suffer\n\
+When you suffer harm, roll+harm suffered (after armor, if you\'re wearing any).',
+       success: 'On a 10+, the MC can choose one:\n\
+ - You\'re out of action: unconscious, trapped, incoherent, or panicked.\n\
+ - It\'s worse than it seemed. Take an additional 1-harm.\n\
+ - Choose 2 from the list below:\n\n\
+ - You lose your footing.\n\
+ - You lose your grip on whatever you\'re holding.\n\
+ - You lose track of someone or something you\'re attending to.\n\
+ - You miss noticing something important.',
+       mixed: 'On a 7–9, the MC can choose 1:\n\
+ - You lose your footing.\n\
+ - You lose your grip on whatever you\'re holding.\n\
+ - You lose track of someone or something you\'re attending to.\n\
+ - You miss noticing something important.',
+       fail: 'On a 6-, the MC can choose 1 from the list below. If she\
+does, you take -1 harm.\n\
+ - You lose your footing.\n\
+ - You lose your grip on whatever you\'re holding.\n\
+ - You lose track of someone or something you\'re attending to.\n\
+ - You miss noticing something important.',
+       stat: 'num',
+       method: functions.moveRoll
+   },
+   shopAtMarket: {
+       key: ['market', 'shop', 'shopatmarket'],
+       text: 'SHOP AT MARKET: !shop\n\
+When you go into a holding\'s bustling market, looking for some\
+particular thing to buy, and it\'s not obvious whether you should\
+be able to just go buy one like that, roll+sharp.',
+       success: 'On a 10+, yes, you can just go buy it like that.',
+       mixed: 'On a 7–9, the MC chooses 1:\n\
+ - It costs 1-barter more than you\'d expect.\n\
+ - It\'s not openly for sale, but you find someone who can lead you\
+ to someone selling it.\n\
+ - It\'s not openly for sale, but you find someone who sold it recently,\
+ who may be willing to introduce you to their previous buyer.\n\
+ - It\'s not available for sale, but you find something similar. Will it do?',
+       fail: 'On a 6-, the MC chooses 1 from the list, plus it costs 1-barter more.\n\
+ - It\'s not openly for sale, but you find someone who can lead you\
+ to someone selling it.\n\
+ - It\'s not openly for sale, but you find someone who sold it recently,\
+ who may be willing to introduce you to their previous buyer.\n\
+ - It\'s not available for sale, but you find something similar. Will it do?',
+       stat: 'sharp',
+       method: functions.moveRoll
+   },
+   dropJingle: {
+       key: ['dropjingle', 'drop', 'jingle'],
+       text: 'DROP JINGLE: !jingle\n\
+When you make known that you want a thing and drop jingle to speed\
+ it on its way, roll+barter spent (max roll+3). It has to be a thing\
+ you could legitimately get this way.',
+       success: 'On a 10+, it comes to you, no string attached.',
+       mixed: 'On a 7–9, it comes to you, or something pretty close.',
+       fail: 'On a 6-, it comes to you, but with string very much attached.',
+       stat: 'num',
+       method: functions.moveRoll
+   },
+   insight: {
+       key: ['insight', 'sight'],
+       text: 'When you are able to go to someone for insight, ask them what\
+ they think your best course is, and the MC will tell you. If you pursue that\
+ course, take +1 to any rolls you make in the pursuit. If you pursue that course\
+ but don\'t accomplish your ends, you mark experience.',
+       method: function(){return this.text}
+   },
+   augury: {
+       key: ['augury'],
+       text: 'AUGURY: !augury\n\
+When you are able to use something for augury, roll+weird.',
+       success: 'On a 10+, choose 1:\n\
+ - Reach through the world’s psychic maelstrom to something or someone connected to it.\n\
+ - Isolate and protect a person or thing from the world’s psychic maelstrom.\n\
+ - Isolate and contain a fragment of the world’s psychic maelstrom itself.\n\
+ - Insert information into the world’s psychic maelstrom.\n\
+ - Open a window into the world’s psychic maelstrom.\n\n\
+By default, the effect lasts only as long as you maintain it, will reach only\
+ shallowly into the world’s psychic maelstrom as it is local to you, and will bleed\
+ instability. On a 10+, choose 2 of the following:\n\
+ - It’ll persist (for a while) without your actively maintaining it.\n\
+ - It reaches deep into the world’s psychic maelstrom.\n\
+ - It reaches broadly throughout the world’s psychic maelstrom.\n\
+ - It’s stable and contained, no bleeding.',
+       mixed: 'On a 7–9, choose 1:\n\
+ - Reach through the world’s psychic maelstrom to something or someone connected to it.\n\
+ - Isolate and protect a person or thing from the world’s psychic maelstrom.\n\
+ - Isolate and contain a fragment of the world’s psychic maelstrom itself.\n\
+ - Insert information into the world’s psychic maelstrom.\n\
+ - Open a window into the world’s psychic maelstrom.\n\n\
+By default, the effect lasts only as long as you maintain it, will reach only\
+ shallowly into the world’s psychic maelstrom as it is local to you, and will bleed\
+ instability. On a 7-9, choose 1 of the following:\n\
+ - It’ll persist (for a while) without your actively maintaining it.\n\
+ - It reaches deep into the world’s psychic maelstrom.\n\
+ - It reaches broadly throughout the world’s psychic maelstrom.\n\
+ - It’s stable and contained, no bleeding.',
+       fail: 'On a 6-, whatever bad happens, your antenna takes the brunt of it.',
+       stat: 'weird',
+       method: functions.moveRoll
+   },
+   seizeByForce: {
+       key: ['seize', 'seizebyforce', 'seizeforce'],
+       text: 'SEIZE BY FORCE: !seize\n\
+To seize something by force, exchange harm, but first roll+hard.',
+       success: 'On a 10+, choose 3:\n\
+ - You inflict terrible harm (+1harm).\n\
+ - You suffer little harm (-1harm).\n\
+ - You take definite and undeniable control of it.\n\
+ - You impress, dismay, or frighten your enemy.',
+       mixed: 'On a 7–9, choose 2:\n\
+ - You inflict terrible harm (+1harm).\n\
+ - You suffer little harm (-1harm).\n\
+ - You take definite and undeniable control of it.\n\
+ - You impress, dismay, or frighten your enemy.',
+       fail: 'On a 6-, choose 1:\n\
+ - You inflict terrible harm (+1harm).\n\
+ - You suffer little harm (-1harm).\n\
+ - You take definite and undeniable control of it.\n\
+ - You impress, dismay, or frighten your enemy.',
+       stat: 'hard',
+       method: functions.moveRoll
+   },
+   singleCombat: {
+       key: ['single', 'combat', 'singlecombat'],
+       text: 'SINGLE COMBAT: !single\n\
+When you do single combat with someone, no quarters, exchange harm\
+ but first roll+hard.',
+       success: 'On a 10+, both:\n\
+ - You inflict terrible harm (+1harm).\n\
+ - You suffer little harm (-1harm).',
+       mixed: 'On a 7–9, choose 1:\n\
+ - You inflict terrible harm (+1harm).\n\
+ - You suffer little harm (-1harm).',
+       fail: 'On a 6-, you opponent chooses 1 against you:\n\
+ - You inflict terrible harm (+1harm).\n\
+ - You suffer little harm (-1harm).',
+       stat: 'hard',
+       method: functions.moveRoll
+   },
+   layDownFire: {
+       key: ['lay', 'laydown', 'laydownfire'],
+       text: 'LAY DOWN FIRE: !lay\n\
+When you lay down fire, roll+hard.',
+       success: 'On a 10+, choose 3:\n\
+ - You provide covering fire, allowing another character to move or act freely.\n\
+ - You provide supporting fire, giving another PC +1choice to their own battle move.\n\
+ - You provide suppressing fire, denying another character to move or act freely.\
+ (If a PC, they may still act under fire.)\n\
+ - You take an opportune shot, inflicting harm (but -1harm) on an enemy within your reach.',
+       mixed: 'On a 7–9, choose 2:\n\
+ - You provide covering fire, allowing another character to move or act freely.\n\
+ - You provide supporting fire, giving another PC +1choice to their own battle move.\n\
+ - You provide suppressing fire, denying another character to move or act freely.\
+ (If a PC, they may still act under fire.)\n\
+ - You take an opportune shot, inflicting harm (but -1harm) on an enemy within your reach.',
+       fail: 'On a 6-, choose 1:\n\
+ - You provide covering fire, allowing another character to move or act freely.\n\
+ - You provide supporting fire, giving another PC +1choice to their own battle move.\n\
+ - You provide suppressing fire, denying another character to move or act freely.\
+ (If a PC, they may still act under fire.)\n\
+ - You take an opportune shot, inflicting harm (but -1harm) on an enemy within your reach.',
+       stat: 'hard',
+       method: functions.moveRoll
+   },
+   standOverwatch: {
+       key: ['stand', 'watch', 'standoverwatch'],
+       text: 'STAND OVERWATCH: !watch\n\
+When you stand overwatch for an ally, roll+cool.',
+       success: 'On a 10+, if anyone attacks or interferes with your ally,\
+ you attack them and inflict harm as established, as well as warning your ally.\
+ You also choose 1:\n\
+ - ...And you inflict your harm before they can carry out their attack or interference.\n\
+ - ...And you inflict terrible harm (+1harm).',
+       mixed: 'On a 7–9, if anyone attacks or interferes with your ally,\
+ you attack them and inflict harm as established, as well as warning your ally.',
+       fail: 'On a 6-, you were able to warn your ally but not attack your enemy.',
+       stat: 'cool',
+       method: functions.moveRoll
+   },
+   keepAnEyeOut: {
+       key: ['eye', 'keepaneyeout', 'keepeyeout', 'eyeout'],
+       text: 'KEEP AN EYE OUT: !eye\n\
+When you keep an eye out for what\'s coming, roll+sharp. Spend hold to:\n\
+ - Direct a PC ally\'s attention to an enemy. If they make a battle move against\
+ that enemy, they get +1choice to their move.\n\
+ - Give a PC ally an order, instruction, or suggestion. If they do it, they get\
+ +1 to any rolls they make in the effort.\n\
+ - Direct an ally\'s attention to an enemy. If they attack that enemy, they\
+ inflict +1harm.\n\
+ - Direct an ally\'s attention to a danger. They take -1harm from that danger.',
+       success: 'On a 10+, hold 3. During the battle, spend your hold, 1 for 1,\
+ to ask the MC what\'s coming and choose 1:\n\
+ - Direct a PC ally\'s attention to an enemy. If they make a battle move against\
+ that enemy, they get +1choice to their move.\n\
+ - Give a PC ally an order, instruction, or suggestion. If they do it, they get\
+ +1 to any rolls they make in the effort.\n\
+ - Direct an ally\'s attention to an enemy. If they attack that enemy, they\
+ inflict +1harm.\n\
+ - Direct an ally\'s attention to a danger. They take -1harm from that danger.',
+       mixed: 'On a 7–9, hold 2. During the battle, spend your hold, 1 for 1,\
+ to ask the MC what\'s coming and choose 1:\n\
+ - Direct a PC ally\'s attention to an enemy. If they make a battle move against\
+ that enemy, they get +1choice to their move.\n\
+ - Give a PC ally an order, instruction, or suggestion. If they do it, they get\
+ +1 to any rolls they make in the effort.\n\
+ - Direct an ally\'s attention to an enemy. If they attack that enemy, they\
+ inflict +1harm.\n\
+ - Direct an ally\'s attention to a danger. They take -1harm from that danger.',
+       fail: 'On a 6-, hold 1. During the battle, spend your hold, 1 for 1,\
+ to ask the MC what\'s coming and choose 1:\n\
+ - Direct a PC ally\'s attention to an enemy. If they make a battle move against\
+ that enemy, they get +1choice to their move.\n\
+ - Give a PC ally an order, instruction, or suggestion. If they do it, they get\
+ +1 to any rolls they make in the effort.\n\
+ - Direct an ally\'s attention to an enemy. If they attack that enemy, they\
+ inflict +1harm.\n\
+ - Direct an ally\'s attention to a danger. They take -1harm from that danger.',
+       stat: 'sharp',
+       method: functions.moveRoll
+   },
+   baitATrap: {
+       key: ['bait', 'trap', 'baitatrap'],
+       text: 'BAIT A TRAP: !bait\n\
+When you\'re the bait, roll+cool.',
+       success: 'On a 10+, choose 2:\n\
+ - You draw your prey all the way into the trap. Otherwise, they only approach.\n\
+ - Your prey doesn\'t suspect you. Otherwise, they\'re wary and alert.\n\
+ - You don\'t expose yourself to extra risk. Othewise, any harm your prey\
+ inclicts is +1.',
+       mixed: 'On a 7–9, choose 1:\n\
+ - You draw your prey all the way into the trap. Otherwise, they only approach.\n\
+ - Your prey doesn\'t suspect you. Otherwise, they\'re wary and alert.\n\
+ - You don\'t expose yourself to extra risk. Othewise, any harm your prey\
+ inclicts is +1.',
+       fail: 'On a 6-, the MC chooses 1 for you:\n\
+ - You draw your prey all the way into the trap. Otherwise, they only approach.\n\
+ - Your prey doesn\'t suspect you. Otherwise, they\'re wary and alert.\n\
+ - You don\'t expose yourself to extra risk. Othewise, any harm your prey\
+ inclicts is +1.',
+       stat: 'cool',
+       method: functions.moveRoll
+   },
+   huntPrey: {
+       key: ['hunt', 'huntprey', 'prey'],
+       text: 'HUNT PREY: !hunt\n\
+When you\'re the cat, roll+cool.',
+       success: 'On a 10+, you catch your prey out. You\'ve driven them\
+ first to a place of your choosing; say where.',
+       mixed: 'On a 7–9, you catch your prey out. You\'ve had to follow them\
+ where they wanted to go; they say where.',
+       fail: 'On a 6-, your prey escapes you.',
+       stat: 'cool',
+       method: functions.moveRoll
+   },
+   escapeAHunter: {
+       key: ['escape', 'escapehunter', 'escapeahunter'],
+       text: 'ESCAPE A HUNTER: !escape\n\
+When you\'re the mouse, roll+cool.',
+       success: 'On a 10+, you escape clean and leave your hunter hunting.',
+       mixed: 'On a 7–9, your hunter catches you out, but only after you\'ve led\
+ them to a place of your choosing; say where.',
+       fail: 'On a 6-, your hunter catches you out and the MC says where.',
+       stat: 'cool',
+       method: functions.moveRoll
+   },
+   turnTheTables: {
+       key: ['turn', 'turntables', 'turnthetables'],
+       text: 'TURN THE TABLES: !turn\n\
+When it\'s not certain whether you\'re the cat or the mouse, roll+sharp.',
+       success: 'On a 10+, you decide if you\'re the cat or the mouse.\
+ You take +1 forward as well.',
+       mixed: 'On a 7–9, you decide if you\'re the cat or the mouse.',
+       fail: 'On a 6-, you\'re the mouse.',
+       stat: 'sharp',
+       method: functions.moveRoll
    },
 }

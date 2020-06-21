@@ -3,7 +3,7 @@ const functions = require('./../functions/burned-over.js');
 //text library object
 module.exports = moves = {
     menu: {
-        key: 'menu',
+        key: ['help', 'menu'],
         text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
 ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - NEWCHARACTER: !newcharacter\n\
