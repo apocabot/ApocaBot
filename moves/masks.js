@@ -13,9 +13,6 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - ROLL SOME DICE: !roll\n\
  - BASIC MOVES LIST: !basic\n\
  - ADULT MOVES LIST: !adult\n\
- - CONDITIONS: !con\n\
- - REJECT INFLUENCE: !reject\n\
- - TEAM POOL: !team\n\
  - END OF SESSION: !endsession\n\
  - SET APOCABOT PREFIX: !setprefix\n\
  - SET APOCABOT GAME: !setgame',
@@ -23,8 +20,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
     },
     basicMoves: {
         key: ['basic', 'basicmoves'],
-        text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
-ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
+        text: 'BASIC MOVES LIST:\n\n\
  - DIRECTLY ENGAGE A THREAT: !engage\n\
  - UNLEASH YOUR POWERS: !unleash\n\
  - COMFORT OR SUPPORT: !comfort *or* !support\n\
@@ -32,13 +28,15 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - DEFEND: !defend\n\
  - ASSESS THE SITUATION: !assess\n\
  - PROVOKE SOMEONE: !provoke\n\
- - TAKE A POWERFUL BLOW: !take',
+ - TAKE A POWERFUL BLOW: !take\n\
+ - CONDITIONS: !con\n\
+ - REJECT INFLUENCE: !reject\n\
+ - TEAM POOL: !team',
         method: function(){return this.text}
     },
     adultMoves: {
         key: ['adult', 'adultmoves'],
-        text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
-ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
+        text: 'ADULT MOVES LIST:\n\n\
  - WIELD YOUR POWERS: !wield\n\
  - OVEERWHELM A VULNERABLE FOE: !overwhelm\n\
  - PERSUADE WITH BEST INTERESTS: !persuade\n\

@@ -19,8 +19,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
     },
     basicMoves: {
        key: ['basic', 'basicmoves'],
-       text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
-ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
+       text: 'BASIC MOVES LIST:\n\n\
  - ACT UNDER FIRE: !act\n\
  - GO AGGRO: !aggro\n\
  - SEDUCE OR MANIPULATE: !seduce *or* !manipulate\n\
@@ -33,8 +32,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
    },
    otherMoves: {
        key: ['other', 'othermoves'],
-       text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
-ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
+       text: 'PERIPHERAL AND BATTLE MOVES LIST:\n\n\
  - SUFFER HARM: !suffer\n\
  - SHOP AT MARKET: !market\n\
  - DROP JINGLE: !jingle\n\

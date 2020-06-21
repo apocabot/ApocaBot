@@ -20,8 +20,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
     },
     basicMoves: {
         key: ['basic', 'basicmoves'],
-        text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
-ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
+        text: 'BASIC MOVES LIST:\n\n\
  - DEFY DANGER: !defy\n\
  - HACK AND SLASH: !hack\n\
  - VOLLEY: !volley\n\
@@ -34,8 +33,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
     },
     specialMoves: {
         key: ['special', 'specialmoves'],
-        text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
-ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
+        text: 'SPECIAL MOVES LIST:\n\n\
  - ROLL LAST BREATH: !breath\n\
  - TAKE WATCH: !watch\n\
  - UNDERTAKE A PERILOUS JOURNEY: !journey\n\

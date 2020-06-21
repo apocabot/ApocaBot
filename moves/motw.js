@@ -12,7 +12,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - SHIFT CHARACTER STATS: !shift\n\
  - ROLL SOME DICE: !roll\n\
  - BASIC MOVES LIST: !basic\n\
- - ALTERNATE WEIRD MOVES LIST: !altmoves\n\
+ - ALTERNATE WEIRD MOVES LIST: !weirdmoves\n\
  - MAGIC EFFECTS: !effects\n\
  - MAGIC GLITCHES: !glitches\n\
  - PHENOMENA: !phenom\n\
@@ -23,8 +23,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
     },
     basicMoves: {
         key: [`basic`, 'basicmoves'],
-        text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
-ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
+        text: 'BASIC MOVES LIST:\n\n\
  - KICK SOME ASS: !ksa *or* !kickass\n\
  - ACT UNDER PRESSURE: !aup *or* !act\n\
  - HELP OUT: !helpout\n\
@@ -39,8 +38,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
    },
     weirdMoves: {
         key: 'weirdmoves',
-        text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
-ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
+        text: 'ALTERNATE WEIRD MOVES LIST:\n\n\
  - EMPATH: !empath\n\
  - ILLUMINATED: !illum\n\
  - NO LIMITS: !nolimits\n\
