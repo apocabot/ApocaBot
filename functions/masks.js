@@ -409,7 +409,8 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData)
             }       
         })
     }
-    if(errorMessage[0]){return errorMessage}
+    errorMessage = errorMessage.toString().split(",").join("\n")
+    if(errorMessage){return errorMessage}
     else{return characterSheet(userMessage, userId, channelId, userNickname, moves, userData)}
 }
 

@@ -355,7 +355,8 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData)
             }
         })
     }
-    if(setErrors[0]){return setErrors[0]}
+    setErrors = setErrors.toString().split(",").join("\n")
+    if(setErrors){return setErrors}
     else{return characterSheet(userMessage, userId, channelId, userNickname, moves, userData)}
 }
 

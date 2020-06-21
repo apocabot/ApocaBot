@@ -10,6 +10,7 @@ client.login(process.env.BOT_TOKEN)
 //bot responds to being logged in
 client.on('ready', () => {
     console.log('Logged in as ApocaBot!');
+    client.user.setActivity("patreon.com/apocabot for info");
 })
 
 //stores characters locally
@@ -29,6 +30,9 @@ client.on('message', async message => {
     //load existing userData
         userData = await storage.get(channelId);
         userData = userData || {}
+        if(userData[userId]){
+            messageName = userData[userId]['NAME']
+        } else {messageName = ``}
         
         if(!userData['GAME']){
             if(message.content.startsWith("!setgame")){
@@ -96,7 +100,7 @@ EXAMPLE: !setgame apocalypse-world *or* !setgame motw");
                         } else {
                             message.channel.send({embed: {
                                 author: {
-                                    name: `• ${userData[userId]['NAME']} •`
+                                    name: `• ${messageName} •`
                                 },
                                 color: 000000,
                                 description: moves[i].method(userMessage, userId, channelId, userNickname, moves, userData, i, gameList)
