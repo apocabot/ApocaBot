@@ -3,7 +3,7 @@ const functions = require('./../functions/motw.js');
 //text library object
 module.exports = moves = {
     menu: {
-        key: 'menu',
+        key: ['help', 'menu',],
         text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
 ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - NEWCHARACTER: !newcharacter\n\
@@ -27,7 +27,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
 ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - KICK SOME ASS: !ksa *or* !kickass\n\
  - ACT UNDER PRESSURE: !aup *or* !act\n\
- - HELP OUT: !help\n\
+ - HELP OUT: !helpout\n\
  - INVESTIGATE A MYSTERY: !iam *or* !invest\n\
  - MANIPULATE SOMEONE: !manipulate\n\
  - MANIPULATE HUNTER: !manhunt\n\
@@ -175,8 +175,8 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         method: functions.moveRoll
     },
     helpOut: {
-        key: ['help', 'helpout'],
-        text: 'HELP OUT: !help\nWhen you help another hunter.',
+        key: ['helpout'],
+        text: 'HELP OUT: !helpout\nWhen you help another hunter.',
         get greatSuccess(){return this.success},
         success: 'On a 10+, your help grants them +1 to their roll.',
         mixed: 'On a 7–9, your help grants them +1 to their roll,\

@@ -1,6 +1,6 @@
 # ApocaBot - A Discord Bot for PbtA Games
 
-ApocaBot is a bot designed to streamline PbtA gameplay on a Discord server by allowing players to create functional in-chat character sheets and deploy their stats for rolls or basic moves. Though it's not intended to fully replace traditional character sheets, ApocaBot lets you focus more on your game and less on referencing the text. ApocaBot currently supports *Apocalypse World, Burned Over (AW Hackbook), Dungeon World, Masks, MotW, and Uncharted Worlds.* 
+ApocaBot is a bot designed to streamline PbtA gameplay on a Discord server by allowing players to create functional in-chat character sheets and deploy their stats for rolls or basic moves. Though it's not intended to fully replace traditional character sheets, ApocaBot lets you focus more on your game and less on referencing the text. ApocaBot currently supports *Apocalypse World 2e, Burned Over (AW Hackbook), Dungeon World, Masks, MotW, and Uncharted Worlds.* 
 
 ### Support
 
