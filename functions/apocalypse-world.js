@@ -301,6 +301,7 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
             }
         })
     }
+    shiftPrintout = shiftPrintout.toString().split(",").join("\n")
     if(!shiftPrintout[1]){shiftPrintout = moves.shift.error}
     return shiftPrintout
 }

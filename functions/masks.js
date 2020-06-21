@@ -353,7 +353,8 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
         })
     }
 
-
+    errorMessage = errorMessage.toString().split(",").join("\n")
+    shiftMessage = shiftMessage.toString().split(",").join("\n")
     if(errorMessage){return errorMessage}
     else{return shiftMessage}
 }
