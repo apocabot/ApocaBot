@@ -39,7 +39,9 @@ client.on('message', async message => {
         userData = await storage.get(channelId);
         userData = userData || {}
         if(userData[userId]){
-            messageName = `• ${userData[userId]['NAME']} •`
+            if(!userData[userId]['NAME']){
+                messageName = ``
+            } else {messageName = `• ${userData[userId]['NAME']} •`}           
         } else {messageName = ``}
         
         if(!userData['GAME']){
@@ -105,6 +107,7 @@ client.on('message', async message => {
             }
             if(userMessage[0] === 'setgame'){
                 userData['gameIcon'] = "https://i.imgur.com/b6VKiMs.jpg"
+                messageName = ``
             }
 
             if(message.content.startsWith(userData['PREFIX'])){
