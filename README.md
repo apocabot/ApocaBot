@@ -1,16 +1,14 @@
 # ApocaBot - A Discord Bot for PbtA Games
 
+To add ApocaBot to your Discord server, click [Add ApocaBot](https://discord.com/api/oauth2/authorize?client_id=723981824455344180&permissions=0&scope=bot). Once the bot is logged in, type `!` in the chat to get started.
+
 ApocaBot is a bot designed to streamline PbtA gameplay on a Discord server by allowing players to create functional in-chat character sheets and deploy their stats for rolls or basic moves. Though it's not intended to fully replace traditional character sheets, ApocaBot lets you focus more on your game and less on referencing the text. ApocaBot currently supports *Apocalypse World 2e, Burned Over (AW Hackbook), Dungeon World, Masks, MotW, and Uncharted Worlds.* 
 
 ### Support
 
 Althought this project is a labor of love, it's still labor. If you'd like to support ApocaBot, access update info, and have a say in which PbtA games get included next, consider [BECOMING A PATRON](https://www.patreon.com/apocabot). Thanks for your support!
 
-## For Discord Users
-
-To add ApocaBot to your Discord server, click [Add ApocaBot](https://discord.com/api/oauth2/authorize?client_id=723981824455344180&permissions=0&scope=bot). Once the bot is logged in, type `!` in the chat to get started.
-
-### Commands
+## Commands
 
 Once the bot is logged in, any command beginning with `!` will activate ApocaBot. First you'll need to select the PbtA game you want to play, with the command `!setgame` followed by the hyphenated game name.  
 EXAMPLE: `!setgame dungeon-world` *or* `!setgame motw`  
@@ -19,7 +17,7 @@ Once you've selected a game, you'll be albe to access the game `!menu`, or `!set
 
 Before you can *use* any of the commands (like `!roll`), you must create a character sheet. If you try to use a command before setting up a character sheet the bot will propt you to enter `!newcharacter` and learn how to `!set` your stats. After you've done so, you will have access to all the bot commands, dice roller with stat integration, and game info.  
 
-#### Generic Commands
+### Generic Commands
 
  * `!newcharacter` - Use this command to create a new blank character or to zero out your character stats. Each player must create their own character. Sometimes creating a new blank character sheet will be necessary for updates in the bot to be visible.
  * `!character` - Enter this command at any time to check on your character stats.
@@ -38,7 +36,7 @@ Before you can *use* any of the commands (like `!roll`), you must create a chara
 EXAMPLE: `!setgame apocalypse-world` *or* `!setgame motw`  
  * `!session` - Enter this command when you've reached the end of a session. It will bring up information about xp, advancement, or any other end-of-session rules.  
 
-#### Game-specific Commands
+### Game-specific Commands
 
  * Each PbtA game supported by ApocaBot has commands for all basic and advanced moves. Class-specific moves are not supported (because there are just too many), but can be handled with a simple `!roll +stat` command.  
  * Pledge your support for [ApocaBot on Patreon](https://www.patreon.com/apocabot) (even just $1 a month) for access to the complete moves list for each PbtA game, ability to request edits or flag errors, and to give your input for future PbtA games that will be added to ApocaBot. Thanks for your support!
@@ -49,3 +47,9 @@ Special thanks to the friends and developers who inspired and helped this projec
 * https://github.com/evanfeenstra
 * https://github.com/brandonjackson
 * https://github.com/dyerw
+* Tam
+* Dobsonfly
+* Janilyn
+* Rezart
+* Harkano
+* And many more...
