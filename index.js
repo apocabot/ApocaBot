@@ -40,7 +40,7 @@ client.on('message', async message => {
             gameList.forEach(i => {
                 if(message.content.toLowerCase().endsWith(i)){
                     userData['GAME'] = i
-                    gameSetMessage = `You've selected __${i}__, you can now use the command !menu to see the list of moves, learn how to set a custom prefix, and create character sheets.`
+                    gameSetMessage = `You've selected __${i.toUpperCase()}__, now enter the command __!menu__ to see the list of moves, learn how to set a custom prefix, and create character sheets.`
                     storage.set(channelId, userData);
                 }
             })
