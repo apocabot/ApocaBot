@@ -275,9 +275,8 @@ function newCharacter(userMessage, userId, channelId, userNickname, moves, userD
     person.TEAM = (userData['TEAM'])
     userData[userId] = person;
     storage.set(channelId, userData);
-    return 'CREATED A BLANK CHARACTER:\n\
-Type __!character__ to view character sheet, or __!set?__ to learn\
- how to set your character stat.'
+    return 'CREATED A BLANK CHARACTER: Type __!set?__ to learn\
+ how to set your character stats.\n' + characterSheet(userMessage, userId, channelId, userNickname, moves, userData)
 }
 
 function characterSheet(userMessage, userId, channelId, userNickname, moves, userData){
