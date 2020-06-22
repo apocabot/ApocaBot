@@ -27,12 +27,12 @@ client.on('message', async message => {
     const userNickname = message.member.nickname;
     let gameList = ['apocalypse-world', 'burned-over', 'dungeon-world', 'masks', 'motw', 'uncharted-worlds'];
     let iconList = {
-        "apocalypse-world": "https://i.imgur.com/UICmE6a.png",
-        "burned-over": "https://i.imgur.com/viRU5FJ.png",
-        "dungeon-world": "https://i.imgur.com/0QvGDRv.jpg",
-        "masks": "https://i.imgur.com/VMNCGuX.png",
-        "motw": "https://i.imgur.com/jBanj3Q.jpg",
-        "uncharted-worlds": "https://i.imgur.com/MDMq3dp.png"
+        "apocalypse-world": "https://i.imgur.com/axsiHTi.png",
+        "burned-over": "https://i.imgur.com/t4RSNmg.png",
+        "dungeon-world": "https://i.imgur.com/rffkAsW.png",
+        "masks": "https://i.imgur.com/ThMlFyE.png",
+        "motw": "https://i.imgur.com/a9Bi8zM.jpg",
+        "uncharted-worlds": "https://i.imgur.com/MJB1dGn.png"
     }
 
     //load existing userData
@@ -58,20 +58,20 @@ client.on('message', async message => {
                     let embed = new Discord.MessageEmbed()
                             .setColor(000000)
                             .setDescription("To begin using ApocaBot, enter the command __!setgame__ followed by a space and one of the supported games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • motw\n • uncharted-worlds\nEXAMPLE: !setgame apocalypse-world")
-                            .setThumbnail("https://i.imgur.com/b6VKiMs.jpg")
+                            .setThumbnail("https://i.imgur.com/a5p2OaU.png")
                     message.channel.send({embed})
                 } else {
                     let embed = new Discord.MessageEmbed()
                             .setColor(000000)
                             .setDescription(gameSetMessage)
-                            .setThumbnail("https://i.imgur.com/b6VKiMs.jpg")
+                            .setThumbnail("https://i.imgur.com/a5p2OaU.png")
                     message.channel.send({embed})
                 }           
             }   else if(message.content.startsWith('!')) { 
                 let embed = new Discord.MessageEmbed()
                             .setColor(000000)
                             .setDescription("Welcome to ApocaBot, a Discord Bot for Powered by the Apocalypse (PbtA) games.\nApocaBot currently supports the following games:\n • Apocalypse World\n • Burned Over\n • Dungeon World,\n • Masks\n • MotW\n • Uncharted Worlds\nTo begin using ApocaBot, enter the command __!setgame__ followed by the hyphenated name of the PbtA game you\'ll be playing.\nEXAMPLE: !setgame apocalypse-world *or* !setgame motw")
-                            .setThumbnail("https://i.imgur.com/b6VKiMs.jpg")
+                            .setThumbnail("https://i.imgur.com/a5p2OaU.png")
                 message.channel.send({embed})
                 return
                 } else {return}
@@ -81,7 +81,7 @@ client.on('message', async message => {
                 let moves = movesFolder[camelGame]
                 let functions = functionsFolder[camelGame]
                 if(!userData['gameIcon']){
-                    userData['gameIcon'] = "https://i.imgur.com/b6VKiMs.jpg"
+                    userData['gameIcon'] = "https://i.imgur.com/a5p2OaU.png"
                 } 
 
                 const unPrefixed = functions.removePrefix(message.content, userData);
@@ -106,7 +106,7 @@ client.on('message', async message => {
                 }
             }
             if(userMessage[0] === 'setgame'){
-                userData['gameIcon'] = "https://i.imgur.com/b6VKiMs.jpg"
+                userData['gameIcon'] = "https://i.imgur.com/a5p2OaU.png"
                 messageName = ``
             }
 
