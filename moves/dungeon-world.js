@@ -51,7 +51,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
                 INT: ['int', 0],
                 WIS: ['wis', 0],
                 CHA: ['cha', 0],
-                DAM: ['dam', '!set dam+(d4, d6, d8, d10, or d12)'],
+                DAM: ['dam', '!set dam+(d4 : d6 : d8 : d10 : d12)'],
                 HP: ['hp', 0]
         }
         },
