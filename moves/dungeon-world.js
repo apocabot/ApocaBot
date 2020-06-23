@@ -202,7 +202,11 @@ When you act despite an imminent threat or suffer a calamity,\
     defend: {
         key: 'defend',
         text: 'DEFEND: !defend\n\
-When you stand in defense of a person, item, or location under attack, roll +CON.',
+When you stand in defense of a person, item, or location under attack, roll +CON. You may:\n\
+ - Redirect an attack from the thing you defend to yourself\n\
+ - Halve the attack’s effect or damage\n\
+ - Open up the attacker to an ally giving that ally +1 forward against the attacker\n\
+ - Deal damage to the attacker equal to your level',
         greatSuccess: 'On a 10+, hold 3. As long as you stand in defense,\
  when you or the thing you defend is attacked you may spend hold, 1 for 1, to choose an option:\n\
  - Redirect an attack from the thing you defend to yourself\n\
@@ -242,7 +246,13 @@ When you consult your accumulated knowledge about something, roll +INT.',
     discernRealities: {
         key: ['discern', 'discernrealities', 'realities'],
         text: 'DISCERN REALITIES: !discern\n\
- When you closely study a situation or person, roll +WIS.',
+ When you closely study a situation or person, roll +WIS. You may ask:\n\
+ - What happened here recently?\n\
+ - What is about to happen?\n\
+ - What should I be on the lookout for?\n\
+ - What here is useful or valuable to me?\n\
+ - Who’s really in control here?\n\
+ - What here is not what it appears to be?',
         greatSuccess: 'On a 10+, ask the GM 3 questions from the list below.\
  Take +1 forward when acting on the answers.\n\
  - What happened here recently?\n\
@@ -370,7 +380,11 @@ When you travel through hostile territory, choose one member of the party to be 
         key: 'carouse',
         text: 'CAROUSE: !carouse +/-COIN\n\
 When you return triumphant and throw a big party, spend 100 coins and roll +1 for every\
- extra 100 coins spent.',
+ extra 100 coins spent. It\'s possible that:\n\
+ - You befriend a useful NPC.\n\
+ - You hear rumors of opportunity.\n\
+ - You gain useful information\n\
+ - You are not entangled, ensorcelled, or tricked.',
         greatSuccess: 'On a 10+, choose 3.\n\
  - You befriend a useful NPC.\n\
  - You hear rumors of opportunity.\n\

@@ -228,7 +228,13 @@ When you help or interfere with someone who\'s making a roll.',
     readASitch: {
         key: ['readsitch', 'readasitch', 'sitch'],
         text: 'READ A SITCH: !readsitch\n\
-When you read a charged situation.',
+When you read a charged situation, you may ask:\n\
+ *- Where\'s my best escape route / way in / way past?*\n\
+ *- Which enemy is the most vulnerable to me?*\n\
+ *- Which enemy is the biggest threat?*\n\
+ *- What should I be on the lookout for?*\n\
+ *- What\'s my enemy\'s true position?*\n\
+ *- Who\'s in control here?*',
         greatSuccess: 'On a 12+, you can ask the MC any 3 questions.\
  Whenever you act on one of the MC\'s answers, take +1.',
         success: 'On a 10+, ask 3 questions from the list below.\
@@ -261,7 +267,12 @@ When you read a charged situation.',
     readAPerson: {
         key: ['readperson', 'readaperson', 'person'],
         text: 'READ A PERSON: !readperson\n\
-When you read a person in a charged interaction.',
+When you read a person in a charged interaction, you may ask:\n\
+ *- Is your character telling the truth?*\n\
+ *- What\'s your character really feeling?*\n\
+ *- What does your character intend to do?*\n\
+ *- What does your character wish I\'d do?*\n\
+ *- How could I get your character to -- ?*',
         greatSuccess: 'On a 12+, hold 3. While you\'re interacting\
  with them, you may spent your hold to ask their player any questions,\
  1 for 1.',
@@ -467,7 +478,12 @@ When you do single combat with someone, no quarters, exchange harm\
    layDownFire: {
        key: ['lay', 'laydown', 'laydownfire'],
        text: 'LAY DOWN FIRE: !lay\n\
-When you lay down fire, roll+hard.',
+When you lay down fire, roll+hard. You may:\n\
+ - You provide covering fire, allowing another character to move or act freely.\n\
+ - You provide supporting fire, giving another PC +1choice to their own battle move.\n\
+ - You provide suppressing fire, denying another character to move or act freely.\
+ (If a PC, they may still act under fire.)\n\
+ - You take an opportune shot, inflicting harm (but -1harm) on an enemy within your reach.',
        success: 'On a 10+, choose 3:\n\
  - You provide covering fire, allowing another character to move or act freely.\n\
  - You provide supporting fire, giving another PC +1choice to their own battle move.\n\

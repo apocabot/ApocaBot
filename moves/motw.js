@@ -185,7 +185,15 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
     },
     investigateAMystery: {
         key: ['iam', 'invest', 'investigate', 'investigatemystery', 'investigateamystery', 'mystery'],
-        text: 'INVESTIGATE A MYSTERY: !investigate\nWhen you investigate a mystery.',
+        text: 'INVESTIGATE A MYSTERY: !investigate\nWhen you investigate a mystery, you can ask:\n\
+ - What happened here?\n\
+ - What sort of creature is it?\n\
+ - What can it do?\n\
+ - What can hurt it?\n\
+ - Where did it go?\n\
+ - What was it going to do?\n\
+ - What is being concealed here?\n\
+ - (type ?phenom if investigating a phenomena)',
         get greatSuccess(){return this.success},
         success: 'On a 10+, hold 2. One hold can be spent to ask the keeper\
  one of the following questions:\n\
@@ -258,7 +266,13 @@ When you prevent harm to another character.',
     readABadSituation: {
         key: ['rabs', 'read', 'readasitch', 'readabadsituation', 'badsituation'],
         text: 'READ A BAD SITUATION: !read\n\
-When you look around and read a bad situation.',
+When you look around and read a bad situation, you can ask:\n\
+ - What\'s my best way in?\n\
+ - What\'s my best way out?\n\
+ - Are there any dangers we haven\'t noticed?\n\
+ - What\'s the biggest threat?\n\
+ - What\'s most vulnerable to me?\n\
+ - What\'s the best way to protect the victims?',
         get greatSuccess(){return this.success},
         success: 'On a 10+, hold 3. One hold can be spent\
  to ask the Keeper one of the following questions (if you act on the answers,\
@@ -410,7 +424,12 @@ When you push your physical body past its limits.',
        key: ['pastlives', 'past', 'lives'],
        text: 'PAST LIVES: !pastlives\n\
 When you channel your previous incarnations to discover something,\
- pose your question.',
+ pose your question:\n\
+ - What did a past life discover about ______?\n\
+ - How did a past life deal with ______?\n\
+ - What important hidden secret can a past life show me the way to?\n\
+ - What did a past life learn too late to help them?\n\
+ - What does a past life advise me to do now?',
        get greatSuccess(){return this.success},
        success: 'On a 10+, a past life has something useful to offer.\
  Ask the Keeper two of the questions below:\n\

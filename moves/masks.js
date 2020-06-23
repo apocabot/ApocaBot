@@ -159,7 +159,13 @@ TO CLEAR CONDITIONS:\n\
         key: ['mark'],
         text: 'MARK CONDITION: !mark +condition\n\
 When you mark a condition, enter the command plus the condition name. Marked conditions will\
- be listed on your character sheet',
+ be listed on your character sheet.\n\n\
+CONDITIONS:\n\
+ • Angry\n\
+ • Afraid\n\
+ • Guilty\n\
+ • Hopeless\n\
+ • Insecure',
         error: 'To mark a condition: !mark afraid angry guilty hopeless insecure',
         method: functions.markCondition
     },
@@ -167,7 +173,13 @@ When you mark a condition, enter the command plus the condition name. Marked con
        key: ['clear'],
        text: 'CLEAR CONDITION: !clear +condition\n\
 When you clear a condition, enter the command plus the condition name. Marked conditions will\
- be removed from your character sheet',
+ be removed from your character sheet.\n\
+TO CLEAR CONDITIONS:\n\
+ • __To clear Angry__, hurt someone or break something important.\n\
+ • __To clear Afraid__, run from something difficult.\n\
+ • __To clear Guilty__, make a sacrifice to absolve your guilt.\n\
+ • __To clear Hopeless__, fling yourself into easy relief.\n\
+ • __To clear Insecure__, take foolhardy action without talking to your team.',
        error: 'To mark a condition: !clear afraid angry guilty hopeless insecure',
        method: functions.clearCondition
     },
@@ -238,7 +250,11 @@ When you *comfort or support someone*, roll + Mundane.',
     pierceTheMask: {
         key: ['pierce', 'piercemask', 'piercethemask', 'ptm'],
         text: 'PIERCE THE MASK: !pierce\n\
- When you *pierce someone’s mask* to see the person beneath, roll + Mundane.',
+ When you *pierce someone’s mask* to see the person beneath, roll + Mundane. You can ask:\n\
+ • What do you want me to do?\n\
+ • What do you intend to do?\n\
+ • How could I get your character to ______?\n\
+ • How could I gain Influence over you?',
         success: 'On a 10+, ask 3:\n\
  • What do you want me to do?\n\
  • What do you intend to do?\n\
@@ -276,7 +292,12 @@ For *PC threats*: on a 7-9, give them -2 to their roll but you expose yourself\
     assessTheSituation: {
         key: ['assess', 'assesssituation', 'assessthesituation', 'ats'],
         text: 'ASSESS THE SITUATION: !assess\n\
-When you *assess the situation*, roll + Superior.',
+When you *assess the situation*, roll + Superior. You can ask:\n\
+ • What here can I use to ______?\n\
+ • What here is the biggest threat?\n\
+ • What here is in the greatest danger?\n\
+ • Who here is most vulnerable to me?\n\
+ • How could we best end this quickly?',
         success: 'On a 10+, ask two questions from the list below and take\
  +1 while acting on the answers.\n\
  • What here can I use to ______?\n\

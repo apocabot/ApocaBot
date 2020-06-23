@@ -309,7 +309,13 @@ t hough there may be costs in time, resources or personnel.',
     },
     wildJump: {
         key: ['wildjump', 'wild', 'jump'],
-        text: 'WILD JUMP: !wildjump\nWhen you force your ship to make a Wild Jump.',
+        text: 'WILD JUMP: !wildjump\nWhen you force your ship to make a Wild Jump. Anything could happen:\n\
+ - You find an uncharted world, ready for exploration.\n\
+ - You find exploitable resources, there for the taking.\n\
+ - You discover a scientifically-interesting phenomenon.\n\
+ - You discover wreckage or ruins of unknown origin.\n\
+ - You find a new path to a well-known destination.\n\
+ - You encounter a faction or culture that is new to you.',
         greatSuccess: 'On a 10+, the crew only suffers nausea, headaches,\
  and other minor effects. You reach a point within a week\'s travel of your\
  destination, or choose from the list below:\n\
