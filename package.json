@@ -17,7 +17,7 @@
     "mongo": "^0.1.0",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.19",
-    "mungu": "^1.0.0",
+    "mungu": "^1.0.4",
     "redis": "^3.0.2",
     "redis-jsonify": "^1.2.0"
   },
