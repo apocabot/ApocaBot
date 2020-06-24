@@ -15,6 +15,7 @@ client.on('ready', () => {
 
 //stores characters locally
 let userData = {};
+let counter
 
 //main program, divided into prefixes ! and ?
 client.on('message', async message => {
@@ -70,7 +71,7 @@ client.on('message', async message => {
             }   else if(message.content.startsWith('!')) { 
                 let embed = new Discord.MessageEmbed()
                             .setColor(000000)
-                            .setDescription("Welcome to ApocaBot, a Discord Bot for Powered by the Apocalypse (PbtA) games.\nApocaBot currently supports the following games:\n • Apocalypse World\n • Burned Over\n • Dungeon World,\n • Masks\n • MotW\n • Uncharted Worlds\nTo begin using ApocaBot, enter the command __!setgame__ followed by the hyphenated name of the PbtA game you\'ll be playing.\nEXAMPLE: !setgame apocalypse-world *or* !setgame motw")
+                            .setDescription("Welcome to ApocaBot, a Discord Bot for Powered by the Apocalypse (PbtA) games.\nApocaBot currently supports the following games:\n • apocalypse-world\n • burned-over\n • dungeon-world,\n • masks\n • motw\n • uncharted-worlds\nTo begin using ApocaBot, enter the command __!setgame__ followed by the hyphenated name of the PbtA game you\'ll be playing.\nEXAMPLE: !setgame apocalypse-world *or* !setgame motw")
                             .setThumbnail("https://i.imgur.com/a5p2OaU.png")
                 message.channel.send({embed})
                 return
@@ -100,19 +101,22 @@ client.on('message', async message => {
                     userData['PREFIX'] = '!';
                 }
 
-            for await(let [key, value] of Object.entries(iconList)){
-                if(key === userData['GAME']){
-                    userData['gameIcon'] = value
-                }
-            }
-            if(userMessage[0] === 'setgame'){
-                userData['gameIcon'] = "https://i.imgur.com/a5p2OaU.png"
-                messageName = ``
-            }
-
             if(message.content.startsWith(userData['PREFIX'])){
                 //counts the number of total user messages
-                functions.messageCounter(userData)
+                counter = await storage.get('COUNTER')
+                if(!counter){counter = 0}
+                counter++
+                console.log(counter)
+
+                for await(let [key, value] of Object.entries(iconList)){
+                    if(key === userData['GAME']){
+                        userData['gameIcon'] = value
+                    }
+                }
+                if(userMessage[0] === 'setgame'){
+                    userData['gameIcon'] = "https://i.imgur.com/a5p2OaU.png"
+                    messageName = ``
+                }
 
                 for (i in moves) {
                     if (moves[i]['key'].includes(userMessage[0])){
@@ -124,6 +128,7 @@ client.on('message', async message => {
                             .setDescription(finalMessage)
                             .setThumbnail(userData['gameIcon'])
                             message.channel.send({embed})
+                            storage.set('COUNTER', counter)
                         } else {
                             finalMessage = moves[i].method(userMessage, userId, channelId, userNickname, moves, userData, i, gameList)
                             const embed = new Discord.MessageEmbed()
@@ -133,6 +138,7 @@ client.on('message', async message => {
                             .setThumbnail(userData['gameIcon'])
                             message.channel.send({embed})
                         storage.set(channelId, userData);
+                        storage.set('COUNTER', counter)
                         }
 			        };
 		        };
