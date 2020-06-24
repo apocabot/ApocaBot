@@ -118,7 +118,7 @@ WARNING: Setting a new game will erase all current character sheets and data. If
        method: functions.setGame
    },
     shift: {
-        key: 'shift',
+        key: ['shift'],
         text: 'SHIFT STATS: !shift stat+/-num...\nTo shift your character stats\
  by a certain amount, enter the command followed by the stats you want to shift\
  and the amount to change them.\n\
@@ -523,7 +523,7 @@ Once you’ve accomplished the necessaries, you can go ahead and accomplish your
         method: function(){return this.text}
     },
     wealth: {
-        key: 'wealth',
+        key: ['wealth'],
         text: 'WEALTH: !wealth\n\
 At the beginning of the session, if your holding or venue is secure and stable, roll !wealth.',
         get greatSuccess(){return this.success},

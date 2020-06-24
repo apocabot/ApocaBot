@@ -118,7 +118,7 @@ WARNING: Setting a new game will erase all current character sheets and data. If
        method: functions.setGame
    },
     shift: {
-        key: 'shift',
+        key: ['shift'],
         text: 'SHIFT STATS: !shift stat+/-num...\nTo shift your character stats\
  by a certain amount, enter the command followed by the stats you want to shift\
  and the amount to change them.\n\
@@ -168,7 +168,7 @@ When you attack an enemy in melee, roll +STR.',
         method: functions.moveRoll
     },
     volley: {
-        key: 'volley',
+        key: ['volley'],
         text: 'VOLLEY: !volley\n\
  When you take aim and shoot at an enemy at range, roll +DEX.',
         greatSuccess: 'On a 10+, you have a clear shot—deal your damage.',
@@ -200,7 +200,7 @@ When you act despite an imminent threat or suffer a calamity,\
         method: functions.moveRoll
     },
     defend: {
-        key: 'defend',
+        key: ['defend'],
         text: 'DEFEND: !defend\n\
 When you stand in defense of a person, item, or location under attack, roll +CON. You may:\n\
  - Redirect an attack from the thing you defend to yourself\n\
@@ -282,7 +282,7 @@ When you consult your accumulated knowledge about something, roll +INT.',
         method: functions.moveRoll
     },
     parley: {
-        key: 'parley',
+        key: ['parley'],
         text: 'PARLEY: !parley\n\
 When you have leverage on a GM Character and manipulate them, roll +CHA.',
         greatSuccess: 'On a 10+, they do what you ask if you first promise what they ask of you.',
@@ -343,7 +343,7 @@ When you travel through hostile territory, choose one member of the party to be 
         method: function(){return this.text}
     },
     trailblazer: {
-        key: 'trailblazer',
+        key: ['trailblazer'],
         text: 'TRAILBLAZER: !trailblazer',
         greatSuccess: 'On a 10+, the trailblazer reduces the amount of time it takes\
  to reach your destination (the GM will say by how much).',
@@ -355,7 +355,7 @@ When you travel through hostile territory, choose one member of the party to be 
         method: functions.moveRoll
     },
     scout: {
-        key: 'scout',
+        key: ['scout'],
         text: 'SCOUT: !scout',
         greatSuccess: 'On a 10+, the scout will spot any trouble quick enough to let you\
  get the drop on it.',
@@ -367,7 +367,7 @@ When you travel through hostile territory, choose one member of the party to be 
         method: functions.moveRoll
     },
     quartermaster: {
-        key: 'quartermaster',
+        key: ['quartermaster'],
         text: 'QUARTERMASTER: !quartermaster',
         greatSuccess: 'On a 10+, the quartermaster reduces the number of rations required by one.',
         success: 'On a 10+, the quartermaster reduces the number of rations required by one.',
@@ -377,7 +377,7 @@ When you travel through hostile territory, choose one member of the party to be 
         method: functions.moveRoll
     },
     carouse: {
-        key: 'carouse',
+        key: ['carouse'],
         text: 'CAROUSE: !carouse +/-COIN\n\
 When you return triumphant and throw a big party, spend 100 coins and roll +1 for every\
  extra 100 coins spent. It\'s possible that:\n\

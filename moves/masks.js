@@ -9,7 +9,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - NEWCHARACTER: !newcharacter\n\
  - CHECK YOUR CHARACTER STATS: !character\n\
  - SET CHARACTER STATS: !set\n\
- - SHIFT CHARACTER LABEL: !shift\n\
+ - SHIFT CHARACTER STAT: !shift\n\
  - ROLL SOME DICE: !roll\n\
  - BASIC MOVES LIST: !basic\n\
  - ADULT MOVES LIST: !adult\n\
@@ -120,12 +120,13 @@ WARNING: Setting a new game will erase all current character sheets and data. If
        method: functions.setGame
    },
     shift: {
-        key: 'shift',
-        text: 'SHIFT LABELS: !shift label+/-num...\nTo shift your character labels\
- by a certain amount, enter the command followed by the label you want to shift\
+        key: ['shift'],
+        text: 'SHIFT LABELS OR STATS: !shift label+/-num...\nTo shift your character labels\
+ or stats by a certain amount, enter the command followed by the label you want to shift\
  and the amount to change them.\n\
-EXAMPLE: !shift dan+1 will increase your Danger by 1.',
-        error: 'Incorrect input, use the format: !shift dan+1 mun-1 etc...\
+EXAMPLE: !shift dan+1 will increase your Danger by 1, !shift pot+1 will add 1 to your Potential,\
+ !shift team+3 will add 3 to the Team Pool.',
+        error: 'Incorrect input, use the format: !shift dan+1 pot+1 team+3 etc...\
  (this only works for numerical values)',
         method: functions.shift
     },

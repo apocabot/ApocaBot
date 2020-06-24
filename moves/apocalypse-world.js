@@ -124,7 +124,7 @@ WARNING: Setting a new game will erase all current character sheets and data. If
        method: functions.setGame
    },
     shift: {
-        key: 'shift',
+        key: ['shift'],
         text: 'SHIFT STATS: !shift stat+/-num...\nTo shift your character stats\
  by a certain amount, enter the command followed by the stats you want to shift\
  and the amount to change them.\n\

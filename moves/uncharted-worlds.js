@@ -116,7 +116,7 @@ WARNING: Setting a new game will erase all current character sheets and data. If
        method: functions.setGame
    },
     shift: {
-       key: 'shift',
+       key: ['shift'],
        text: 'SHIFT STATS: !shift stat+/-num...\nTo shift your character stats\
  by a certain amount, enter the command followed by the stats you want to shift\
  and the amount to change them.\n\
@@ -252,7 +252,7 @@ a cost or a hard choice.',
         method: functions.moveRoll
     },
     command: {
-        key: 'command',
+        key: ['command'],
         text: 'COMMAND: !command +INF\nWhen you issue a command to a group\
  that is inclined to follow your orders.',
         greatSuccess: 'On a 10+, they follow those orders to the best of their ability,\
@@ -268,7 +268,7 @@ t hough there may be costs in time, resources or personnel.',
         method: functions.moveRoll
     },
     access: {
-        key: 'access',
+        key: ['access'],
         text: 'ACCESS: !access +INT\nWhen you spend several minutes accessing\
  a locked, protected system or network with the appropriate tools.',
         greatSuccess: 'On a 10+, credentials verified, access granted. The system is now\
@@ -379,7 +379,7 @@ t hough there may be costs in time, resources or personnel.',
         method: functions.moveRoll
     },
     barter: {
-        key: 'barter',
+        key: ['barter'],
         text: 'BARTER: !barter +CARGO CLASS\nWhen you exchange a foreign unit of\
  cargo for local trade good, Roll+ that cargo\'s class.',
         greatSuccess: 'On a 13+, you attract the attention of a faction or\

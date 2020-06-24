@@ -37,7 +37,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
         method: function(){return this.text}
    },
     weirdMoves: {
-        key: 'weirdmoves',
+        key: ['weirdmoves'],
         text: 'ALTERNATE WEIRD MOVES LIST:\n\n\
  - EMPATH: !empath\n\
  - ILLUMINATED: !illum\n\
@@ -126,7 +126,7 @@ WARNING: Setting a new game will erase all current character sheets and data. If
        method: functions.setGame
    },
     shift: {
-        key: 'shift',
+        key: ['shift'],
         text: 'SHIFT STATS: !shift stat+/-num...\nTo shift your character stats\
  by a certain amount, enter the command followed by the stats you want to shift\
  and the amount to change them.\n\
@@ -193,7 +193,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
  - Where did it go?\n\
  - What was it going to do?\n\
  - What is being concealed here?\n\
- - (type ?phenom if investigating a phenomena)',
+ - (type !phenom if investigating a phenomena)',
         get greatSuccess(){return this.success},
         success: 'On a 10+, hold 2. One hold can be spent to ask the keeper\
  one of the following questions:\n\
@@ -204,7 +204,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
  - Where did it go?\n\
  - What was it going to do?\n\
  - What is being concealed here?\n\
- - (type ?phenom if investigating a phenomena)',
+ - (type !phenom if investigating a phenomena)',
         mixed: 'On a 10+, hold 1. One hold can be spent to ask the keeper\
  one of the following questions:\n\
  - What happened here?\n\
@@ -214,7 +214,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
  - Where did it go?\n\
  - What was it going to do?\n\
  - What is being concealed here?\n\
- - (type ?phenom if investigating a phenomena)',
+ - (type !phenom if investigating a phenomena)',
         fail: 'On a 6-, be prepared for the worst...',
         stat: 'sharp',
         method: functions.moveRoll
@@ -302,10 +302,10 @@ When you look around and read a bad situation, you can ask:\n\
 When you use magic, say what you\'re trying to achieve and how you do the spell.',
         get greatSuccess(){return this.success},
         success: 'On a 10+ the magic works without issue: choose your effect.\n\
- (type ?effects for reference)',
+ (type !effects for reference)',
         mixed: 'On a 7–9, it works imperfectly: choose your effect and a glitch.\
  The Keeper will decide what effect the glitch has.\n\
- (type ?effects and/or ?glitches for reference)',
+ (type !effects and/or !glitches for reference)',
         fail: 'On a 6-, you lose control of the magic. This never ends well...',
         stat: 'weird',
         method: functions.moveRoll
@@ -327,16 +327,16 @@ Use this when you want more than the Use Magic effects. Tell the Keeper what you
  - It will have a specific side-effect or danger.',
         get greatSuccess(){return this.success},
         success: 'On a 10+ the magic works without issue: choose your effect.\n\
- (type ?effects and/or ?bigmagic for reference)',
+ (type !effects and/or !bigmagic? for reference)',
         mixed: 'On a 7–9, it works imperfectly: choose your effect and a glitch.\
  The Keeper will decide what effect the glitch has.\n\
- (type ?effects and/or ?glitches for reference)',
+ (type !effects and/or !glitches for reference)',
         fail: 'On a 6-, you lose control of the magic. This never ends well...',
         stat: 'weird',
         method: functions.moveRoll
     },
     effects: {
-        key: 'effects',
+        key: ['effects'],
         text: 'USE MAGIC EFFECTS:\n\
  - Inflict harm (1-harm ignore-armour magic obvious)\n\
  - Enchant a weapon. It gets +1 harm and +magic\n\
@@ -351,7 +351,7 @@ Use this when you want more than the Use Magic effects. Tell the Keeper what you
         method: function(){return this.text}
    },
    glitches: {
-        key: 'glitches',
+        key: ['glitches'],
         text: 'USE MAGIC GLITCHES:\n\
  - The effect is weakened\n\
  - The effect is of short duration\n\
@@ -377,7 +377,7 @@ THE KEEPER MAY SAY THAT:\n\
         method: function(){return this.text}
    },
    empath: {
-       key: 'empath',
+       key: ['empath'],
        text: 'EMPATH: !empath\n\
 When you open up your brain to feel the emotions of something right there\
  in front of you.',
