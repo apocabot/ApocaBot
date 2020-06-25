@@ -123,7 +123,7 @@ WARNING: Setting a new game will erase all current character sheets and data. If
  EXAMPLE: !shift met+1 will increase your strength by 1.\
  !shift met-1 will remove 1 from your met stat.',
        error: 'Incorrect input, use the format: !shift met+1 etc...\
-(this only works for numerical values)',
+ (this only works for numerical values)',
        method: functions.shift
    },
     roll: {
@@ -149,7 +149,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         greatSuccess: 'On a 10+ you overcome the opposition or danger, just as you described.',
         success: 'On a 10+ you overcome the opposition or danger, just as you described.',
         mixed: 'On a 7-9, the danger is overcome, but at a price; the GM will offer you\
-a cost or a hard choice.',
+ a cost or a hard choice.',
         fail: 'On a 6-, prepare for the worst...',
         stat: 'stat',
         method: functions.moveRoll
@@ -256,7 +256,7 @@ a cost or a hard choice.',
         text: 'COMMAND: !command +INF\nWhen you issue a command to a group\
  that is inclined to follow your orders.',
         greatSuccess: 'On a 10+, they follow those orders to the best of their ability,\
-t hough there may be costs in time, resources or personnel.',
+ though there may be costs in time, resources or personnel.',
         success: 'On a 10+, they follow those orders to the best of their ability,\
  though there may be costs in time, resources or personnel.',
         mixed: 'On a 7-9, they follow those orders to the best of their ability\
@@ -399,10 +399,10 @@ t hough there may be costs in time, resources or personnel.',
        key: ['advance', 'advancement'],
        text: 'ADVANCEMENT:\n\
 During the course of the game, when a player notices that any character\'s\
-actions fulfills their chosen trigger, every character gains 1 xp. Each\
-character\'s advancement can only trigger once per session.\n\n\
+ actions fulfills their chosen trigger, every character gains 1 xp. Each\
+ character\'s advancement can only trigger once per session.\n\n\
 When a character has earned experience equal to their current number of skills,\
-their player does the follwoing in order:\n\
+ their player does the follwoing in order:\n\
  1. Expend their accumulated experience points.\n\
  2. Choose a new skill from the career they were advancing.\n\
  3. Give up their current advancement method.\n\

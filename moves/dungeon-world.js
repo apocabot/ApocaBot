@@ -14,6 +14,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - ROLL DAMAGE: !dam\n\
  - BASIC MOVES LIST: !basic\n\
  - SPECIAL MOVES LIST: !special\n\
+ - TPW MOVES LIST: !tpw\n\
  - SET APOCABOT PREFIX: !setprefix\n\
  - SET APOCABOT GAME: !setgame',
         method: function(){return this.text}
@@ -37,10 +38,27 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - ROLL LAST BREATH: !breath\n\
  - TAKE WATCH: !watch\n\
  - UNDERTAKE A PERILOUS JOURNEY: !journey\n\
+ - TRAILBLAZER: !trailblazer\n\
+ - SCOUT: !scout\n\
+ - QUARTERMASTER: !quarter\n\
  - CAROUSE: !carouse\n\
  - END OF SESSION: !session',
        method: function(){return this.text}
     },
+    tpwMoves: {
+       key: ['tpw', 'tpwmoves'],
+       text: 'THE PERILOUS WILDS MOVES LIST:\n\n\
+ - CAVING: !cave\n\
+ - OBSCURED PITS/FALLS: !pitfall\n\
+ - FORAGING: !forage\n\
+ - MAKE CAMP: !camp\n\
+ - SCOUT AHEAD: !ahead\n\
+ - NAVIGATE: !nav\n\
+ - MANGAE PROVISIONS: !manage\n\
+ - HUNKER DOWN: !hunker\n\
+ - FORGE AHEAD: !forge',
+       method: function(){return this.text}
+   },
     abilities: {
         key: 'abilities',
         stats: {
@@ -404,6 +422,133 @@ When you return triumphant and throw a big party, spend 100 coins and roll +1 fo
         stat: 'num',
         method: functions.moveRoll
     },
+    caving: {
+       key: ['cave', 'caving'],
+       text: 'CAVING: !cave\n\
+When you venture into the caves, roll +WIS',
+       success: 'On a 10+, you find your way to the vein of precious metal deep within,\
+ but getting out is another matter.',
+       mixed: 'On a 7–9, you encounter a foul denizen or deadly hazard (as the GM what).',
+       fail: 'On a 6-, be prepared for the worst...',
+       stat: 'wis',
+       method: functions.moveRoll
+   },
+   obscuredPitsFalls: {
+       key: ['pitfall', 'pitfalls', 'pits', 'pit', 'fall', 'falls', 'obscured', 'obscurdpitsandfalls'],
+       text: 'OBSCURED PITS/FALLS: !pitfall\n\
+When you cross dangerous terrain, roll +WIS',
+       success: 'On a 10+, you notice the drop, and not a moment too soon.',
+       mixed: 'On a 7–9, you step into it, but you have a split-second to save yourself\
+ from falling to a fate of the GM\'s choosing. What do you do?',
+       fail: 'On a 6-, be prepared for the worst...',
+       stat: 'wis',
+       method: functions.moveRoll
+   },
+   foraging: {
+       key: ['forage', 'foraging'],
+       text: 'FORAGING: !forage\n\
+When you spend a day seeking food in the wild, and your surroundings are not Barren, roll +WIS.',
+       success: 'On a 10+, you gain 1d4 rations if you have the knowledge and gear\
+ needed to trap or hunt.',
+       mixed: 'On a 7–9, you gain 1d4 rations if you have the knowledge and gear\
+ needed to trap or hunt, but first face a Discovery or Danger of the GM\'s choice.',
+       fail: 'On a 6-, be prepared for the worst...',
+       stat: 'wis',
+       method: functions.moveRoll
+   },
+   makeCamp: {
+       key: ['makecamp', 'camp', 'make'],
+       text: 'MAKE CAMP: !camp\n\
+When you settle in to rest, choose one member of the party to Manage Provisions.\
+ Then, if you eat and drink, and have enough XP, you may level up. If you\'re\
+ bedding down in dangerous lands, decide on a watch order. Then, the GM\
+ chooses one person on watch during the night to roll !camp +nothing.',
+       success: 'On a 10+, the night passes without incident.',
+       mixed: 'On a 7–9, the GM chooses 1 from the list below:\n\
+ - The person on watch notices a nearby Discovery.\n\
+ - One party member of the GM’s choice suffers a restless night.\n\
+ - One or more followers causes trouble.\n\
+ - A Danger approaches — it’s not immediately hostile, but whoever’s\
+ on watch had better Stay Sharp anyway.',
+       fail: 'On a 6-, everyone marks XP, and a Danger manifests. You’d better Stay Sharp!',
+       stat: 'num',
+       method: functions.moveRoll
+   },
+   scoutAhead: {
+       key: ['scouthead', 'ahead'],
+       text: 'SCOUT AHEAD: !ahead\n\
+When you take point and look for anything out of the ordinary, roll +WIS.',
+       success: 'On a 10+, choose 2 from the list below:\n\
+ - You get the drop on whatever lies ahead.\n\
+ - You discern a beneficial aspect of the terrain — shortcut, shelter, or \
+ tactical advantage (describe it).\n\
+ - You make a Discovery (ask the GM).\n\
+ - You notice sign of a nearby Danger — ask the GM what it is, and what it might signify.',
+       mixed: 'On a 7–9, choose 2 from the list below:\n\
+ - You get the drop on whatever lies ahead.\n\
+ - You discern a beneficial aspect of the terrain — shortcut, shelter, or \
+ tactical advantage (describe it).\n\
+ - You make a Discovery (ask the GM).\n\
+ - You notice sign of a nearby Danger — ask the GM what it is, and what it might signify.',
+       fail: 'On a 6-, mark XP and the GM makes a move.',
+       stat: 'wis',
+       method: functions.moveRoll
+   },
+   navigate: {
+       key: ['nav', 'navigate'],
+       text: 'NAVIGATE: !nav\n\
+When you plot the best course through dangerous or unfamiliar lands, roll +INT.',
+       success: 'On a 10+, You avoid dangers and distractions and make good time,\
+ reaching a point of the GM’s choosing before you need to Make Camp.',
+       mixed: 'On a 7–9, choose 1 from the list below:\n\
+ - You happen upon a Discovery missed by the scout.\n\
+ - The going is slow, or you wander off course. The GM says which,\
+ and where you end up on the map.\n\
+ - You encounter a Danger; whether or not you’re surprised depends on whether\
+ the scout has the drop on it.',
+       fail: 'On a 6-, mark XP and the GM makes a move.',
+       stat: 'int',
+       method: functions.moveRoll
+   },
+   manageProvisions: {
+       key: ['manage', 'provisions', 'manageprovisions'],
+       text: 'MANAGE PROVISIONS: !manage\n\
+When you prepare and distribute food for the party, roll +WIS.',
+       success: 'On a 10+, choose 1 from the list below\n\
+ - Careful management reduces the amount of rations consumed (ask the GM by how much)\n\
+ - The party consumes the expected amount and the food you prepare is excellent —\
+ describe it, and everyone who licks their lips takes +1 forward.',
+       mixed: 'The party consumes the expected amount of rations\
+ (1 per person if Making Camp, 1 per person per day if making a Journey).',
+       fail: 'On a 6-, mark XP and the GM makes a move.',
+       stat: 'int',
+       method: functions.moveRoll
+   },
+   hunkerDown: {
+       key: ['hunker', 'hunkerdown', 'down'],
+       text: 'HUNKER DOWN: !hunker\n\
+When you take shelter to wait out the elements, choose 1 party member to roll !hunker +nothing.',
+       success: 'On a 10+, It doesn\'t take long for things to clear up.',
+       mixed: 'On a 7–9, Things aren’t going to change any time soon.\
+ You can Forge Ahead, or Make Camp here for the night and hope things have\
+ changed by morning.',
+       fail: 'On a 6-, mark XP, and the GM makes a move.',
+       stat: 'num',
+       method: functions.moveRoll
+   },
+   forgeAhead: {
+       key: ['forge', 'forgeahead', 'ahead'],
+       text: 'FORGE AHEAD: !forge\n\
+When you push on despite powerful opposition from the elements, roll +CON.',
+       success: 'On a 10+, you go as far as you are able before needing to pause for a rest.',
+       mixed: 'On a 7–9, choose 1 from the list below:\n\
+ - You go as far as you are able, but overtax yourself and become weak, shaky, or sick (choose one).\n\
+ - You go as far as you are able, but the weather takes its deepest toll on your gear (ask the GM how).\n\
+ - On second thought, maybe you’re better off staying put.',
+       fail: 'On a 6-, mark XP and the GM makes a move.',
+       stat: 'con',
+       method: functions.moveRoll
+   },
     endOfSession: {
        key: ['sessionend', 'endsession', 'endofsession', 'session'],
        text: 'When you reach the end of a session, choose one of your bonds\
