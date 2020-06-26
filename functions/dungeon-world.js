@@ -311,6 +311,7 @@ function damage(userMessage, userId, channelId, userNickname, moves, userData){
     let modNum = 0
     let damDieRoll = [0, 0]
     let posNeg = ''
+    let damError
     switch (damDie){
         case 'd4':
             damDieRoll = roll(1, 4)
@@ -345,20 +346,19 @@ function damage(userMessage, userId, channelId, userNickname, moves, userData){
         modDieRoll = roll(num, faces);
         } else if (modregex.test(i)){
         modNum = parseInt(i)
-        }
+        } else if (!modregex.test(i) && !xdyregex.test(i) && i!=="dam"){damError = "Something went wrong, try that roll again.\nEXAMPLE:\n • !dam\n • !dam +1\n • !dam +1d4\n • !dam +1 +1d4\n(spaces matter)"}
 
     })
     if(posNeg === 'neg'){modDieRoll[0] = -Math.abs(modDieRoll[0])}
     if(modDieRoll[0]===0){modDieAddon = ''}
-        else if(modDieRoll[0] > 0){modDieAddon = ` + ${modDieRoll[0]}`}
-        else if(modDieRoll[0] < 0 ){modDieRollDisp = Math.abs(modDieRoll[0]); modDieAddon = ` - ${modDieRollDisp}`}
+        else if(modDieRoll[0] > 0){modDieAddon = ` + *${modDieRoll[0]}*`}
+        else if(modDieRoll[0] < 0 ){modDieRollDisp = Math.abs(modDieRoll[0]); modDieAddon = ` - *${modDieRollDisp}*`}
 
     if(modNum===0){modAddon = ''} 
-        else if(modNum > 0){modAddon = ` + ${modNum}`}
-        else if (modNum < 0){modNumDisp = Math.abs(modNum); modAddon = ` - ${modNumDisp}`}
+        else if(modNum > 0){modAddon = ` + *${modNum}*`}
+        else if (modNum < 0){modNumDisp = Math.abs(modNum); modAddon = ` - *${modNumDisp}*`}
     let damGrandTotal = damDieRoll[0] + modDieRoll[0] + modNum
 
-    if(modDieRoll[0]!==0 || modNum!==0)
-        {return `You deal [ ${damDieRoll[0]}${modDieAddon}${modAddon} ] = ${damGrandTotal} damage!`}
-    else{return `You deal ${damGrandTotal} damage!`}
+    if(damError){return damError}
+    else {return `You rolled [ ${damDieRoll[0]}${modDieAddon}${modAddon} ] = ${damGrandTotal} damage!`}
 }
