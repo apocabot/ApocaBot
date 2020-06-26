@@ -1,7 +1,7 @@
 let storage
 require('../mungu.js').then(s => storage = s)
 
-module.exports = {setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll, messageCounter}
+module.exports = {setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
 
 //functions
 function removePrefix(message, userData){
@@ -300,11 +300,4 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData)
     setErrors = setErrors.toString().split(",").join("\n")
     if(setErrors){return setErrors}
     else{return characterSheet(userMessage, userId, channelId, userNickname, moves, userData)}
-}
-
-async function messageCounter(userData){
-    if(!userData['COUNTER']){userData['COUNTER']=0} 
-    userData['COUNTER']++
-    if((userData['COUNTER']%50)===0){console.log(userData['COUNTER'])};
-    await storage.set(userData)
 }

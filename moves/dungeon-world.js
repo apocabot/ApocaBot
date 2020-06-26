@@ -166,7 +166,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +str  OR  !roll 2d6 +1d4\n(SPACES MATTER!)'
  and add an additional 1d4 roll.\n\
 EXAMPLE: !dam  OR  !dam +1  OR  !dam +1d4  OR  !dam -1 +1d4',
         error: 'INCORRECT INPUT:\n\
-Set a damage die value (d4, d6, d8, d10, or d12) in your CHARACTER SHEET.\n\
+Set a damage die value (d4 : d6 : d8 : d10 : d12) in your CHARACTER SHEET.\n\
 EXAMPLE: !set dam+d4',
         method: functions.damage
     },
@@ -537,7 +537,7 @@ When you take shelter to wait out the elements, choose 1 party member to roll !h
        method: functions.moveRoll
    },
    forgeAhead: {
-       key: ['forge', 'forgeahead', 'ahead'],
+       key: ['forge', 'forgeahead'],
        text: 'FORGE AHEAD: !forge\n\
 When you push on despite powerful opposition from the elements, roll +CON.',
        success: 'On a 10+, you go as far as you are able before needing to pause for a rest.',

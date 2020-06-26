@@ -1,7 +1,7 @@
 let storage
 require('../mungu.js').then(s => storage = s)
 
-module.exports = {setGame, setPrefix, damage, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll, messageCounter}
+module.exports = {setGame, setPrefix, damage, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
 
 //functions
 function removePrefix(message, userData){
@@ -361,11 +361,4 @@ function damage(userMessage, userId, channelId, userNickname, moves, userData){
     if(modDieRoll[0]!==0 || modNum!==0)
         {return `You deal [ ${damDieRoll[0]}${modDieAddon}${modAddon} ] = ${damGrandTotal} damage!`}
     else{return `You deal ${damGrandTotal} damage!`}
-}
-
-async function messageCounter(userData){
-        if(!userData['COUNTER']){userData['COUNTER']=0} 
-        userData['COUNTER']++
-        if((userData['COUNTER']%50)===0){console.log(userData['COUNTER'])};
-        await storage.set(userData)
 }
