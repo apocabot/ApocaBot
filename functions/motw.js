@@ -41,13 +41,14 @@ function setPrefix(userMessage, userId, channelId, userNickname, moves, userData
 function setGame(userMessage, userId, channelId, userNickname, moves, userData, i, gameList){
     let gameSetMessage = ''
     gameList.forEach(async i => {
-        if(userMessage[1].endsWith(i)){
+        if(userMessage[1]){
+            if(userMessage[1].endsWith(i)){
             gameSetMessage = `You've selected __${i.toUpperCase()}__, now enter the command __!menu__ to see the list of moves, learn how to set a custom prefix, and create character sheets.`
             await storage.del(channelId)
             userData = {}
             userData['GAME'] = i
             await storage.set(channelId, userData);
-        }
+        }}
     })
     if(!gameSetMessage){
         return moves.setGame.error

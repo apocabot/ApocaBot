@@ -484,7 +484,7 @@ When you take point and look for anything out of the ordinary, roll +WIS.',
  tactical advantage (describe it).\n\
  - You make a Discovery (ask the GM).\n\
  - You notice sign of a nearby Danger — ask the GM what it is, and what it might signify.',
-       mixed: 'On a 7–9, choose 2 from the list below:\n\
+       mixed: 'On a 7–9, choose 1 from the list below:\n\
  - You get the drop on whatever lies ahead.\n\
  - You discern a beneficial aspect of the terrain — shortcut, shelter, or \
  tactical advantage (describe it).\n\
