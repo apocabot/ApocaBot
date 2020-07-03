@@ -263,8 +263,9 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
                 let numerical = hasNumber(value)
                 if(stat && numerical){
                     i = parseInt(i)
+                    let oldStat = userData[userId[key]]
                     userData[userId][key] = userData[userId][key] + i,
-                    shiftPrintout.push(`${key}: ${userData[userId][key]}`)
+                    shiftPrintout.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
                 }
             }
         })

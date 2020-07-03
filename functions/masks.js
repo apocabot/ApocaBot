@@ -303,8 +303,9 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
             if(isNaN(i)){
                 errorMessage.push('INCORRECT TEAM INPUT\nEXAMPLE: !shift team+1')
             } else {
+                let oldStat = userData['TEAM']
                 userData['TEAM'] = userData['TEAM'] + i;
-                shiftMessage.push(`TEAM: Shifted to ${userData['TEAM']}`)}
+                shiftMessage.push(`TEAM: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData['TEAM']}`)}
         }
 
     })
@@ -318,9 +319,10 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
                 i = i.slice(value[0].length)        
                 i = parseInt(i);
                 if(isNaN(i)){
-                    errorMessage = 'Use the format !shift label+num (Example: !shift mun+1 or !shift freak-1)';
+                    errorMessage = 'Use the format !shift label+num (Example: !shift mun+1 or !shift fre-1)';
                     return
                 } else {
+                    let oldStat = userData[userId][key]
                     userData[userId][key] = userData[userId][key] + i;
                     if(parseInt(userData[userId][key]) > 3){
                         userData[userId][key] = 3
@@ -328,7 +330,7 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
                     }else if(-2 > parseInt(userData[userId][key])){
                         userData[userId][key] = -2
                         errorMessage = 'You can\'t shift your labels below -2. Instead, mark a condition, GM\'s choice.'
-                    } else{shiftMessage.push(`${key}: Shifted to ${userData[userId][key]}`)}
+                    } else{shiftMessage.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)}
                 }
             }
             else if (value[0]==='pot' && i.startsWith('pot')){
@@ -338,6 +340,7 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
                     errorMessage = 'Use the format !shift pot+num (Example: !shift pot+1 or !shift pot-5)';
                     return
                 } else {
+                    let oldStat = userData[userId][key]
                     let slashVal = userData[userId][key]
                     slashVal = parseInt(slashVal.substring(0)) + i
                     if(isNaN(slashVal)){errorMessage = 'Your potential is not a number, try again.'}
@@ -347,7 +350,7 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
                     } else if(slashVal > 4){
                         userData[userId][key] = `${slashVal} / 5 ADVANCE!`
                     }
-                    shiftMessage.push(`POTENTIAL: Shifted to ${userData[userId][key]}`)
+                    shiftMessage.push(`POTENTIAL: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
                 }
             }
         })

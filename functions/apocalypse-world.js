@@ -261,6 +261,7 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
                 if(stat){
                     i = parseInt(i)
                     let slashVal = userData[userId][key]
+                    let oldStat = userData[userId][key]
                     if(value[0]==='name'){
                         shiftPrintout.push(moves.shift.error); return
                     } else if(value[0]==='harm'){
@@ -292,10 +293,10 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
                             } else if(slashVal > 4){
                                 userData[userId][key] = `${slashVal} / 5 IMPROVE!`
                             }
-                            shiftPrintout.push(`${key}: ${userData[userId][key]}`)
+                            shiftPrintout.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
                     } else{
                         userData[userId][key] = slashVal + i;
-                        shiftPrintout.push(`${key}: ${userData[userId][key]}`)
+                        shiftPrintout.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
                           }    
                 }
             }
