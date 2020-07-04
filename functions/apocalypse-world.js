@@ -251,6 +251,7 @@ function characterSheet(userMessage, userId, channelId, userNickname, moves, use
 }
 
 function shift(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.shift.text}
     let shiftPrintout = ['CHANGES:'];
     for(let [key, value] of Object.entries(moves.abilities.stats)){
         userMessage.forEach(i => {
@@ -308,6 +309,7 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
 }
 
 function setStats(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.set.text}
     let setErrors = []
     for(let [key, value] of Object.entries(moves.abilities.stats)){
         userMessage.forEach(i => {

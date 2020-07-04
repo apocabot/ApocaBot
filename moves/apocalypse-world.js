@@ -83,12 +83,14 @@ Enter this command at any time to check on your character stats.',
         method: functions.characterSheet
     },
     set: {
-        key: ['set', 'stats', 'setstats', 'statset'],
-        text: 'SET STATS: !set stat+value ...\nTo set your character stats,\
- enter the command followed by all the STAT MODIFIERS you want to set. Use the \
- stat type +/- stat value. Unentered stats will default\
- to zero or their existing value.\n\
-EXAMPLE: !set name+bambino cool+1 hot-1 ... etc',
+        key: ['set', 'setstats', 'statset'],
+        text: 'SET STATS: !set stat+value ...\n\n• To set your character stats,\
+ enter the command __!set__ followed by all the stats you want to set.\n• Use the\
+ stat name +/- stat value.\n• Unentered stats will default to zero or their\
+ existing value.\n• !set name+nickname will use your Discord channel nickname\
+ as your character name.\n\n\
+EXAMPLE: **(You can copy/paste and edit the stats)**\n\
+!set name+Me cool-2 hard-1 hot+0 sharp+1 weird+2',
         error: 'Incorrect input, use the format: !set name+bambino cool+1 hard-1 etc...',
         method: functions.setStats
     },

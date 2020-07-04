@@ -292,6 +292,7 @@ function characterSheet(userMessage, userId, channelId, userNickname, moves, use
 }
 
 function shift(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.shift.text}
     let shiftMessage = ['CHANGES:'];
     let errorMessage = ''
     let shiftRegex = /^name|mark|clear$/
@@ -363,6 +364,7 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
 }
 
 function setStats(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.set.text}
     let errorMessage = []
 
     userMessage.forEach(i => {
