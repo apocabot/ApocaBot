@@ -1,23 +1,41 @@
 let storage
 require('../mungu.js').then(s => storage = s)
 
-module.exports = {setGame, setPrefix, damage, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
+module.exports = {deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, damage, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
 
 //functions
 function removePrefix(message, userData){
     query = false
-	let prefixed = message.toLowerCase().split(" ");
+    newMoveRegex = /([nN][eE][wW][mM][oO][vV][eE])/
+    if(newMoveRegex.test(message)){
+        let prefixed = message.split(" ");
+        if (prefixed[0] === userData['PREFIX']) {
+            prefixed.shift();
+            prefixed[0] = prefixed[0].toLowerCase()
+        } else if (prefixed[0] !== userData['PREFIX']) {
+            prefixed[0] = prefixed[0].toLowerCase().slice(1);
+        };
+        if(prefixed[0]){
+            if(prefixed[0].endsWith('?')){
+            prefixed [0] = prefixed[0].slice(0, -1)
+            query = true
+        }} 
+        return [prefixed, query];
+    } else {
+    let prefixed = message.toLowerCase().split(" ");
 	if (prefixed[0] === userData['PREFIX']) {
 		prefixed.shift();
 	} else if (prefixed[0] !== userData['PREFIX']) {
 		prefixed[0] = prefixed[0].slice(1);
     };
-    if(prefixed[0].endsWith('?')){
+    if(prefixed[0]){
+        if(prefixed[0].endsWith('?')){
         prefixed [0] = prefixed[0].slice(0, -1)
         query = true
+    }}
+    return [prefixed, query];
     }
-	return [prefixed, query];
-};
+}
 
 function setPrefix(userMessage, userId, channelId, userNickname, moves, userData){
     let setPrefixMessage = []
@@ -365,4 +383,253 @@ function damage(userMessage, userId, channelId, userNickname, moves, userData){
 
     if(damError){return damError}
     else {return `You rolled [ ${damDieRoll[0]}${modDieAddon}${modAddon} ] = ${damGrandTotal} damage!`}
+}
+
+function newCustomMove(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.newMove.text}
+
+    let checks = {
+        name: "There's something wrong with the __name+__ entry.",
+        command: "There's something wrong with the __command+__ entry.",
+        roll: "There's something wrong with the __roll+__ entry.",
+        text: "There's something wrong with the __text+__ entry.",
+        success:  "There's something wrong with the __success+__ entry.",
+        mixed: "There's something wrong with the __mixed+__ entry.",
+        fail: "There's something wrong with the __fail+__ entry."
+    }
+    let customMoveError = []
+    let customMoveMessage = []
+    const nameRegex = /^[nN][aA][mM][eE]\+"[\s\S]+$/
+    const commandRegex = /^[cC][oO][mM][mM][aA][nN][dD]\+"[a-zA-Z]+$/
+    const rollRegex = /^[rR][oO][lL][lL]\+"\d+d\d+\s\+(str|dex|con|int|wis|cha|STR|DEX|CON|INT|WIS|CHA)$/
+    const textRegex =  /^[tT][eE][xX][tT]\+"[\s\S]+$/
+    const successRegex = /^[sS][uU][cC][cC][eE][sS][sS]\+"[\s\S]+$/
+    const mixedRegex = /^[mM][iI][xX][eE][dD]\+"[\s\S]+$/
+    const failRegex = /^[fF][aA][iI][lL]\+"[\s\S]+$/
+    userMessage[0] = userMessage[0].slice(8)
+    let moveName; let moveCommand; let moveRoll; let moveText;
+    let moveSuccess; let moveMixed; let moveFail; let camelName
+
+    userMessage = userMessage.join(' ').split('" ')
+    userMessage[0] = userMessage[0].slice(1)
+    if(userMessage[6]){userMessage[6] = userMessage[6].slice(0, -1)}
+    
+    userMessage.forEach(i => {
+        if(nameRegex.test(i)){
+            checks.name = ''
+            i = i.slice(6).toUpperCase()
+            moveName = i
+        } else if (commandRegex.test(i)){
+            checks.command = ''
+            i = i.slice(9).toLowerCase()
+            moveCommand = i
+        } else if (rollRegex.test(i)){
+            checks.roll = ''
+            i = i.slice(6).toLowerCase()
+            moveRoll = i
+        } else if (textRegex.test(i)){
+            checks.text = ''
+            i = i.slice(6)
+            moveText = i
+        } else if (successRegex.test(i)){
+            checks.success = ''
+            i = i.slice(9)
+            moveSuccess = `On a 10+, ${i}`
+        } else if (mixedRegex.test(i)){
+            checks.mixed = ''
+            i = i.slice(7)
+            moveMixed = `On a 7-9, ${i}`
+        } else if (failRegex.test(i)){
+            checks.fail = ''
+            i = i.slice(6)
+            moveFail = `On a 6-, ${i}`
+        }
+    })
+    
+    for(let [key, value] of Object.entries(checks)){
+        if(value){
+            customMoveError.push(value)
+        }
+    }
+
+    if(customMoveError[0]){
+        customMoveError = customMoveError.toString().split(",").join("\n")
+        return `${customMoveError}\n\n**Check !newmove? for help and try again.**`
+    } else {
+        customMoveMessage.push(`__Name__: ${moveName}`)
+        customMoveMessage.push(`__Command__: ${moveCommand}`)
+        customMoveMessage.push(`__Roll__: ${moveRoll}`)
+        customMoveMessage.push(`__Text__: ${moveText}`)
+        customMoveMessage.push(`__Success__: ${moveSuccess}`)
+        customMoveMessage.push(`__Mixed__: ${moveMixed}`)
+        customMoveMessage.push(`__Fail__: ${moveFail}`)
+    
+        function toCamelCase(sentenceCase) {
+            var out = "";
+            sentenceCase.split(" ").forEach(function (el, idx) {
+                var add = el.toLowerCase();
+                out += (idx === 0 ? add : add[0].toUpperCase() + add.slice(1));
+            });
+            return out;
+        }
+        camelName = toCamelCase(moveName)
+
+        if(!userData['CUSTOM']){
+            userData['CUSTOM'] = {}
+        }
+        if(userData['CUSTOM'][camelName]){
+            userData['CUSTOM'][camelName] = {}
+        }
+
+        for(i in userData['CUSTOM']){
+            if(userData['CUSTOM'][i]['command'] === moveCommand){
+                return "There is already a Custom Move with that command.\nCheck the __!movelist__\
+ and choose an unused command word."
+            }
+        }
+    
+        let newMove = {
+            name: moveName,
+            command: moveCommand,
+            roll: moveRoll,
+            text: moveText,
+            success: moveSuccess,
+            mixed: moveMixed,
+            fail: moveFail
+            }
+
+        userData['CUSTOM'][camelName] = newMove
+        customMoveMessage = customMoveMessage.join("^").split("^").join("\n")
+        return `NEW CUSTOM MOVE:\n\n${customMoveMessage}\n\nTo use, type: __!move ${moveCommand}__`
+    }
+}
+
+function customMove(userMessage, userId, channelId, userNickname, moves, userData){
+
+    if(!userMessage[1]){
+        return `To use a Custom Move, enter __!move__ followed by the one-word\
+ command for the move.\n\nIf you'd like to see a list of your Custom Moves, enter\
+ __!movelist__.`
+    }
+    
+    else if(userMessage[1]){
+        if(userMessage[1].endsWith("?")){
+            userMessage[1] = userMessage[1].slice(0, -1)
+            moveCheck = false
+            let customName
+            let customCommand
+            let customText
+            let customRoll
+            let customSuccess
+            let customMixed
+            let customFail
+            for(camelName in userData['CUSTOM']){
+                    userMessage.forEach(i => {
+                        if(userData['CUSTOM'][camelName]['command'] === i){
+                            moveCheck = true
+                            customName = userData['CUSTOM'][camelName]['name']
+                            customCommand = userData['CUSTOM'][camelName]['command']
+                            customText = userData['CUSTOM'][camelName]['text']
+                            customRoll = userData['CUSTOM'][camelName]['roll']
+                            customSuccess = userData['CUSTOM'][camelName]['success']
+                            customMixed = userData['CUSTOM'][camelName]['mixed']
+                            customFail = userData['CUSTOM'][camelName]['fail']
+                            return
+                        }
+                    })
+            }
+            if(!moveCheck){return "Something went wrong! To look up a custom move, enter the command\
+ !move followed by the custom command for your move with a ? on the end.\n\
+EXAMPLE: !move runaway?  OR  !move flyhigh?\n\
+Enter __!movelist__ to see a list of all custom moves and commands."}
+            else {
+                return `HERE IS YOUR CUSTOM MOVE:\n\n__Name__: ${customName}\n__Command__: ${customCommand}\n\
+__Roll__: ${customRoll}\n__Text__: ${customText}\n__Success__: ${customSuccess}\n__Mixed__: ${customMixed}\n\
+__Fail__: ${customFail}\n\nTo edit this move, create a __!newmove__ with the same name.\n\
+To delete this move, enter __!deletemove name+"${customName}"__`
+            }
+
+        } else {
+    moveCheck = false
+    let customName
+    let customText
+    let customRoll
+    let customSuccess
+    let customMixed
+    let customFail
+    for(camelName in userData['CUSTOM']){
+            userMessage.forEach(i => {
+                if(userData['CUSTOM'][camelName]['command'] === i){
+                    moveCheck = true
+                    customName = userData['CUSTOM'][camelName]['name']
+                    customText = userData['CUSTOM'][camelName]['text']
+                    customRoll = userData['CUSTOM'][camelName]['roll']
+                    customSuccess = userData['CUSTOM'][camelName]['success']
+                    customMixed = userData['CUSTOM'][camelName]['mixed']
+                    customFail = userData['CUSTOM'][camelName]['fail']
+                    return
+                }
+            })
+    }
+
+    if(!moveCheck){return "Something went wrong! To use a custom move, enter the command\
+ !move followed by the custom command for your move. Enter __!movelist__ to see a list\
+ of all custom moves and commands."}
+    else if (moveCheck){   
+    userMessage = customRoll.split(' ')
+    rollMessage = xdyRoll(userMessage, userId, channelId, userNickname, moves, userData)
+    return `__${customName}__\n${customText}\n\n${rollMessage}\n\n • ${customSuccess}\n • ${customMixed}\n • ${customFail}`
+            }
+        }
+    }
+}
+
+function moveList(userMessage, userId, channelId, userNickname, moves, userData){
+
+    let customListMessage = []
+
+    for(i in userData['CUSTOM']){
+        customListMessage.push(`__Name__: ${userData['CUSTOM'][i]['name']}`)
+        customListMessage.push(`__Command__: !move ${userData['CUSTOM'][i]['command']}\n`)
+    }
+    
+    if(!customListMessage[0]){return "You don't have any custom moves saved.\nType __!newmove?__ to learn more."}
+    else {
+        customListMessage = customListMessage.toString().split(",").join("\n")
+        return `LIST OF CUSTOM MOVES:\n\n${customListMessage}`
+    }
+}
+
+function deleteMove(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.deleteMove.text}
+
+    let nameCheck = "Something went wrong! Either there is not Custom Move by that name,\
+ or something is wrong with your syntax.\nEnter __!deletemove?__ for help."
+    const nameRegex = /^"[\s\S]+"$/
+    let deleteCamelName
+    userMessage = userMessage.slice(1).join(' ')
+    if(nameRegex.test(userMessage)){
+            userMessage = userMessage.slice(1)
+            userMessage = userMessage.slice(0, -1)
+            for(moveCamelName in userData['CUSTOM']){
+                function toCamelCase(sentenceCase) {
+                    var out = "";
+                    sentenceCase.split(" ").forEach(function (el, idx) {
+                        var add = el.toLowerCase();
+                        out += (idx === 0 ? add : add[0].toUpperCase() + add.slice(1));
+                    });
+                    return out;
+                }
+                deleteCamelName = toCamelCase(userMessage)
+
+                if(moveCamelName === deleteCamelName){
+                    delete userData['CUSTOM'][moveCamelName]
+                    nameCheck = ''
+                }
+    }
+    }
+
+    if(nameCheck){return nameCheck}
+    else{return `You deleted the Custom Move: ${deleteCamelName.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); })}`}
+
 }

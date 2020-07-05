@@ -13,6 +13,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - ROLL SOME DICE: !roll\n\
  - BASIC MOVES LIST: !basic\n\
  - ADULT MOVES LIST: !adult\n\
+ - CUSTOM MOVES: !custom\n\
  - END OF SESSION: !endsession\n\
  - SET APOCABOT PREFIX: !setprefix\n\
  - SET APOCABOT GAME: !setgame',
@@ -44,6 +45,17 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - STAND UP FOR SOMETHING: !stand',
         method: function(){return this.text}
     },
+    customMenu: {
+       key: ['custom', 'custommoves'],
+       text: 'CUSTOM MOVE COMMANDS:\n\n\
+ - USE CUSTOM MOVE: !move\n\
+ - CREATE NEW CUSTOM MOVE: !newmove\n\
+ - DELETE CUSTOM MOVE: !deletemove\n\
+ - CUSTOM MOVE LIST: !customlist\n\n\
+Please consider supporting ApocaBot at patreon.com/apocabot to receive\
+ update news, formatted Custom Moves, and more. Thanks!',
+       method: function(){return this.text}
+   },
     abilities: {
         key: 'abilities',
         stats: {
@@ -452,4 +464,42 @@ When you *stand up for something*, roll + Savior.',
         stat: 'savior',
         method: functions.moveRoll
     },
+    customMove: {
+       key: ['move'],
+       text: 'To use a custom move, enter the command __!move__ followed by the custom command\
+ for your move.\nTo view the text of a custom move, type !move command? (with custom command)\n\
+To see a list of all custom moves, type __!movelist__.\nTo delete a custom move, enter\
+ __!deletemove__ followed by __"move name"__ (name must be in quotes).',
+       method: functions.customMove
+   },
+   newMove: {
+       key: ['newmove'],
+       text: 'To create a custom move, enter a command with the following parameters:\n\
+ • !newmove\n\
+ • name+"Move Name"\n\
+ • command+"movecommand"\n\
+ • roll+"xdy +stat"\n\
+ • text+"Description of move"\n\
+ • success+"this happens when you succeed..."\n\
+ • mixed+"this happens on a mixed success..."\n\
+ • fail+"this happens on a failure..."\n\n\
+**Spaces between each parameter. Double quotes around all custom text. Command+ must be one word, letters only.**\n\n\
+**EXAMPLE: (you may copy/paste and edit the example text)**\n!newmove name+"Fly High" command+"fly" roll+"2d6 +fre" text+"When\
+ you want to fly high" success+"you fly high" mixed+"you fly a little" fail+"you fall"',
+          method: functions.newCustomMove
+   },
+   moveList: {
+       key: ['movelist', 'customlist'],
+       text: 'Enter the command __!movelist__ for a list of all custom moves.\
+ Enter __!newmove?__ to learn about creating new custom moves, __!deletemove?__ to learn\
+ about deleting custom moves, and __!move?__ to learn about using custom moves in your game.',
+       method: functions.moveList
+   },
+   deleteMove: {
+       key: ['deletemove'],
+       text: 'To delete a custom move, enter __!deletemove__ followed by __"MOVE NAME"__\
+ (name must be in quotes).\n\n\
+EXAMPLE: !deletemove "Fly High"',
+       method: functions.deleteMove
+   }
 }
