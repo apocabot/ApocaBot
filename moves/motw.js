@@ -77,7 +77,7 @@ Please consider supporting ApocaBot at patreon.com/apocabot to receive\
         }
         },
     newCharacter: {
-        key: ['new', 'newcharacter'],
+        key: ['newcharacter'],
         text: 'NEW CHARACTER: !newcharacter\n\
 Use this command to create a new blank character or to zero out your character stats.',
         method: functions.newCharacter
