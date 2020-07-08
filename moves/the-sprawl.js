@@ -56,7 +56,8 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - REVEAL KNOWLEDGE: !knowledge\n\
  - CONDUCT AN OPERATION: !operation\n\
  - CREATE RANDOM NPC: !npc\n\
- - CREATE RANDOM DRONE: !drone',
+ - CREATE RANDOM DRONE: !drone\n\
+ - CREATE RANDOM WEAPON: !weapon',
        method: function(){return this.text}
    },
    customMenu: {
@@ -587,7 +588,8 @@ EXAMPLE: !deletemove "Fly High"',
          key: ['newnpc', 'npc'],
          text: 'To create a new randomized NPC, enter __!npc__ for some fresh meat.',
          name: ['Aziz', 'Cartman', 'Cowboy', 'Demon', 'Frank', 'Furiosa', 'Luka', 'Roadkill', 'Max', 'Roo', 'Rook', 'Squirrel', 'Tower', 'Gant', 'Hub', 'Intrigue', 'Jacinta', 'Jinx', 'Lilliana', 'Master D', 'Sally', 'Mr. Johnson', 'The Goto', 'Case', 'Core', 'Crowley', 'Dead Rob', 'Djinn', 'Frozz', 'Gaius Lupo', 'Hazer', 'Johnny', 'Nezumi', 'Patch', 'Wyldstyle', 'Archer', 'Boone', 'Deckard', 'Frost', 'Marîd', 'Markham', 'Mr. Black', 'Python', 'Quade', 'Richards', 'Ritter', 'Seamus Riley', 'Taylor', 'Bertrand', 'Blue', 'Kit', 'Loe Qi', 'Max', 'Nef', 'Smoke', 'Spectre', 'Zero', 'Angelo', 'Dead Eyes', 'John', 'LouLou', 'Kennedy', 'Knock', 'Mé Moì', 'Molly', 'Oakley', 'Sarah', 'Sleeper', 'Apostle', 'Chalice', 'Dancer', 'Dillon Vicara', 'Eleven', 'Nebula', 'Ice Smooth', 'Lola Chrome', 'Magnetic', 'Nigell', 'Prophet9', 'Relay', 'Sennheiser', 'Shard', 'Conduit', 'Farouk Dakins', 'Glass', 'Grant Access', 'Edison', 'Hoot', 'Madison Brookes-Watanabe', 'Parisa Zahed', 'Scoop', 'Spider', 'Witness', 'Alif', 'Armitage', 'Connomarah', 'Cortez', 'Grit', 'Mac', 'Sly', 'Turnus', 'Turner', 'Angel.1.3', 'AntiK-Tera', 'Bobby', 'Cathode', 'Eleni Larabee', 'Houwayyek', 'Mr. Wizard', 'Spanner', 'Transitivity'],
-         skin: ['artificial', 'asian or south asian', 'black', 'decorated', 'hispanic/latinx', 'indigenous', 'middle eastern', 'white'],
+         gender: ['cis male', 'cis female', 'agender', 'androgynous', 'gender fluid', 'gender nonconforming', 'gender variant', 'non-binary', 'trans male', 'trans female', 'two-spirit', 'pan-gender', 'genderqueer', 'male', 'female', 'transgender'],
+         skin: ['artificial', 'asian or south asian', 'black', 'decorated', 'hispanic/latinx', 'indigenous', 'middle eastern', 'white', 'camouflaged', 'covered', 'changing', 'reinforced'],
          eyes: ['laughing', 'cool', 'hard', 'cold', 'distant', 'artificial', 'trustworthy', 'focused', 'young', 'smug', 'impatient', 'twitching', 'mocking', 'jaded', 'restless', 'penetrating', 'resigned', 'obscured', 'searching', 'black', 'cunning', 'dark', 'dead', 'manic', 'unhinged', 'mirrored', 'wild', 'passionate', 'shining', 'driven', 'sad', 'empathic', 'dejected', 'haunted', 'squinty', 'appraising', 'excited'],
          face: ['blank', 'thin', 'covered', 'attractive', 'decorated', 'rugged', 'scarred', 'hidden', 'friendly', 'sneering', 'smooth', 'nondescript', 'weathered', 'impassive', 'ambiguous', 'calm', 'serene', 'striking', 'alluring', 'sculpted', 'grim', 'composed', 'serious', 'expressive'],
          body: ['toned', 'lithe', 'compact', 'scarred', 'augmented', 'flabby', 'unfit', 'small', 'thin', 'bulky', 'fleshy', 'muscular', 'awkward', 'young', 'wiry', 'athletic', 'relaxed', 'soft', 'pudgy', 'tired', 'tense', 'graceful'],
@@ -605,5 +607,11 @@ EXAMPLE: !drone small',
          sensors: ['magnification', 'thermographic', 'jamming', 'image enhancement', 'analysis software', 'sonar'],
          weaknesses: ['slow', 'fragile', 'unreliable', 'loud', 'loose encryption', 'obvious'],
          method: functions.newDrone
-   }
+   },
+   weaponGenerator: {
+      key: ['newweapon', 'weapon'],
+      text: 'To select a random weapon, enter __!weapon__\n(thanks to *Augmented Reality* by Paul D Gallagher',
+      weapons: ['Flechette pistols', 'Teleoperated drones', 'Hydraulic fists, bites', 'Aware weapons LAN', 'Spider venom rounds', 'Ornate monokatana', 'Hunter-seeker rounds', 'Pearl handled Glock', 'Bulky laser rifle', 'Scoped needle-rifle', 'Monowire mines', 'Implanted zhi dao', 'Exploding munitions', 'Nerve-burner bombs', '3D printed QBZ-95', 'Railgun sniper', 'Compound bow', 'Sleek microwavers', 'Dissolving Nanorounds', 'Martial art techniques', 'Antique uZI', 'SOPMODs', 'Auto grenade launcher', 'Drum-fed AK74', 'Self-destructing gun', 'Twin compact SMGs', 'Charm-covered Steyr', 'Liquid nitrogen rounds', 'Camo autoshotgun', 'Ornate bladed finger', 'Incendiary rounds', 'Flechette adapted M4', 'Screamer grenades', 'Big polymer revolvers', 'Hands-free trigger', 'Rifle with chatty AI',' Cortex bomb', 'Bright Plastic SMG', 'Chinese SMG clone', 'Caseless KrISS Vector', 'Brace of small pistols', 'Scanner shielded gun', 'Inbuilt Scorpion SMGs', 'Crippler rounds', 'Taser', 'Monoknives', 'Compact stutter-laser', 'Disposable pistols', 'Toxin-loaded needlers', 'Underslung blinder', 'Full spectrum targeter', 'Belt-fed chaingun'],
+      method: functions.newWeapon
+}
 }

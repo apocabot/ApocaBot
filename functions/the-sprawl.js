@@ -1,7 +1,7 @@
 let storage
 require('../mungu.js').then(s => storage = s)
 
-module.exports = {newDrone, newNpc, deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
+module.exports = {newWeapon, newDrone, newNpc, deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
 
 //functions
 function removePrefix(message, userData){
@@ -636,6 +636,7 @@ function newNpc(userMessage, userId, channelId, userNickname, moves, userData){
     let randomNpc
 
     var randomName = moves.npcGenerator.name[Math.floor(Math.random()*moves.npcGenerator.name.length)];
+    var randomGender = moves.npcGenerator.gender[Math.floor(Math.random()*moves.npcGenerator.gender.length)];
     var randomSkin = moves.npcGenerator.skin[Math.floor(Math.random()*moves.npcGenerator.skin.length)];
     var randomEyes = moves.npcGenerator.eyes[Math.floor(Math.random()*moves.npcGenerator.eyes.length)];
     var randomFace = moves.npcGenerator.face[Math.floor(Math.random()*moves.npcGenerator.face.length)];
@@ -644,7 +645,7 @@ function newNpc(userMessage, userId, channelId, userNickname, moves, userData){
     var randomCyberwear = moves.npcGenerator.cyberwear[Math.floor(Math.random()*moves.npcGenerator.cyberwear.length)];
 
 
-    randomNpc = `HERE'S YOUR NEW NPC:\n\n__Name__: ${randomName}\n__Skin__: ${randomSkin}\n__Eyes__: ${randomEyes}\n\
+    randomNpc = `HERE'S YOUR NEW NPC:\n\n__Name__: ${randomName}\n__Gender__: ${randomGender}\n__Skin__: ${randomSkin}\n__Eyes__: ${randomEyes}\n\
 __Face__: ${randomFace}\n__Body__: ${randomBody}\n__Wear__: ${randomWear}\n__Cyberwear__: ${randomCyberwear}`
 
     return randomNpc
@@ -721,4 +722,8 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
 
     randomDrone = randomDrone.join(", ")
     return `HERE'S YOUR NEW DRONE:\n\n__Unnamed ${size} Drone__:\n(${randomDrone})`
+}
+
+function newWeapon(userMessage, userId, channelId, userNickname, moves, userData){
+    return  `__Random Weapon__:\n\n${moves.weaponGenerator.weapons[Math.floor(Math.random()*moves.weaponGenerator.weapons.length)]}`
 }
