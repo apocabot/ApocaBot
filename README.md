@@ -2,13 +2,15 @@
 
 To add ApocaBot to your Discord server, click [Add ApocaBot](https://discord.com/api/oauth2/authorize?client_id=723981824455344180&permissions=0&scope=bot). Once the bot is logged in, type `!` in the chat to get started.
 
-ApocaBot is a bot designed to streamline PbtA gameplay on a Discord server by allowing players to create functional in-chat character sheets and deploy their stats for rolls or basic moves. Though it's not intended to fully replace traditional character sheets, ApocaBot lets you focus more on your game and less on referencing the text. ApocaBot currently supports *Apocalypse World 2e, Burned Over (AW Hackbook), Dungeon World, Masks, MotW, and Uncharted Worlds.* 
+ApocaBot is a bot designed to streamline PbtA gameplay on a Discord server by allowing players to create functional in-chat character sheets and deploy their stats for rolls or basic moves. Though it's not intended to fully replace traditional character sheets, ApocaBot lets you focus more on your game and less on referencing the text. ApocaBot currently supports *Apocalypse World 2e, Burned Over (AW Hackbook), Dungeon World, Masks, MotW, The Sprawl, and Uncharted Worlds.* 
 
 ### Support
 
 Althought this project is a labor of love, it's still labor. If you'd like to support ApocaBot, access update info, and have a say in which PbtA games get included next, consider [BECOMING A PATRON](https://www.patreon.com/apocabot). Thanks for your support!
 
 ## Commands
+
+For full tutorials, instructions, and special content, visit the [ApocaBot Site](https://www.patreon.com/apocabot).
 
 Once the bot is logged in, any command beginning with `!` will activate ApocaBot. First you'll need to select the PbtA game you want to play, with the command `!setgame` followed by the hyphenated game name.  
 EXAMPLE: `!setgame dungeon-world` *or* `!setgame motw`  
@@ -51,5 +53,7 @@ Special thanks to the friends and developers who inspired and helped this projec
 * Dobsonfly
 * Janilyn
 * Rezart
-* Harkano
+* AdriaticTitan45
+* Luinger
+* All my supporters on Patreon
 * And many more...
