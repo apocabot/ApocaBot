@@ -655,11 +655,13 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
     
     let randomDrone = []
     let size
+    let droneName = ''
 
     if(userMessage[1] === "tiny"){
         randomDrone.push(`${moves.droneGenerator.sensors[Math.floor(Math.random()*moves.droneGenerator.sensors.length)]}`)
         randomDrone.push("tiny, fragile, stealthy")
         size = "Tiny"
+        droneName = moves.droneGenerator.tinyName[Math.floor(Math.random()*moves.droneGenerator.tinyName.length)]
     } else if (userMessage[1] === "small"){
         randomDrone.push(`${moves.droneGenerator.smallStrengths[Math.floor(Math.random()*moves.droneGenerator.smallStrengths.length)]}`)
         randomDrone.push(`${moves.droneGenerator.sensors[Math.floor(Math.random()*moves.droneGenerator.sensors.length)]}`)
@@ -674,6 +676,7 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
             randomDrone.push(`${moves.droneGenerator.weaknesses[Math.floor(Math.random()*moves.droneGenerator.weaknesses.length)]}`)
         }
         size = "Small"
+        droneName = moves.droneGenerator.smallName[Math.floor(Math.random()*moves.droneGenerator.smallName.length)]
     } else if (userMessage[1] === "medium"){
         randomDrone.push(`${moves.droneGenerator.mediumStrengths[Math.floor(Math.random()*moves.droneGenerator.mediumStrengths.length)]}`)
         randomDrone.push(`${moves.droneGenerator.sensors[Math.floor(Math.random()*moves.droneGenerator.sensors.length)]}`)
@@ -695,6 +698,7 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
             randomDrone.push(`${moves.droneGenerator.weaknesses[Math.floor(Math.random()*moves.droneGenerator.weaknesses.length)]}`)
         }
         size = "Medium"
+        droneName = moves.droneGenerator.mediumName[Math.floor(Math.random()*moves.droneGenerator.mediumName.length)]
     } else if(userMessage[1] === "large"){
         randomDrone.push(`${moves.droneGenerator.largeStrengths[Math.floor(Math.random()*moves.droneGenerator.largeStrengths.length)]}`)
         randomDrone.push(`${moves.droneGenerator.largeStrengths[Math.floor(Math.random()*moves.droneGenerator.largeStrengths.length)]}`)
@@ -718,10 +722,11 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
         }
         randomDrone.push("obvious")
         size = "Large"
+        droneName = moves.droneGenerator.largeName[Math.floor(Math.random()*moves.droneGenerator.largeName.length)]
     } else {return `Something went wrong (don't forget to include a size).\n\n${moves.droneGenerator.text}`}
 
     randomDrone = randomDrone.join(", ")
-    return `HERE'S YOUR NEW DRONE:\n\n__Unnamed ${size} Drone__:\n(${randomDrone})`
+    return `HERE'S YOUR NEW DRONE:\n\n__${droneName} ${size} Drone__:\n(${randomDrone})`
 }
 
 function newWeapon(userMessage, userId, channelId, userNickname, moves, userData){
@@ -733,7 +738,6 @@ function newCorp(userMessage, userId, channelId, userNickname, moves, userData){
     randomCorp.push(moves.corpGenerator.name[Math.floor(Math.random()*moves.corpGenerator.name.length)])
     randomCorp.push(moves.corpGenerator.trade[Math.floor(Math.random()*moves.corpGenerator.trade.length)])
     randomCorp.push(moves.corpGenerator.suffix[Math.floor(Math.random()*moves.corpGenerator.suffix.length)])
-    console.log(randomCorp)
     randomCorp = randomCorp.join(" ")
     return `HERE'S YOUR CORPORATION:\n\n${randomCorp}`
 }
