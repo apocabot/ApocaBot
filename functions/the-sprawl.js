@@ -1,7 +1,7 @@
 let storage
 require('../mungu.js').then(s => storage = s)
 
-module.exports = {newWeapon, newDrone, newNpc, deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
+module.exports = {newCorp, newWeapon, newDrone, newNpc, deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
 
 //functions
 function removePrefix(message, userData){
@@ -726,4 +726,14 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
 
 function newWeapon(userMessage, userId, channelId, userNickname, moves, userData){
     return  `__Random Weapon__:\n\n${moves.weaponGenerator.weapons[Math.floor(Math.random()*moves.weaponGenerator.weapons.length)]}`
+}
+
+function newCorp(userMessage, userId, channelId, userNickname, moves, userData){
+    randomCorp = [] 
+    randomCorp.push(moves.corpGenerator.name[Math.floor(Math.random()*moves.corpGenerator.name.length)])
+    randomCorp.push(moves.corpGenerator.trade[Math.floor(Math.random()*moves.corpGenerator.trade.length)])
+    randomCorp.push(moves.corpGenerator.suffix[Math.floor(Math.random()*moves.corpGenerator.suffix.length)])
+    console.log(randomCorp)
+    randomCorp = randomCorp.join(" ")
+    return `HERE'S YOUR CORPORATION:\n\n${randomCorp}`
 }
