@@ -645,8 +645,15 @@ function newNpc(userMessage, userId, channelId, userNickname, moves, userData){
     var randomCyberwear = moves.npcGenerator.cyberwear[Math.floor(Math.random()*moves.npcGenerator.cyberwear.length)];
 
 
-    randomNpc = `HERE'S YOUR NEW NPC:\n\n__Name__: ${randomName}\n__Gender__: ${randomGender}\n__Skin__: ${randomSkin}\n__Eyes__: ${randomEyes}\n\
-__Face__: ${randomFace}\n__Body__: ${randomBody}\n__Wear__: ${randomWear}\n__Cyberwear__: ${randomCyberwear}`
+    randomNpc = `HERE'S YOUR NEW NPC:\n\n\
+__Name__: ${randomName}\n\
+__Gender__: ${randomGender}\n\
+__Skin__: ${randomSkin}\n\
+__Eyes__: ${randomEyes}\n\
+__Face__: ${randomFace}\n\
+__Body__: ${randomBody}\n\
+__Wear__: ${randomWear}\n\
+__Cyberwear__: ${randomCyberwear}`
 
     return randomNpc
 }
@@ -656,6 +663,7 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
     let randomDrone = []
     let size
     let droneName = ''
+    let armedMessage = ''
 
     if(userMessage[1] === "tiny"){
         randomDrone.push(`${moves.droneGenerator.sensors[Math.floor(Math.random()*moves.droneGenerator.sensors.length)]}`)
@@ -667,7 +675,6 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
         randomDrone.push(`${moves.droneGenerator.sensors[Math.floor(Math.random()*moves.droneGenerator.sensors.length)]}`)
         randomDrone.push(`${moves.droneGenerator.weaknesses[Math.floor(Math.random()*moves.droneGenerator.weaknesses.length)]}`)
         let randomPick = (Math.floor(Math.random()*3)) + 1
-        console.log(randomPick)
         if (randomPick === 1){
             randomDrone.push(`${moves.droneGenerator.smallStrengths[Math.floor(Math.random()*moves.droneGenerator.smallStrengths.length)]}`)
         } else if (randomPick === 2){
@@ -676,6 +683,7 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
             randomDrone.push(`${moves.droneGenerator.weaknesses[Math.floor(Math.random()*moves.droneGenerator.weaknesses.length)]}`)
         }
         size = "Small"
+        armedMessage = '\n\nIf *armed*, roll __!weapon__ to find out what it\'s packing.\n(small drones: max 2-harm, no autofire, close or less)'
         droneName = moves.droneGenerator.smallName[Math.floor(Math.random()*moves.droneGenerator.smallName.length)]
     } else if (userMessage[1] === "medium"){
         randomDrone.push(`${moves.droneGenerator.mediumStrengths[Math.floor(Math.random()*moves.droneGenerator.mediumStrengths.length)]}`)
@@ -698,6 +706,7 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
             randomDrone.push(`${moves.droneGenerator.weaknesses[Math.floor(Math.random()*moves.droneGenerator.weaknesses.length)]}`)
         }
         size = "Medium"
+        armedMessage = '\n\nIf *armed*, roll __!weapon__ to find out what it\'s packing.\n(medium drones: max 3-harm, near or less)'
         droneName = moves.droneGenerator.mediumName[Math.floor(Math.random()*moves.droneGenerator.mediumName.length)]
     } else if(userMessage[1] === "large"){
         randomDrone.push(`${moves.droneGenerator.largeStrengths[Math.floor(Math.random()*moves.droneGenerator.largeStrengths.length)]}`)
@@ -722,11 +731,18 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
         }
         randomDrone.push("obvious")
         size = "Large"
+        armedMessage = '\n\nIf *armed*, roll __!weapon__ to find out what it\'s packing.\n(large drones: max 4-harm)'
         droneName = moves.droneGenerator.largeName[Math.floor(Math.random()*moves.droneGenerator.largeName.length)]
     } else {return `Something went wrong (don't forget to include a size).\n\n${moves.droneGenerator.text}`}
 
-    randomDrone = randomDrone.join(", ")
-    return `HERE'S YOUR NEW DRONE:\n\n__${droneName} ${size} Drone__:\n(${randomDrone})`
+    randomDroneCapitalized = []
+    randomDrone.forEach(i => {
+        i = i.charAt(0).toUpperCase() + i.slice(1)
+        randomDroneCapitalized.push(i)
+    })
+
+    randomDroneCapitalized = randomDroneCapitalized.join("\n• ")
+    return `HERE'S YOUR NEW DRONE:\n\n__${droneName} ${size} Drone__:\n• ${randomDroneCapitalized}${armedMessage}`
 }
 
 function newWeapon(userMessage, userId, channelId, userNickname, moves, userData){
