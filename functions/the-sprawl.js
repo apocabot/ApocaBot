@@ -683,7 +683,7 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
             randomDrone.push(`${moves.droneGenerator.weaknesses[Math.floor(Math.random()*moves.droneGenerator.weaknesses.length)]}`)
         }
         size = "Small"
-        armedMessage = '\n\nIf *armed*, roll __!weapon__ to find out what it\'s packing.\n(small drones: max 2-harm, no autofire, close or less)'
+        armedMessage = '\n\nIf •*armed*, roll __!weapon__ to find out what it\'s packing.\n(small drones: max 2-harm, no autofire, close or less)'
         droneName = moves.droneGenerator.smallName[Math.floor(Math.random()*moves.droneGenerator.smallName.length)]
     } else if (userMessage[1] === "medium"){
         randomDrone.push(`${moves.droneGenerator.mediumStrengths[Math.floor(Math.random()*moves.droneGenerator.mediumStrengths.length)]}`)
@@ -706,7 +706,7 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
             randomDrone.push(`${moves.droneGenerator.weaknesses[Math.floor(Math.random()*moves.droneGenerator.weaknesses.length)]}`)
         }
         size = "Medium"
-        armedMessage = '\n\nIf *armed*, roll __!weapon__ to find out what it\'s packing.\n(medium drones: max 3-harm, near or less)'
+        armedMessage = '\n\nIf •*armed*, roll __!weapon__ to find out what it\'s packing.\n(medium drones: max 3-harm, near or less)'
         droneName = moves.droneGenerator.mediumName[Math.floor(Math.random()*moves.droneGenerator.mediumName.length)]
     } else if(userMessage[1] === "large"){
         randomDrone.push(`${moves.droneGenerator.largeStrengths[Math.floor(Math.random()*moves.droneGenerator.largeStrengths.length)]}`)
@@ -731,7 +731,7 @@ function newDrone(userMessage, userId, channelId, userNickname, moves, userData)
         }
         randomDrone.push("obvious")
         size = "Large"
-        armedMessage = '\n\nIf *armed*, roll __!weapon__ to find out what it\'s packing.\n(large drones: max 4-harm)'
+        armedMessage = '\n\nIf •*armed*, roll __!weapon__ to find out what it\'s packing.\n(large drones: max 4-harm)'
         droneName = moves.droneGenerator.largeName[Math.floor(Math.random()*moves.droneGenerator.largeName.length)]
     } else {return `Something went wrong (don't forget to include a size).\n\n${moves.droneGenerator.text}`}
 
