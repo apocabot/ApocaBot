@@ -644,6 +644,14 @@ function newNpc(userMessage, userId, channelId, userNickname, moves, userData){
     var randomWear = moves.npcGenerator.wear[Math.floor(Math.random()*moves.npcGenerator.wear.length)];
     var randomCyberwear = moves.npcGenerator.cyberwear[Math.floor(Math.random()*moves.npcGenerator.cyberwear.length)];
 
+    randomName = randomName.charAt(0).toUpperCase() + randomName.slice(1)
+    randomGender = randomGender.charAt(0).toUpperCase() + randomGender.slice(1)
+    randomSkin = randomSkin.charAt(0).toUpperCase() + randomSkin.slice(1)
+    randomEyes = randomEyes.charAt(0).toUpperCase() + randomEyes.slice(1)
+    randomFace = randomFace.charAt(0).toUpperCase() + randomFace.slice(1)
+    randomBody = randomBody.charAt(0).toUpperCase() + randomBody.slice(1)
+    randomWear = randomWear.charAt(0).toUpperCase() + randomWear.slice(1)
+    randomCyberwear = randomCyberwear.charAt(0).toUpperCase() + randomCyberwear.slice(1)
 
     randomNpc = `HERE'S YOUR NEW NPC:\n\n\
 __Name__: ${randomName}\n\
