@@ -96,7 +96,7 @@ Enter this command at any time to check on your character stats.',
  existing value.\n• !set name+nickname will use your Discord channel nickname\
  as your character name.\n\n\
 EXAMPLE: **(You can copy/paste and edit the stats)**\n\
-!set name+Me charm-2 cool-1 sharp+0 tough+1 weird+2',
+!set name+Me hot-2 cold-1 vol+0 dark+1',
         error: 'Incorrect input, use the format: !set name+bambino charm+1 cool-1 etc...',
         method: functions.setStats
     },
@@ -138,7 +138,7 @@ WARNING: Setting a new game will erase all current character sheets and data. If
  by a certain amount, enter the command followed by the stats you want to shift\
  and the amount to change them.\n\
 EXAMPLE: !shift harm+1 will increase your harm by 1',
-        error: 'Incorrect input, use the format: !shift tough+1 etc...\
+        error: 'Incorrect input, use the format: !shift hot+1 etc...\
  (this only works for numerical values)',
         method: functions.shift
     },
@@ -150,7 +150,7 @@ Use the format !roll xdy +z where x = number of die, y = faces on die, and z = a
 EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +sharp  !roll 2d6 +1d4 (SPACES MATTER!)',
         error: 'INCORRECT INPUT: Please use the format !roll xdy +z where x = number\
  of die, y = faces on die, and z = positive or negative modifier, if any.\n\
-EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
+EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +cold (SPACES MATTER!)',
         method: functions.xdyRoll
     },
     turnSomeoneOn: {
@@ -346,7 +346,7 @@ may heal 1 Harm. If someone else is there with you, tending to your wounds delic
   • mixed+"this happens on a mixed success..."\n\
   • fail+"this happens on a failure..."\n\n\
  **Spaces between each parameter. Double quotes around all custom text. Command+ must be one word, letters only.**\n\n\
- **EXAMPLE: (you may copy/paste and edit the example text)**\n!newmove name+"Fly High" command+"fly" roll+"2d6 +weird" text+"When\
+ **EXAMPLE: (you may copy/paste and edit the example text)**\n!newmove name+"Fly High" command+"fly" roll+"2d6 +vol" text+"When\
   you want to fly high" success+"you fly high" mixed+"you fly a little" fail+"you fall"',
            method: functions.newCustomMove
     },
