@@ -157,7 +157,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         name: "Turn Someone On",
         key: ['tso', 'turnon', 'turnsomeoneon'],
         text: 'When you turn someone on, roll with Hot',
-        get greatSuccess(){return this.success},
         success: 'On a 10 up, gain a String on them and they choose a reaction from below:\n\
  • I give myself to you\n\
  • I promise something I think you want, or\n\
@@ -174,7 +173,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         name: "Shut Someone Down",
         key: ['ssd', 'shutdown', 'shutsomeonedown'],
         text: 'When you shut someone down, roll with Cold.',
-        get greatSuccess(){return this.success},
         success: 'On a 10 up, choose one from below\n\
  • They lose a String on you,\n\
  • If they have no Strings on you, gain one on them,\n\
@@ -195,7 +193,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         key: ['kyc', 'keepcool', 'keepyourcool'],
         text: 'KEEP YOUR COOL: !keepcool\nWhen you keep your cool and act despite fear, name what\n\
         you’re afraid of, roll with Cold.',
-        get greatSuccess(){return this.success},
         success: 'On a 10 up, you keep your cool and gain insight: ask the MC a question about the\n\
         situation and take 1 Forward to acting on that information',
         mixed: 'On a 7-9, the MC will tell you how your actions would leave you vulnerable, and you\n\
@@ -208,7 +205,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         name: "Lash Out Physically",
         key: ['lop', 'lashout', 'lashoutphysically'],
         text: 'When you lash out physically, roll with Volatile.',
-        get greatSuccess(){return this.success},
         success: 'On a 10 up, you deal them harm, and they choke up momentarily before they can react.',
         mixed: 'On a 7-9, you harm them but choose one:\n\
  • They learn something about your true nature and gain a String on you,\n\
@@ -222,7 +218,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         name: "Run Away",
         key: ['run', 'away', 'runaway'],
         text: 'When you run away, roll with Volatile.',
-        get greatSuccess(){return this.success},
         success: 'On a 10 up, you get away to a safe place.\n\
  • You run into something worse,\n\
  • You cause a big scene, or\n\
@@ -239,7 +234,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         name: "Gaze Into The Abyss",
         key: ['gaze', 'gita', 'gazeintotheabyss', 'abyss'],
         text: 'When you gaze into the abyss, name what you’re looking for, roll with Dark.',
-        get greatSuccess(){return this.success},
         success: 'On a 10 up, the abyss shows you lucid visions, and you take 1 Forward to addressing them.',
         mixed: 'On a 7-9, the abyss shows you confusing and alarming visions, but you get your answer nonetheless',
         fail: 'On a 6-, be prepared for the worst...',
@@ -250,7 +244,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         name: "Make Others Feel Beautiful",
         key: ['mofb', 'makeothersfeelbeautiful', 'beautiful'],
         text: 'When you make others feel beautiful, roll with Hot.',
-        get greatSuccess(){return this.success},
         success: 'On a 10 up, choose two from below.\n\
  • they take 1 Forward,\n\
  • they remove a Condition,\n\
@@ -265,7 +258,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         name: "Call People On Their Shit",
         key: ['cpots', 'callout'],
         text: 'When you call people on their shit, roll with Cold.',
-        get greatSuccess(){return this.success},
         success: 'On a 10 up, choose one from below.\n\
  • they lose a String against someone else, or\n\
  • they choke up, break down, or bail.',
@@ -281,7 +273,6 @@ Condition in return.\n\
         name: "Intervene in an Act Of Violence",
         key: ['intervene', 'iiaaov'],
         text: 'When you intervene in an act of violence against someone else, roll with Volatile.',
-        get greatSuccess(){return this.success},
         success: 'On a 10 up, you get in the way and they need to deal with you first. Whoever you\'re\n\
 protecting gets to react, and takes 1 Forward to whatever they decide to do.',
         mixed: 'On a 7-9, you\'re in the middle of it, and the assailant chooses from below.\n\
@@ -296,7 +287,6 @@ protecting gets to react, and takes 1 Forward to whatever they decide to do.',
         name: "Share Your Pain",
         key: ['syp', 'share', 'pain'],
         text: 'When you share your pain, roll with Dark.',
-        get greatSuccess(){return this.success},
         success: 'On a 10 up, choose two.\n\
  • remove a Condition from yourself,\n\
  • remove a Condition from someone who listened,\n\
