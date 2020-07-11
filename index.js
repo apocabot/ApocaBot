@@ -26,12 +26,22 @@ client.on('message', async message => {
     const userId = message.member.id;
     const channelId = message.channel.id;
     const userNickname = message.member.nickname;
-    let gameList = ['apocalypse-world', 'burned-over', 'dungeon-world', 'masks', 'motw', 'the-sprawl', 'uncharted-worlds'];
+    let gameList = [
+        'apocalypse-world',
+        'burned-over',
+        'dungeon-world',
+        'masks',
+        'monsterhearts',
+        'motw',
+        'the-sprawl',
+        'uncharted-worlds'
+    ];
     let iconList = {
         "apocalypse-world": "https://i.imgur.com/axsiHTi.png",
         "burned-over": "https://i.imgur.com/t4RSNmg.png",
         "dungeon-world": "https://i.imgur.com/rffkAsW.png",
         "masks": "https://i.imgur.com/ThMlFyE.png",
+        "monsterhearts":"https://i.imgur.com/T6tTf9N.jpg",
         "motw": "https://i.imgur.com/a9Bi8zM.jpg",
         "the-sprawl": "https://i.imgur.com/qwbb6vQ.jpg",
         "uncharted-worlds": "https://i.imgur.com/MJB1dGn.png"
@@ -59,7 +69,7 @@ client.on('message', async message => {
                 if(!gameSetMessage){
                     let embed = new Discord.MessageEmbed()
                             .setColor(000000)
-                            .setDescription("To begin using ApocaBot, enter the command __!setgame__ followed by a space and one of the supported games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • motw\n • the-sprawl\n • uncharted-worlds\nEXAMPLE: !setgame apocalypse-world")
+                            .setDescription("To begin using ApocaBot, enter the command __!setgame__ followed by a space and one of the supported games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • monsterhearts\n • motw\n • the-sprawl\n • uncharted-worlds\nEXAMPLE: !setgame apocalypse-world")
                             .setThumbnail("https://i.imgur.com/a5p2OaU.png")
                     message.channel.send({embed})
                 } else {
@@ -72,7 +82,7 @@ client.on('message', async message => {
             }   else if(message.content.startsWith('!')) { 
                 let embed = new Discord.MessageEmbed()
                             .setColor(000000)
-                            .setDescription("Welcome to ApocaBot, a Discord Bot for Powered by the Apocalypse (PbtA) games.\nApocaBot currently supports the following games:\n • apocalypse-world\n • burned-over\n • dungeon-world,\n • masks\n • motw\n • the-sprawl\n • uncharted-worlds\nTo begin using ApocaBot, enter the command __!setgame__ followed by the hyphenated name of the PbtA game you\'ll be playing.\nEXAMPLE: !setgame apocalypse-world *or* !setgame motw")
+                            .setDescription("Welcome to ApocaBot, a Discord Bot for Powered by the Apocalypse (PbtA) games.\nApocaBot currently supports the following games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • monsterhearts\n • motw\n • the-sprawl\n • uncharted-worlds\nTo begin using ApocaBot, enter the command __!setgame__ followed by the hyphenated name of the PbtA game you\'ll be playing.\nEXAMPLE: !setgame apocalypse-world *or* !setgame motw")
                             .setThumbnail("https://i.imgur.com/a5p2OaU.png")
                 message.channel.send({embed})
                 return
