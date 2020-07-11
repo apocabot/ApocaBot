@@ -63,9 +63,9 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
                 VOLATILE: ['vol', 0],
                 DARK: ['dark', 0],
                 HARM: ['harm', '0 / 4'],
+                EXP: ['exp', '0 / 5'],
                 CONDITIONS: [ 'conditions', [] ],
-                STRINGS: [ 'strings', {} ],
-                EXP: ['exp', '0 / 5']
+                STRINGS: [ 'strings', {} ]
             }
         },
     newCharacter: {
@@ -154,44 +154,47 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         method: functions.xdyRoll
     },
     turnSomeoneOn: {
+        name: "Turn Someone On",
         key: ['tso', 'turnon', 'turnsomeoneon'],
-        text: 'TURN SOMEONE ON: !turnon\nWhen you turn someone on.',
+        text: 'When you turn someone on, roll with Hot',
         get greatSuccess(){return this.success},
         success: 'On a 10 up, gain a String on them and they choose a reaction from below:\n\
- - I give myself to you\n\
- - I promise something I think you want, or\n\
- - I get embarrassed and act awkward.',
+ • I give myself to you\n\
+ • I promise something I think you want, or\n\
+ • I get embarrassed and act awkward.',
         mixed: 'On a 7-9, they can either give you a String or choose one of the reactions.\n\
-        - I give myself to you\n\
-        - I promise something I think you want, or\n\
-        - I get embarrassed and act awkward.',
+ • I give myself to you\n\
+ • I promise something I think you want, or\n\
+ • I get embarrassed and act awkward.',
         fail: 'On a 6-, be prepared for the worst...',
         stat: 'hot',
         method: functions.moveRoll
     },
     shutSomeoneDown: {
+        name: "Shut Someone Down",
         key: ['ssd', 'shutdown', 'shutsomeonedown'],
-        text: 'SHUT SOMEONE DOWN: !shutdown\nWhen you shut someone down.',
+        text: 'When you shut someone down, roll with Cold.',
         get greatSuccess(){return this.success},
         success: 'On a 10 up, choose one from below\n\
-        - They lose a String on you,\n\
-        - If they have no Strings on you, gain one on them,\n\
-        - They gain a Condition, or\n\
-        - You take 1 Forward.',
+ • They lose a String on you,\n\
+ • If they have no Strings on you, gain one on them,\n\
+ • They gain a Condition, or\n\
+ • You take 1 Forward.',
         mixed: 'On a 7-9, choose one from below, but you come across poorly, and they give\n\
         you a Condition in return:\n\
-        - They lose a String on you,\n\
-        - If they have no Strings on you, gain one on them,\n\
-        - They gain a Condition, or\n\
-        - You take 1 Forward.',
+ • They lose a String on you,\n\
+ • If they have no Strings on you, gain one on them,\n\
+ • They gain a Condition, or\n\
+ • You take 1 Forward.',
         fail: 'On a 6-, be prepared for the worst...',
         stat: 'cold',
         method: functions.moveRoll
     },
     keepYourCool: {
+        name: "Keep Your Cool",
         key: ['kyc', 'keepcool', 'keepyourcool'],
         text: 'KEEP YOUR COOL: !keepcool\nWhen you keep your cool and act despite fear, name what\n\
-        you’re afraid of.',
+        you’re afraid of, roll with Cold.',
         get greatSuccess(){return this.success},
         success: 'On a 10 up, you keep your cool and gain insight: ask the MC a question about the\n\
         situation and take 1 Forward to acting on that information',
@@ -202,38 +205,40 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         method: functions.moveRoll
     },
     lashOutPhysically: {
+        name: "Lash Out Physically",
         key: ['lop', 'lashout', 'lashoutphysically'],
-        text: 'LASH OUT PHYSICALLY: !lashout\nWhen you lash out physically.',
+        text: 'When you lash out physically, roll with Volatile.',
         get greatSuccess(){return this.success},
         success: 'On a 10 up, you deal them harm, and they choke up momentarily before they can react.',
         mixed: 'On a 7-9, you harm them but choose one:\n\
-- They learn something about your true nature and gain a String on you,\n\
-- The MC decides how bad the harm turns out,\n\
-- You become your Darkest Self',
+ • They learn something about your true nature and gain a String on you,\n\
+ • The MC decides how bad the harm turns out,\n\
+ • You become your Darkest Self',
         fail: 'On a 6-, be prepared for the worst...',
         stat: 'volatile',
         method: functions.moveRoll
     },
     runAway: {
+        name: "Run Away",
         key: ['run', 'away', 'runaway'],
-        text: 'RUN AWAY: !runaway\nWhen you run away.',
+        text: 'When you run away, roll with Volatile.',
         get greatSuccess(){return this.success},
         success: 'On a 10 up, you get away to a safe place.\n\
-- You run into something worse,\n\
-- You cause a big scene, or\n\
-- You leave something behind.',
+ • You run into something worse,\n\
+ • You cause a big scene, or\n\
+ • You leave something behind.',
         mixed: 'On a 7-9, you get away but choose one:\n\
-- You run into something worse,\n\
-- You cause a big scene, or\n\
-- You leave something behind.',
+ • You run into something worse,\n\
+ • You cause a big scene, or\n\
+ • You leave something behind.',
         fail: 'On a 6-, be prepared for the worst...',
         stat: 'volatile',
         method: functions.moveRoll
     },
     gazeIntoTheAbyss: {
+        name: "Gaze Into The Abyss",
         key: ['gaze', 'gita', 'gazeintotheabyss', 'abyss'],
-        text: 'GAZE INTO THE ABYSS: !gaze\n\
-When you gaze into the abyss, name what you’re looking for.',
+        text: 'When you gaze into the abyss, name what you’re looking for, roll with Dark.',
         get greatSuccess(){return this.success},
         success: 'On a 10 up, the abyss shows you lucid visions, and you take 1 Forward to addressing them.',
         mixed: 'On a 7-9, the abyss shows you confusing and alarming visions, but you get your answer nonetheless',
@@ -242,76 +247,78 @@ When you gaze into the abyss, name what you’re looking for.',
         method: functions.moveRoll
     },
     makeOthersFeelBeautiful: {
+        name: "Make Others Feel Beautiful",
         key: ['mofb', 'makeothersfeelbeautiful', 'beautiful'],
-        text: 'MAKE OTHERS FEEL BEAUTIFUL: !mofb\n\
-When you make others feel beautiful.',
+        text: 'When you make others feel beautiful, roll with Hot.',
         get greatSuccess(){return this.success},
         success: 'On a 10 up, choose two from below.\n\
-- they take 1 Forward,\n\
-- they remove a Condition,\n\
-- they mark experience, or\n\
-- you take 1 Forward.',
+ • they take 1 Forward,\n\
+ • they remove a Condition,\n\
+ • they mark experience, or\n\
+ • you take 1 Forward.',
         mixed: 'On a 7-9, you can tempt them to do what you want, as if you\'d just spent a String.',
         fail: 'On a 6-, be prepared for the worst...',
         stat: 'hot',
         method: functions.moveRoll
     },
     callPeopleOnTheirShit: {
+        name: "Call People On Their Shit",
         key: ['cpots', 'callout'],
-        text: 'CALL PEOPLE ON THEIR SHIT: !callout\n\
-When you call people on their shit.',
+        text: 'When you call people on their shit, roll with Cold.',
         get greatSuccess(){return this.success},
         success: 'On a 10 up, choose one from below.\n\
-- they lose a String against someone else, or\n\
-- they choke up, break down, or bail.',
+ • they lose a String against someone else, or\n\
+ • they choke up, break down, or bail.',
         mixed: 'On a 7-9, choose one from below, but you come across poorly, and they give you a\n\
 Condition in return.\n\
-- they lose a String against someone else, or\n\
-- they choke up, break down, or bail.',
+• they lose a String against someone else, or\n\
+• they choke up, break down, or bail.',
         fail: 'On a 6-, be prepared for the worst...',
         stat: 'cold',
         method: functions.moveRoll
     },
     interveneInAnActOfViolence: {
+        name: "Intervene in an Act Of Violence",
         key: ['intervene', 'iiaaov'],
-        text: 'INTERVENE IN AN ACT OF VIOLENCE: !intervene\n\
-When you intervene in an act of violence against someone else.',
+        text: 'When you intervene in an act of violence against someone else, roll with Volatile.',
         get greatSuccess(){return this.success},
         success: 'On a 10 up, you get in the way and they need to deal with you first. Whoever you\'re\n\
 protecting gets to react, and takes 1 Forward to whatever they decide to do.',
         mixed: 'On a 7-9, you\'re in the middle of it, and the assailant chooses from below.\n\
-- I back off,\n\
-- I take whatever harm you want to give me as I push past, or\n\
-- I redirect the violence to you.',
+ • I back off,\n\
+ • I take whatever harm you want to give me as I push past, or\n\
+ • I redirect the violence to you.',
         fail: 'On a 6-, be prepared for the worst...',
         stat: 'volatile',
         method: functions.moveRoll
     },
     shareYourPain: {
+        name: "Share Your Pain",
         key: ['syp', 'share', 'pain'],
-        text: 'SHARE YOUR PAIN: !share\nWhen you share your pain.',
+        text: 'When you share your pain, roll with Dark.',
         get greatSuccess(){return this.success},
         success: 'On a 10 up, choose two.\n\
-        - remove a Condition from yourself,\n\
-        - remove a Condition from someone who listened,\n\
-        - take 1 Forward toward helping yourself, or\n\
-        - those who listened take 1 Forward to helping you.',
+ • remove a Condition from yourself,\n\
+ • remove a Condition from someone who listened,\n\
+ • take 1 Forward toward helping yourself, or\n\
+ • those who listened take 1 Forward to helping you.',
         mixed: 'On a 7-9, choose one:\n\
-- remove a Condition from yourself,\n\
-- remove a Condition from someone who listened,\n\
-- take 1 Forward toward helping yourself, or\n\
-- those who listened take 1 Forward to helping you.',
+ • remove a Condition from yourself,\n\
+ • remove a Condition from someone who listened,\n\
+ • take 1 Forward toward helping yourself, or\n\
+ • those who listened take 1 Forward to helping you.',
         fail: 'On a 6-, be prepared for the worst...',
-        stat: 'cold',
+        stat: 'dark',
         method: functions.moveRoll
     },
     pullingStrings: {
+        name: "Pulling Strings",
         key: ['strings'],
-        text: 'PULLING STRINGS: !strings\nWhen you spend a String on someone, choose one:\n\
-- Tempt them to do what you want,\n\
-- Give them a Condition,\n\
-- Add 1 to your roll against them, or\n\
-- Add 1 to the harm you deal them.',
+        text: 'When you spend a String on someone, choose one:\n\
+ • Tempt them to do what you want,\n\
+ • Give them a Condition,\n\
+ • Add 1 to your roll against them, or\n\
+ • Add 1 to the harm you deal them.',
         method: function(){return this.text}
     },
     healing: {
@@ -322,10 +329,11 @@ may heal 1 Harm. If someone else is there with you, tending to your wounds delic
         method: function(){return this.text}
     },
     skirtingDeath: {
+        name: "Skirting Death",
         key: ['skirt', 'death', 'skirtingdeath'],
-        text: 'SKIRTING DEATH: death\nTo avoid death, erase all harm and choose one:\n\
-- Become your Darkest Self.\n\
-- Lose all Strings you have on everybody.',
+        text: 'To avoid death, erase all harm and choose one:\n\
+ • Become your Darkest Self.\n\
+ • Lose all Strings you have on everybody.',
         method: function(){return this.text}
     },
     customMove: {
@@ -369,8 +377,8 @@ may heal 1 Harm. If someone else is there with you, tending to your wounds delic
     setExpOnAMiss: {
         key: ['exponmiss', 'xponmiss', 'exponamiss', 'xponamiss'],
         text: 'Set the rule for Experience on a miss. To set the rule, enter __!expOnMiss__ followed by yes or no.\n\
-• __yes__: Whenever a miss is rolled using a move command, a reminder will be displayed to mark Experience.\n\
-• __no__: No reminder will be displayed.',
+• yes: Whenever a miss is rolled using a move command, a reminder will be displayed to mark Experience.\n\
+• no: No reminder will be displayed.',
         method: functions.setExpOnAMiss
     },
     gainString: {
@@ -382,10 +390,10 @@ may heal 1 Harm. If someone else is there with you, tending to your wounds delic
         key: ['spend', 'spendstring', 'removestring'],
         text: 'To spend a string on someone, enter !spend <Name>\n\
 When you spend a String on someone, choose one:\n\
-- Tempt them to do what you want,\n\
-- Give them a Condition,\n\
-- Add 1 to your roll against them, or\n\
-- Add 1 to the harm you deal them.',
+• Tempt them to do what you want,\n\
+• Give them a Condition,\n\
+• Add 1 to your roll against them, or\n\
+• Add 1 to the harm you deal them.',
         method: functions.spendString
     },
     conditionMove: {

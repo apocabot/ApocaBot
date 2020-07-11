@@ -41,7 +41,7 @@ client.on('message', async message => {
         "burned-over": "https://i.imgur.com/t4RSNmg.png",
         "dungeon-world": "https://i.imgur.com/rffkAsW.png",
         "masks": "https://i.imgur.com/ThMlFyE.png",
-        "monsterhearts":"https://i.imgur.com/Me2kjro.png",
+        "monsterhearts":"https://i.imgur.com/T6tTf9N.jpg",
         "motw": "https://i.imgur.com/a9Bi8zM.jpg",
         "the-sprawl": "https://i.imgur.com/qwbb6vQ.jpg",
         "uncharted-worlds": "https://i.imgur.com/MJB1dGn.png"
