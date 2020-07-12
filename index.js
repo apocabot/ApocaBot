@@ -21,7 +21,7 @@ let counter
 client.on('message', async message => {
     if (message.author.bot) return;
     if (message.webhookID) return;
-    if(!message.member) message.reply('For questions, comments, or issues:\n • Message us on Reddit (u/\_minibradford\_)\n • @ us in the PbtA Guild on Discord (minibradford#1842)\n • Become a supporter at https://www.patreon.com/apocabot');
+    if(!message.member) message.reply('For questions, comments, or issues:\n • Message us on Reddit (`u/_minibradford_`)\n • @ us in the PbtA Guild on Discord (`minibradford#1842`)\n • Become a supporter at https://www.patreon.com/apocabot');
     if(!message.member) return;
 
 //establish universal variables regarding message
