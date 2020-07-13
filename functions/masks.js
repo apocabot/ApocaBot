@@ -1,7 +1,7 @@
 let storage
 require('../mungu.js').then(s => storage = s)
 
-module.exports = {deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll, markCondition, clearCondition}
+module.exports = {influence, overMe, overThem, deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll, markCondition, clearCondition}
 
 //functions
 function removePrefix(message, userData){
@@ -537,6 +537,85 @@ function clearCondition(userMessage, userId, channelId, userNickname, moves, use
         }
     })
     return clearMessage
+}
+
+function influence(userMessage, userId, channelId, userNickname, moves, userData){
+    if (!userData[userId]['OVERME']){userData[userId]['OVERME'] = ['']}
+    if (userData[userId]['OVERME'].length < 1){userData[userId]['OVERME'].push('')}
+    if (!userData[userId]['OVERTHEM']){userData[userId]['OVERTHEM'] = ['']}
+    if (userData[userId]['OVERTHEM'].length < 1){userData[userId]['OVERTHEM'].push('')}
+
+    let overMePrintout
+    let overThemPrintout
+
+    for(i in userData[userId]['OVERME']){
+        if (userData[userId]['OVERME'].length > 1){
+            userData[userId]['OVERME'] = userData[userId]['OVERME'].filter(v => v !== '');
+        }
+        overMePrintout = `INFLUENCE OVER ME:\n • ${userData[userId]['OVERME'].join("\n• ")}`
+    }
+    for(i in userData[userId]['OVERTHEM']){
+        if (userData[userId]['OVERTHEM'].length > 1){
+            userData[userId]['OVERTHEM'] = userData[userId]['OVERTHEM'].filter(v => v !== '');
+        }
+        overThemPrintout = `INFLUENCE OVER THEM:\n • ${userData[userId]['OVERTHEM'].join("\n• ")}`
+    }
+
+    return `Enter __!inf?__ to learn about adding/removing influence.\n\n${overMePrintout}\n\n${overThemPrintout}`
+}
+
+function overMe(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1] || !userMessage[2]){return moves.overMe.text}
+    if (userMessage[2].length > 30){return 'That name is too long. Try a shorter version.'}
+    if (!userData[userId]['OVERME']){userData[userId]['OVERME'] = ['']}
+    if (userData[userId]['OVERME'].length < 1){userData[userId]['OVERME'].push('')}
+    let overMeMessage = ''
+    userMessage[2] = userMessage[2].charAt(0).toUpperCase() + userMessage[2].slice(1)
+
+    if(userMessage[1] === "add"){
+            if(userData[userId]['OVERME'].includes(userMessage[2])){
+                overMeMessage = `${userMessage[2]} already has influence over you! Instead, they shift one of your labels up and one down.`
+        } else {
+            userData[userId]['OVERME'].push(userMessage[2])
+            overMeMessage = `${userMessage[2]} now has influence over you.`
+            }
+    } else if (userMessage[1] === "remove"){
+            if(userData[userId]['OVERME'].includes(userMessage[2])){
+                userData[userId]['OVERME'] = userData[userId]['OVERME'].filter(v => v !== userMessage[2]); 
+                overMeMessage =  `${userMessage[2]} no longer has influence over you.`
+            } else {
+                overMeMessage =  `${userMessage[2]} didn't have influence over you.`
+            }
+    }
+
+        if(overMeMessage){return overMeMessage} else {return moves.overMe.text}
+}
+
+function overThem(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1] || !userMessage[2]){return moves.overMe.text}
+    if (userMessage[2].length > 30){return 'That name is too long. Try a shorter version.'}
+    if (!userData[userId]['OVERTHEM']){userData[userId]['OVERTHEM'] = ['']}
+    if (userData[userId]['OVERTHEM'].length < 1){userData[userId]['OVERTHEM'].push('')}
+    let overThemMessage = ''
+    userMessage[2] = userMessage[2].charAt(0).toUpperCase() + userMessage[2].slice(1)
+
+    if(userMessage[1] === "add"){
+            if(userData[userId]['OVERTHEM'].includes(userMessage[2])){
+                overThemMessage = `You already have influence over ${userMessage[2]}! Instead, you shift one of their labels up and one down.`
+        } else {
+            userData[userId]['OVERTHEM'].push(userMessage[2])
+            overThemMessage = `You now have influence over ${userMessage[2]} .`
+            }
+    } else if (userMessage[1] === "remove"){
+            if(userData[userId]['OVERTHEM'].includes(userMessage[2])){
+                userData[userId]['OVERTHEM'] = userData[userId]['OVERTHEM'].filter(v => v !== userMessage[2]); 
+                overThemMessage =  `You no longer have influence over ${userMessage[2]} .`
+            } else {
+                overThemMessage =  `You didn't have influence over ${userMessage[2]} .`
+            }
+    }
+
+        if(overThemMessage){return overThemMessage} else {return moves.overThem.text}
 }
 
 function newCustomMove(userMessage, userId, channelId, userNickname, moves, userData){

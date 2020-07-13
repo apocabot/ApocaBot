@@ -14,7 +14,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - BASIC MOVES LIST: !basic\n\
  - ADULT MOVES LIST: !adult\n\
  - CUSTOM MOVES: !custom\n\
- - END OF SESSION: !endsession\n\
+ - ADD/REMOVE INFLUENCE: !inf\n\
  - SET APOCABOT PREFIX: !setprefix\n\
  - SET APOCABOT GAME: !setgame',
         method: function(){return this.text}
@@ -32,7 +32,8 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - TAKE A POWERFUL BLOW: !take\n\
  - CONDITIONS: !con\n\
  - REJECT INFLUENCE: !reject\n\
- - TEAM POOL: !team',
+ - TEAM POOL: !team\n\
+ - END OF SESSION: !endsession',
         method: function(){return this.text}
     },
     adultMoves: {
@@ -464,6 +465,35 @@ When you *stand up for something*, roll + Savior.',
         stat: 'savior',
         method: functions.moveRoll
     },
+    influence: {
+       key: ['inf', 'influence'],
+       text: 'You can track influence by adding or removing other characters from two lists:\n\
+ • INFLUENCE OVER ME: lists the PCs and NPCs who have influence over you.\n\
+ • INFLUENCE OVER THEM: lists the PCs and NPCs who you have influence over.\n\n\
+To manage your influence lists, enter:\n • __!overme/overthem add/remove name__ (where *name* is the other character\'s name)\n\
+If you try and add a character to you list who is already on it, or remove a character who is not\
+ on the list already, the bot will instruct you what to do.\n\n\
+EXAMPLES:\n\
+__!overme add pooky__ will add Pooky to your INFLUENCE OVER ME list.\n\
+__!overthem remove limbo__ will remove Limbo from your INFLUENCE OVER THEM list.',
+       method: functions.influence
+   },
+   overMe: {
+       key: ['overme'],
+       text: 'To mark that another PC or NPC has influence over you:\n\
+ • Enter __!overme add name__ (where *name* in the other character\'s name)\n\n\
+To remove their influence over you:\n\
+ • Enter __!overme remove name__ (where *name* in the other character\'s name)',
+       method: functions.overMe
+   },
+   overThem: {
+       key: ['overthem'],
+       text: 'To mark that you have influence over another PC or NPC:\n\
+ • Enter __!overthem add name__ (where *name* in the other character\'s name)\n\n\
+To remove your influence over them:\n\
+ • Enter __!overthem remove name__ (where *name* in the other character\'s name)',
+       method: functions.overThem
+   },
     customMove: {
        key: ['move'],
        text: 'To use a custom move, enter the command __!move__ followed by the custom command\
