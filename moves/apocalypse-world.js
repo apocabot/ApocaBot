@@ -160,6 +160,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +sharp (SPACES MATTER!)',
         method: functions.xdyRoll
     },
     actUnderFire: {
+      name: 'Act Under Fire',
         key: ['act', 'actunderfire', 'underfire', 'fire'],
         text: 'ACT UNDER FIRE: !act\n\
 When you do something under fire, or dig in to endure fire.',
@@ -174,6 +175,7 @@ When you do something under fire, or dig in to endure fire.',
         method: functions.moveRoll
     },
     goAggro: {
+      name: 'Go Aggro',
         key: ['goaggro', 'go', 'aggro'],
         text: 'GO AGGRO: !aggro\n\
 When you go aggro on someone.',
@@ -195,6 +197,7 @@ When you go aggro on someone.',
         method: functions.moveRoll
     },
     seduceOrManipulate: {
+      name: 'Seduce Or Manipulate',
         key: ['seduce', 'manipulate', 'seduceormanipulate'],
         text: 'SEDUCE OR MANIPULATE: !seduce *or* !manipulate\n\
 When you try to seduce, manipulate, bluff, fast-talk, or lie to someone,\
@@ -226,6 +229,7 @@ When you try to seduce, manipulate, bluff, fast-talk, or lie to someone,\
         method: functions.moveRoll
     },
     helpOrInterfere: {
+      name: 'Help Or Interfere',
         key: ['hoi', 'interfere', 'helporinterfere'],
         text: 'HELP OR INTERFERE: !help *or* !interfere\n\
 When you help or interfere with someone who\'s making a roll.',
@@ -240,6 +244,7 @@ When you help or interfere with someone who\'s making a roll.',
         method: functions.moveRoll
     },
     readASitch: {
+      name: 'Read A Sitch',
         key: ['readsitch', 'readasitch', 'sitch'],
         text: 'READ A SITCH: !readsitch\n\
 When you read a charged situation, you may ask:\n\
@@ -279,6 +284,7 @@ When you read a charged situation, you may ask:\n\
         method: functions.moveRoll
     },
     readAPerson: {
+      name: 'Read A Person',
         key: ['readperson', 'readaperson', 'person'],
         text: 'READ A PERSON: !readperson\n\
 When you read a person in a charged interaction, you may ask:\n\
@@ -318,6 +324,7 @@ When you read a person in a charged interaction, you may ask:\n\
         method: functions.moveRoll
     },
     openYourBrain: {
+      name: 'Open Your Brain',
         key: ['open', 'openbrain', 'openyourbrain', 'brain'],
         text: 'OPEN YOUR BRAIN: !open\n\
 When you open your brain to the world\'s psychic maelstrom.',
@@ -348,6 +355,7 @@ When you open your brain to the world\'s psychic maelstrom.',
        method: function(){return this.text}
    },
    sufferHarm: {
+      name: 'Suffer Harm',
        key: ['suffer', 'sufferharm', 'harm'],
        text: 'SUFFER HARM: !suffer\n\
 When you suffer harm, roll+harm suffered (after armor, if you\'re wearing any).',
@@ -374,6 +382,7 @@ does, you take -1 harm.\n\
        method: functions.moveRoll
    },
    shopAtMarket: {
+      name: 'Shop At Market',
        key: ['market', 'shop', 'shopatmarket'],
        text: 'SHOP AT MARKET: !shop\n\
 When you go into a holding\'s bustling market, looking for some\
@@ -397,6 +406,7 @@ be able to just go buy one like that, roll+sharp.',
        method: functions.moveRoll
    },
    dropJingle: {
+      name: 'Drop Jingle',
        key: ['dropjingle', 'drop', 'jingle'],
        text: 'DROP JINGLE: !jingle\n\
 When you make known that you want a thing and drop jingle to speed\
@@ -409,6 +419,7 @@ When you make known that you want a thing and drop jingle to speed\
        method: functions.moveRoll
    },
    insight: {
+      name: 'Insight',
        key: ['insight', 'sight'],
        text: 'When you are able to go to someone for insight, ask them what\
  they think your best course is, and the MC will tell you. If you pursue that\
@@ -417,6 +428,7 @@ When you make known that you want a thing and drop jingle to speed\
        method: function(){return this.text}
    },
    augury: {
+      name: 'Augury',
        key: ['augury'],
        text: 'AUGURY: !augury\n\
 When you are able to use something for augury, roll+weird.',
@@ -451,6 +463,7 @@ By default, the effect lasts only as long as you maintain it, will reach only\
        method: functions.moveRoll
    },
    seizeByForce: {
+      name: 'Seize By Force',
        key: ['seize', 'seizebyforce', 'seizeforce'],
        text: 'SEIZE BY FORCE: !seize\n\
 To seize something by force, exchange harm, but first roll+hard.',
@@ -473,6 +486,7 @@ To seize something by force, exchange harm, but first roll+hard.',
        method: functions.moveRoll
    },
    singleCombat: {
+      name: 'Single Combat',
        key: ['single', 'combat', 'singlecombat'],
        text: 'SINGLE COMBAT: !single\n\
 When you do single combat with someone, no quarters, exchange harm\
@@ -490,6 +504,7 @@ When you do single combat with someone, no quarters, exchange harm\
        method: functions.moveRoll
    },
    layDownFire: {
+      name: 'Lay Down Fire',
        key: ['lay', 'laydown', 'laydownfire'],
        text: 'LAY DOWN FIRE: !lay\n\
 When you lay down fire, roll+hard. You may:\n\
@@ -520,6 +535,7 @@ When you lay down fire, roll+hard. You may:\n\
        method: functions.moveRoll
    },
    standOverwatch: {
+      name: 'Stand Overwatch',
        key: ['stand', 'watch', 'standoverwatch'],
        text: 'STAND OVERWATCH: !watch\n\
 When you stand overwatch for an ally, roll+cool.',
@@ -535,6 +551,7 @@ When you stand overwatch for an ally, roll+cool.',
        method: functions.moveRoll
    },
    keepAnEyeOut: {
+      name: 'Keep An Eye Out',
        key: ['eye', 'keepaneyeout', 'keepeyeout', 'eyeout'],
        text: 'KEEP AN EYE OUT: !eye\n\
 When you keep an eye out for what\'s coming, roll+sharp. Spend hold to:\n\
@@ -576,6 +593,7 @@ When you keep an eye out for what\'s coming, roll+sharp. Spend hold to:\n\
        method: functions.moveRoll
    },
    baitATrap: {
+      name: 'Bait A Trap',
        key: ['bait', 'trap', 'baitatrap'],
        text: 'BAIT A TRAP: !bait\n\
 When you\'re the bait, roll+cool.',
@@ -598,6 +616,7 @@ When you\'re the bait, roll+cool.',
        method: functions.moveRoll
    },
    huntPrey: {
+      name: 'Hunt Prey',
        key: ['hunt', 'huntprey', 'prey'],
        text: 'HUNT PREY: !hunt\n\
 When you\'re the cat, roll+cool.',
@@ -610,6 +629,7 @@ When you\'re the cat, roll+cool.',
        method: functions.moveRoll
    },
    escapeAHunter: {
+      name: 'Escape A Hunter',
        key: ['escape', 'escapehunter', 'escapeahunter'],
        text: 'ESCAPE A HUNTER: !escape\n\
 When you\'re the mouse, roll+cool.',
@@ -621,6 +641,7 @@ When you\'re the mouse, roll+cool.',
        method: functions.moveRoll
    },
    turnTheTables: {
+      name: 'Turn The Tables',
        key: ['turn', 'turntables', 'turnthetables'],
        text: 'TURN THE TABLES: !turn\n\
 When it\'s not certain whether you\'re the cat or the mouse, roll+sharp.',

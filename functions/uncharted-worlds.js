@@ -246,7 +246,7 @@ function moveRoll(userMessage, userId, channelId, userNickname, moves, userData,
 	else if (modStat < 0) {
 			modStat = Math.abs(modStat);
 			rollText = `You rolled [${result} ] = ${total} - ${modStat}${showStat}. That’s ${grandTotal}.`}
-    return `${rollText}\n${moveText}`
+    return `__${moves[i].name}__\n${rollText}\n\n${moveText}`
 }
 
 function newCharacter(userMessage, userId, channelId, userNickname, moves, userData){

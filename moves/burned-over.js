@@ -154,6 +154,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +sharp (SPACES MATTER!)',
         method: functions.xdyRoll
     },
     sufferHarm: {
+       name: 'Suffer Harm',
         key: ['suffer', 'sufferharm'],
         text: 'SUFFER HARM: !suffer\n\
 When you suffer harm, roll *minus* the harm you\'ve suffered.',
@@ -182,6 +183,7 @@ When you suffer harm, roll *minus* the harm you\'ve suffered.',
         method: functions.moveRoll
     },
     confrontSomeone: {
+       name: 'Confront Someone',
         key: ['confront', 'confrontsomeone'],
         text: 'CONFRONT SOMEONE: !confront\n\
 When you confront, intimidate, threaten, or bluff someone.',
@@ -202,6 +204,7 @@ You choose whether and how to follow through.',
         method: functions.moveRoll
     },
     actUnderFire: {
+       name: 'Act Under Fire',
         key: ['act', 'actunderfire', 'underfire', 'fire'],
         text: 'ACT UNDER FIRE: !act\n\
 When you act under fire, or dig into endure fire.',
@@ -214,6 +217,7 @@ When you act under fire, or dig into endure fire.',
         method: functions.moveRoll
     },
     charmOrDeceiveSomeone: {
+       name: 'Charm Or Deceive',
         key: ['charm', 'deceive', 'charmordeceive', 'cod', 'charmordeceivesomeone'],
         text: 'CHARM OR DECEIVE SOMEONE: !charm *or* !deceive\n\
 When you charm or deceive someone.',
@@ -229,6 +233,7 @@ When you charm or deceive someone.',
         method: functions.moveRoll
     },
     doBattle: {
+       name: 'Do Battle',
         key: ['battle', 'dobattle'],
         text: 'DO BATTLE: !battle\n\
 When you do battle with someone, exchange harm, but first roll !battle.',
@@ -276,6 +281,7 @@ If you seize initiative, you get any or all of these, as applicable:\n\
         method: functions.moveRoll
     },
     readSomeone: {
+       name: 'Read Someone',
         key: ['read', 'readsomeone', 'readperson'],
         text: 'READ SOMEONE: !read\n\
 When you read someone in a charged interaction, ask:\n\
@@ -312,6 +318,7 @@ When you read someone in a charged interaction, ask:\n\
         method: functions.moveRoll
     },
     readASituation: {
+       name: 'Read A Situation',
         key: ['readsitch', 'readasitch', 'readasituation'],
         text: 'READ A SITUATION: !readsitch\n\
 When you read a charged situation, ask:\n\
@@ -348,6 +355,7 @@ When you read a charged situation, ask:\n\
         method: functions.moveRoll
     },
     openYourBrain: {
+       name: 'Open Your Brain',
         key: ['open', 'openbrain', 'openyourbrain', 'brain'],
         text: 'OPEN YOUR BRAIN: !open\n\
 When you open your brain to the world\'s psychic maelstrom.',
@@ -367,6 +375,7 @@ When you open your brain to the world\'s psychic maelstrom.',
         method: functions.moveRoll
     },
     helpPc: {
+       name: 'Help Someone (PC)',
         key: ['helppc'],
         text: 'HELP SOMEONE: !helppc *or* !helpnpc\n\
 To help someone, ask their player what you can do to help.',
@@ -387,6 +396,7 @@ To help someone, ask their player what you can do to help.',
         method: functions.moveRoll
     },
     helpNpc: {
+       name: 'Help Someone (NPC)',
         key: ['helpnpc'],
         text: 'HELP SOMEONE: !helppc *or* !helpnpc\n\
 To help someone, ask their player what you can do to help.',
@@ -406,6 +416,7 @@ To help someone, ask their player what you can do to help.',
         method: functions.moveRoll
     },
     interruptPc: {
+       name: 'Interrupt Someone (PC)',
         key: ['intpc', 'interpc', 'interruptpc'],
         text: 'INTERUPT SOMEONE: !intpc *or* !intnpc\n\
 To interrupt someone. *(You can\'t interrupt someone who\'s interrupting you.)*',
@@ -429,6 +440,7 @@ To interrupt someone. *(You can\'t interrupt someone who\'s interrupting you.)*'
         method: functions.moveRoll
     },
     interruptNpc: {
+       name: 'Interrupt Someone (NPC)',
         key: ['intnpc', 'internpc', 'interruptnpc'],
         text: 'INTERUPT SOMEONE: !intpc *or* !intnpc\n\
 To interrupt someone. *(You can\'t interrupt someone who\'s interrupting you.)*',
@@ -452,6 +464,7 @@ To interrupt someone. *(You can\'t interrupt someone who\'s interrupting you.)*'
         method: functions.moveRoll
     },
     augury: {
+       name: 'Augury',
         key: ['aug', 'augury'],
         text: 'AUGURY: !augury\n\
 When you use your psychic antenna for augury.',
@@ -485,6 +498,7 @@ By default, the effect lasts only as long as you maintain it, reaches only\
         method: functions.moveRoll
     },
     devotion: {
+       name: 'Devotion',
         key: ['dev', 'devotion'],
         text: 'DEVOTION: !dev\n\
 At the beginning of the session, if your followers are secure and stable, roll !dev.\
@@ -497,6 +511,7 @@ At the beginning of the session, if your followers are secure and stable, roll !
         method: functions.moveRoll
     },
     insight: {
+       name: 'Insight',
         key: ['ins', 'insight'],
         text: 'INSIGHT: !insight\n\
 When you go to your advisors for insight, ask them what they think your best course is,\
@@ -505,6 +520,7 @@ When you go to your advisors for insight, ask them what they think your best cou
         method: function(){return this.text}
     },
     leadership: {
+       name: 'Leadership',
         key: ['lead', 'leadership'],
         text: 'LEADERSHIP: !lead\n\
 When you have to order your gang to advance, regroup, hold position, or put their backs into it.',
@@ -517,6 +533,7 @@ When you have to order your gang to advance, regroup, hold position, or put thei
         method: functions.moveRoll
     },
     tinkering: {
+       name: 'Tinkering',
         key: ['tinker', 'tinkering'],
         text: 'TINKERING: !tinker\n\
 When you go into your workspace to create something, repair something,\
@@ -537,6 +554,7 @@ Once you’ve accomplished the necessaries, you can go ahead and accomplish your
         method: function(){return this.text}
     },
     wealth: {
+       name: 'Wealth',
         key: ['wealth'],
         text: 'WEALTH: !wealth\n\
 At the beginning of the session, if your holding or venue is secure and stable, roll !wealth.',

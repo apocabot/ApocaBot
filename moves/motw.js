@@ -161,6 +161,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         method: functions.xdyRoll
     },
     kickSomeAss: {
+       name: 'Kick Some Ass',
         key: ['ksa', 'kickass', 'kicksome', 'kicksomeass', 'ass'],
         text: 'KICK SOME ASS: !kickass\nWhen you get into a fight and kick some ass.',
         get greatSuccess(){return this.success},
@@ -176,6 +177,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         method: functions.moveRoll
     },
     actUnderPressure: {
+       name: 'Act Under Pressure',
         key: ['aup', 'act', 'actunder', 'underpressure', 'actunderpressure', 'pressure'],
         text: 'ACT UNDER PRESSURE: !act\nWhen you act under pressure.',
         get greatSuccess(){return this.success},
@@ -187,6 +189,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         method: functions.moveRoll
     },
     helpOut: {
+       name: 'Help Out',
         key: ['helpout'],
         text: 'HELP OUT: !helpout\nWhen you help another hunter.',
         get greatSuccess(){return this.success},
@@ -198,6 +201,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         method: functions.moveRoll
     },
     investigateAMystery: {
+       name: 'Investigate A Mystery',
         key: ['iam', 'invest', 'investigate', 'investigatemystery', 'investigateamystery', 'mystery'],
         text: 'INVESTIGATE A MYSTERY: !investigate\nWhen you investigate a mystery, you can ask:\n\
  - What happened here?\n\
@@ -234,6 +238,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         method: functions.moveRoll
     },
     manipulateSomeone: {
+       name: 'Manipulate Someone',
         key: ['manipulate', 'manipulatesomeone'],
         text: 'MANIPULATE SOMEONE: !manipulate\n\
 Once you have given them a reason, tell them what you want them to do.',
@@ -249,6 +254,7 @@ Once you have given them a reason, tell them what you want them to do.',
         method: functions.moveRoll
     },
     manipulateHunter: {
+       name: 'Manipulate Another Hunter',
         key: ['manhunt', 'hunter', 'huntermanipulate'],
         text: 'MANIPULATE HUNTER: !hunter\n\
 Once you have given the other hunter a reason, tell them what you want them to do.',
@@ -261,6 +267,7 @@ Once you have given the other hunter a reason, tell them what you want them to d
         method: functions.moveRoll
     },
     protectSomeone: {
+       name: 'Protect Someone',
         key: ['protect', 'protectsomeone'],
         text: 'PROTECT SOMEONE: !protect\n\
 When you prevent harm to another character.',
@@ -278,6 +285,7 @@ When you prevent harm to another character.',
         method: functions.moveRoll
     },
     readABadSituation: {
+       name: 'Read A Bad Situation',
         key: ['rabs', 'read', 'readasitch', 'readabadsituation', 'badsituation'],
         text: 'READ A BAD SITUATION: !read\n\
 When you look around and read a bad situation, you can ask:\n\
@@ -311,6 +319,7 @@ When you look around and read a bad situation, you can ask:\n\
         method: functions.moveRoll
     },
     useMagic: {
+       name: 'Use Magic',
         key: ['usemagic', 'magic'],
         text: 'USE MAGIC: !magic\n\
 When you use magic, say what you\'re trying to achieve and how you do the spell.',
@@ -325,6 +334,7 @@ When you use magic, say what you\'re trying to achieve and how you do the spell.
         method: functions.moveRoll
     },
     bigMagic: {
+       name: 'Big Magic',
         key: ['big', 'bigmagic'],
         text: 'BIG MAGIC: !bigmagic\n\
 Use this when you want more than the Use Magic effects. Tell the Keeper what you\
@@ -391,6 +401,7 @@ THE KEEPER MAY SAY THAT:\n\
         method: function(){return this.text}
    },
    empath: {
+       name: 'Empath',
        key: ['empath'],
        text: 'EMPATH: !empath\n\
 When you open up your brain to feel the emotions of something right there\
@@ -405,6 +416,7 @@ When you open up your brain to feel the emotions of something right there\
        method: functions.moveRoll
    },
    illuminated: {
+       name: 'Illuminated',
        key: ['illum', 'illuminated'],
        text: 'ILLUMINATED: !illum\n\
 When you telepathically ask the Secret Masters for aid.',
@@ -420,6 +432,7 @@ When you telepathically ask the Secret Masters for aid.',
        method: functions.moveRoll
    },
    noLimits: {
+       name: 'No Limits',
        key: ['nolimits', 'limits'],
        text: 'NO LIMITS: !nolimits\n\
 When you push your physical body past its limits.',
@@ -435,6 +448,7 @@ When you push your physical body past its limits.',
        method: functions.moveRoll
    },
    pastLives: {
+       name: 'Past Lives',
        key: ['pastlives', 'past', 'lives'],
        text: 'PAST LIVES: !pastlives\n\
 When you channel your previous incarnations to discover something,\
@@ -464,6 +478,7 @@ When you channel your previous incarnations to discover something,\
        method: functions.moveRoll
    },
    sensitive: {
+       name: 'Sensitive',
        key: ['sensitive', 'sense'],
        text: 'SENSITIVE: !sensitive\n\
 When you open your brain to the psychic environment.',
@@ -476,6 +491,7 @@ When you open your brain to the psychic environment.',
        method: functions.moveRoll
    },
    trustYourGut: {
+       name: 'Trust Your Gut',
        key: ['trust', 'trustgut', 'trustyourgut', 'gut'],
        text: 'TRUST YOUR GUT: !trustgut\n\
 When you consult your instincts about what to do next.',
@@ -489,6 +505,7 @@ When you consult your instincts about what to do next.',
        method: functions.moveRoll
    },
    telekinesis: {
+       name: 'Telekinesis',
        key: ['telekinesis', 'tele'],
        text: 'TELEKINESIS: !tele\n\
 When you fling something with your mind.',
@@ -514,6 +531,7 @@ When you fling something with your mind.',
        method: functions.moveRoll
    },
    weirdScience: {
+       name: 'Weird Science',
        key: ['weirdscience', 'weirdsci', 'science'],
        text: 'WEIRD SCIENCE: !weirdsci\n\
 When you create or adapt a device to analyse or deal with strangeness\

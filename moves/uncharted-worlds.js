@@ -152,6 +152,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.xdyRoll
     },
     faceAdversity: {
+        name: 'Face Adversity',
         key: ['faceadversity', 'face'],
         text: 'FACE ADVERSITY: !face +STAT\n When you overcome opposition\
  or danger using...\n\
@@ -169,6 +170,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     assessment: {
+        name: 'Assessment',
         key: ['assessment', 'assess'],
         text: 'ASSESSMENT: !assess +STAT\n When you collect critical information\
  about an important, dangerous or mysterious subject using...\n\
@@ -189,6 +191,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     getInvolved: {
+       name: 'Get Involved',
         key: ['getinvolved', 'get'],
         text: 'GET INVOLVED: !get +STAT\n When an ally makes a Move and you affect\
  the result using...\n\
@@ -206,6 +209,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     openFire: {
+       name: 'Open Fire',
         key: ['openfire', 'open'],
         text: 'OPEN FIRE: !open +MET\nWhen you engage enemy forces in long ranged,\
  cover-to-cover firefights, describe your tactics and primary targets.',
@@ -224,6 +228,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     launchAssault: {
+       name: 'Launch Assault',
         key: ['launchassault', 'launch', 'assault'],
         text: 'LAUCH ASSAULT: !launch +PHY\nWhen you engage enemy forces in\
  chaotic close-quarters combat, describe your tactics and primary targets.',
@@ -242,6 +247,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     patchUp: {
+       name: 'Patch Up',
         key: ['patchup', 'patch'],
         text: 'PATCH UP: !patch +EXP\nWhen using appropriate medical supplies/tools\
  to repair harm to people or machinery.',
@@ -266,6 +272,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     command: {
+       name: 'Command',
         key: ['command'],
         text: 'COMMAND: !command +INF\nWhen you issue a command to a group\
  that is inclined to follow your orders.',
@@ -282,6 +289,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     access: {
+       name: 'Access',
         key: ['access'],
         text: 'ACCESS: !access +INT\nWhen you spend several minutes accessing\
  a locked, protected system or network with the appropriate tools.',
@@ -297,6 +305,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     braceForImpact: {
+       name: 'Brace For Impact',
         key: ['braceforimpact', 'brace', 'impact'],
         text: 'BRACE FOR IMPACT: !brace +ARMOR\nWhen you would suffer harm,\
  the GM will tell you the Severity, then roll !brace.',
@@ -309,6 +318,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     shieldsUp: {
+       name: 'Shields Up',
         key: ['shieldsup', 'shields'],
         text: 'SHIELDS UP: !shields\nWhen one of the starship sections would\
  suffer damage from outside, the pilot rolls !shields. If a character is at\
@@ -322,6 +332,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     wildJump: {
+       name: 'Wild Jump',
         key: ['wildjump', 'wild', 'jump'],
         text: 'WILD JUMP: !wildjump\nWhen you force your ship to make a Wild Jump. Anything could happen:\n\
  - You find an uncharted world, ready for exploration.\n\
@@ -362,6 +373,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     crampedQuarters: {
+       name: 'Cramped Quarters',
         key: ['crampedquarters', 'cramped'],
         text: 'CRAMPED QUARTERS: !cramped\nWhen you\'ve been trapped in\
  cramped quarters with the same people for a significant amount of time\
@@ -378,6 +390,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     acquisition: {
+       name: 'Acquisition',
         key: ['acquire', 'acquisition'],
         text: 'ACQUISITION: !acquisition +CARGO CLASS\nWhen you demand important\
  services or assets from a market able to supply those demands, Roll +0.\
@@ -393,6 +406,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +int (SPACES MATTER!)',
         method: functions.moveRoll
     },
     barter: {
+       name: 'Barter',
         key: ['barter'],
         text: 'BARTER: !barter +CARGO CLASS\nWhen you exchange a foreign unit of\
  cargo for local trade good, Roll+ that cargo\'s class.',

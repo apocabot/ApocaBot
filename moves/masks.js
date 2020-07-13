@@ -220,6 +220,7 @@ EXAMPLE: __!set team+2__ will set the Team stat to 2. __!shift team-1__ will sub
         method: function(){return this.text}
     },
     directlyEngageAThreat: {
+        name: "Directly Engage A Threat",
         key: ['engage', 'directlyengage', 'engagethreat', 'directlyengagethreat', 'deat'],
         text: 'DIRECTLY ENGAGE A THREAT: !engage\n\
 When you *directly engage a threat*, roll + Danger.',
@@ -238,6 +239,7 @@ When you *directly engage a threat*, roll + Danger.',
         method: functions.moveRoll
     },
     unleashYourPowers: {
+        name: 'Unleash Your Powers',
         key: ['unleash', 'unleashyourpowers', 'unleashpowers', 'uyp'],
         text: 'UNLEASH YOUR POWERS: !unleash\n\
 When you *unleash your powers* to overcome an obstacle,\
@@ -250,6 +252,7 @@ When you *unleash your powers* to overcome an obstacle,\
         method: functions.moveRoll
     },
     comfortOrSupport: {
+        name: 'Comfort Or Support',
         key: ['comfort', 'support', 'comfortorsupport', 'cos'],
         text: 'COMFORT OR SUPPORT: !comfort *or* !support\n\
 When you *comfort or support someone*, roll + Mundane.',
@@ -263,6 +266,7 @@ When you *comfort or support someone*, roll + Mundane.',
         method: functions.moveRoll
     },
     pierceTheMask: {
+        name: 'Pierce The Mask',
         key: ['pierce', 'piercemask', 'piercethemask', 'ptm'],
         text: 'PIERCE THE MASK: !pierce\n\
  When you *pierce someone’s mask* to see the person beneath, roll + Mundane. You can ask:\n\
@@ -285,6 +289,7 @@ When you *comfort or support someone*, roll + Mundane.',
         method: functions.moveRoll
     },
     defend: {
+        name: 'Defend',
         key: ['defend'],
         text: 'DEFEND: !def\n\
  When you *defend someone or something from an immediate threat*, roll + Savior.',
@@ -305,6 +310,7 @@ For *PC threats*: on a 7-9, give them -2 to their roll but you expose yourself\
         method: functions.moveRoll
     },
     assessTheSituation: {
+        name: 'Assess The Situation',
         key: ['assess', 'assesssituation', 'assessthesituation', 'ats'],
         text: 'ASSESS THE SITUATION: !assess\n\
 When you *assess the situation*, roll + Superior. You can ask:\n\
@@ -332,6 +338,7 @@ When you *assess the situation*, roll + Superior. You can ask:\n\
         method: functions.moveRoll
     },
     provokeSomeone: {
+        name: 'Provoke Someone',
         key: ['provoke', 'provokesomeone'],
         text: 'PROVOKE SOMEONE: !provoke\n\
 When you *provoke someone* susceptible to your words, say what you’re\
@@ -352,6 +359,7 @@ For *PCs*: On a 7-9, choose one:\n\
         method: functions.moveRoll
     },
     takeAPowerfulBlow: {
+        name: 'Take A Powerful Blow',
         key: ['take', 'blow', 'takeblow', 'takeablow', 'powerful', 'powerfulblow', 'takeapowerfulblow', 'tapb'],
         text: 'TAKE A POWERFUL BLOW: !blow\n\
 When you *take a powerful blow*, roll + conditions marked.',
@@ -374,6 +382,7 @@ When you *take a powerful blow*, roll + conditions marked.',
         method: functions.moveRoll
     },
     rejectSomeonesInfluence: {
+        name: 'Reject Someone\'s Influence',
         key: ['reject', 'rejectinfluence', 'rejectsomeonesinfluence', 'rsi'],
         text: 'REJECT SOMEONE\'S INFLUENCE: !reject\n\
 When you *reject someone’s Influence*, roll.',
@@ -393,6 +402,7 @@ When you *reject someone’s Influence*, roll.',
         method: functions.moveRoll
     },
     wieldYourPowers: {
+        name: 'Wield Your Powers',
         key: ['wield', 'wieldpowers', 'wieldyourpowers', 'wyp'],
         text: 'WIELD YOUR POWERS: !wield\n\
 When you *wield your powers* with precision or grace, roll + Freak.',
@@ -409,6 +419,7 @@ When you *wield your powers* with precision or grace, roll + Freak.',
         method: functions.moveRoll
     },
     overwhelmAVulnerableFoe: {
+        name: 'Overwhelm A Vulnerable Foe',
         key: ['overwhelm', 'overwhelmfoe', 'overwhelmafoe', 'over', 'whelm', 'oavf'],
         text: 'OVERWHELM A VULNERABLE FOE: !overwhelmWhen you *overwhelm a\
  vulnerable foe*, roll +Danger.',
@@ -425,6 +436,7 @@ When you *wield your powers* with precision or grace, roll + Freak.',
         method: functions.moveRoll
     },
     persuadeWithBestInterest: {
+        name: 'Persuade With Best Interest',
         key: ['persuade', 'pwbi'],
         text: 'PERSUADE WITH BEST INTEREST: !persuade\n\
 When you *persuade someone with their best interests*, roll + Superior.',
@@ -439,6 +451,7 @@ If they’re a PC, on a 10+, they can mark potential or shift their own Labels\
         method: functions.moveRoll
     },
     empathize: {
+        name: 'Empathize',
         key: ['empathize'],
         text: 'EMPATHIZE: !empathize\n\
 When you openly *empathize with someone*, roll +Mundane.',
@@ -450,6 +463,7 @@ When you openly *empathize with someone*, roll +Mundane.',
         method: functions.moveRoll
     },
     standUpForSomething: {
+        name: 'Stand Up For Something',
         key: ['stand', 'standup', 'standupforsomething', 'sufs'],
         text: 'STAND UP FOR SOMETHING: !stand\n\
 When you *stand up for something*, roll + Savior.',

@@ -184,6 +184,7 @@ EXAMPLE: !set dam+d4',
         method: functions.damage
     },
     hackAndSlash: {
+       name: 'Hack And Slash',
         key: ['hack', 'hackandslash', 'slash'],
         text: 'HACK AND SLASH: !hack\n\
 When you attack an enemy in melee, roll +STR.',
@@ -199,6 +200,7 @@ When you attack an enemy in melee, roll +STR.',
         method: functions.moveRoll
     },
     volley: {
+       name: 'Volley',
         key: ['volley'],
         text: 'VOLLEY: !volley\n\
  When you take aim and shoot at an enemy at range, roll +DEX.',
@@ -213,6 +215,7 @@ When you attack an enemy in melee, roll +STR.',
         method: functions.moveRoll
     },
     defyDanger: {
+       name: 'Defy Danger',
         key: ['defy', 'defydanger', 'danger'],
         text: 'DEFY DANGER: !defy +STAT\n\
 When you act despite an imminent threat or suffer a calamity,\
@@ -231,6 +234,7 @@ When you act despite an imminent threat or suffer a calamity,\
         method: functions.moveRoll
     },
     defend: {
+       name: 'Defend',
         key: ['defend'],
         text: 'DEFEND: !defend\n\
 When you stand in defense of a person, item, or location under attack, roll +CON. You may:\n\
@@ -261,6 +265,7 @@ When you stand in defense of a person, item, or location under attack, roll +CON
         method: functions.moveRoll
     },
     spoutLore: {
+       name: 'Spout Lore',
         key: ['spout', 'spoutlore', 'lore'],
         text: 'SPOUT LORE: !spout\n\
 When you consult your accumulated knowledge about something, roll +INT.',
@@ -275,6 +280,7 @@ When you consult your accumulated knowledge about something, roll +INT.',
         method: functions.moveRoll
     },
     discernRealities: {
+       name: 'Discern Realities',
         key: ['discern', 'discernrealities', 'realities'],
         text: 'DISCERN REALITIES: !discern\n\
  When you closely study a situation or person, roll +WIS. You may ask:\n\
@@ -313,6 +319,7 @@ When you consult your accumulated knowledge about something, roll +INT.',
         method: functions.moveRoll
     },
     parley: {
+       name: 'Parley',
         key: ['parley'],
         text: 'PARLEY: !parley\n\
 When you have leverage on a GM Character and manipulate them, roll +CHA.',
@@ -325,6 +332,7 @@ When you have leverage on a GM Character and manipulate them, roll +CHA.',
         method: functions.moveRoll
     },
     aidOrInterfere: {
+       name: 'Aid Or Interfere',
         key: ['aid', 'interfere', 'aidorinterfere'],
         text: 'AID OR INTERFERE !aid +/-BOND\n\
 When you help or hinder someone you have a bond with, roll + the number of bonds\
@@ -338,6 +346,7 @@ When you help or hinder someone you have a bond with, roll + the number of bonds
         method: functions.moveRoll
     },
     lastBreath: {
+       name: 'Last Breath',
         key: ['last', 'breath', 'lastbreath'],
         text: 'LAST BREATH: !breath\n\
 When you’re dying you catch a glimpse of what lies beyond the Black Gates of Death’s Kingdom\
@@ -352,6 +361,7 @@ When you’re dying you catch a glimpse of what lies beyond the Black Gates of D
         method: functions.moveRoll
     },
     takeWatch: {
+       name: 'Take Watch',
         key: ['take', 'watch', 'takewatch'],
         text: 'TAKE WATCH: !watch\n\
 When you’re on watch and something approaches the camp roll +WIS.',
@@ -374,6 +384,7 @@ When you travel through hostile territory, choose one member of the party to be 
         method: function(){return this.text}
     },
     trailblazer: {
+       name: 'Trailblazer',
         key: ['trailblazer'],
         text: 'TRAILBLAZER: !trailblazer',
         greatSuccess: 'On a 10+, the trailblazer reduces the amount of time it takes\
@@ -386,6 +397,7 @@ When you travel through hostile territory, choose one member of the party to be 
         method: functions.moveRoll
     },
     scout: {
+       name: 'Scout',
         key: ['scout'],
         text: 'SCOUT: !scout',
         greatSuccess: 'On a 10+, the scout will spot any trouble quick enough to let you\
@@ -398,6 +410,7 @@ When you travel through hostile territory, choose one member of the party to be 
         method: functions.moveRoll
     },
     quartermaster: {
+       name: 'Quartermaster',
         key: ['quartermaster'],
         text: 'QUARTERMASTER: !quartermaster',
         greatSuccess: 'On a 10+, the quartermaster reduces the number of rations required by one.',
@@ -408,6 +421,7 @@ When you travel through hostile territory, choose one member of the party to be 
         method: functions.moveRoll
     },
     carouse: {
+       name: 'Carouse',
         key: ['carouse'],
         text: 'CAROUSE: !carouse +/-COIN\n\
 When you return triumphant and throw a big party, spend 100 coins and roll +1 for every\
@@ -436,6 +450,7 @@ When you return triumphant and throw a big party, spend 100 coins and roll +1 fo
         method: functions.moveRoll
     },
     caving: {
+       name: 'Caving',
        key: ['cave', 'caving'],
        text: 'CAVING: !cave\n\
 When you venture into the caves, roll +WIS',
@@ -447,6 +462,7 @@ When you venture into the caves, roll +WIS',
        method: functions.moveRoll
    },
    obscuredPitsFalls: {
+       name: 'Obscured Pits and Falls',
        key: ['pitfall', 'pitfalls', 'pits', 'pit', 'fall', 'falls', 'obscured', 'obscurdpitsandfalls'],
        text: 'OBSCURED PITS/FALLS: !pitfall\n\
 When you cross dangerous terrain, roll +WIS',
@@ -458,6 +474,7 @@ When you cross dangerous terrain, roll +WIS',
        method: functions.moveRoll
    },
    foraging: {
+       name: 'Foraging',
        key: ['forage', 'foraging'],
        text: 'FORAGING: !forage\n\
 When you spend a day seeking food in the wild, and your surroundings are not Barren, roll +WIS.',
@@ -470,6 +487,7 @@ When you spend a day seeking food in the wild, and your surroundings are not Bar
        method: functions.moveRoll
    },
    makeCamp: {
+       name: 'Make Camp',
        key: ['makecamp', 'camp', 'make'],
        text: 'MAKE CAMP: !camp\n\
 When you settle in to rest, choose one member of the party to Manage Provisions.\
@@ -488,6 +506,7 @@ When you settle in to rest, choose one member of the party to Manage Provisions.
        method: functions.moveRoll
    },
    scoutAhead: {
+       name: 'Scout Ahead',
        key: ['scouthead', 'ahead'],
        text: 'SCOUT AHEAD: !ahead\n\
 When you take point and look for anything out of the ordinary, roll +WIS.',
@@ -508,6 +527,7 @@ When you take point and look for anything out of the ordinary, roll +WIS.',
        method: functions.moveRoll
    },
    navigate: {
+       name: 'Navigate',
        key: ['nav', 'navigate'],
        text: 'NAVIGATE: !nav\n\
 When you plot the best course through dangerous or unfamiliar lands, roll +INT.',
@@ -524,6 +544,7 @@ When you plot the best course through dangerous or unfamiliar lands, roll +INT.'
        method: functions.moveRoll
    },
    manageProvisions: {
+       name: 'Manage Provisions',
        key: ['manage', 'provisions', 'manageprovisions'],
        text: 'MANAGE PROVISIONS: !manage\n\
 When you prepare and distribute food for the party, roll +WIS.',
@@ -538,6 +559,7 @@ When you prepare and distribute food for the party, roll +WIS.',
        method: functions.moveRoll
    },
    hunkerDown: {
+       name: 'Hunker Down',
        key: ['hunker', 'hunkerdown', 'down'],
        text: 'HUNKER DOWN: !hunker\n\
 When you take shelter to wait out the elements, choose 1 party member to roll !hunker +nothing.',
@@ -550,6 +572,7 @@ When you take shelter to wait out the elements, choose 1 party member to roll !h
        method: functions.moveRoll
    },
    forgeAhead: {
+       name: 'Forge Ahead',
        key: ['forge', 'forgeahead'],
        text: 'FORGE AHEAD: !forge\n\
 When you push on despite powerful opposition from the elements, roll +CON.',
