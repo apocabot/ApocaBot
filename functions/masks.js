@@ -302,7 +302,11 @@ function characterSheet(userMessage, userId, channelId, userNickname, moves, use
     statPrintout = ['Here are your CHARACTER STATS:'];
     delete userData[userId]['TEAM']
     for(let [key, value] of Object.entries(userData[userId])){
-        statPrintout.push(`${key}: ${value}`)
+        console.log(key)
+        if(key !== "OVERME" && key !== "OVERTHEM"){
+            console.log(key)
+            statPrintout.push(`${key}: ${value}`)
+        }
     }
     statPrintout.push(`TEAM: ${userData['TEAM']}`)
     statPrintout = statPrintout.toString().split(",").join("\n")
@@ -604,14 +608,14 @@ function overThem(userMessage, userId, channelId, userNickname, moves, userData)
                 overThemMessage = `You already have influence over ${userMessage[2]}! Instead, you shift one of their labels up and one down.`
         } else {
             userData[userId]['OVERTHEM'].push(userMessage[2])
-            overThemMessage = `You now have influence over ${userMessage[2]} .`
+            overThemMessage = `You now have influence over ${userMessage[2]}.`
             }
     } else if (userMessage[1] === "remove"){
             if(userData[userId]['OVERTHEM'].includes(userMessage[2])){
                 userData[userId]['OVERTHEM'] = userData[userId]['OVERTHEM'].filter(v => v !== userMessage[2]); 
-                overThemMessage =  `You no longer have influence over ${userMessage[2]} .`
+                overThemMessage =  `You no longer have influence over ${userMessage[2]}.`
             } else {
-                overThemMessage =  `You didn't have influence over ${userMessage[2]} .`
+                overThemMessage =  `You didn't have influence over ${userMessage[2]}.`
             }
     }
 
