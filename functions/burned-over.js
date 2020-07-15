@@ -420,7 +420,6 @@ function subHx(userMessage, userId, channelId, userNickname, moves, userData){
     }
     hxCount--;
     userData[userId]['HX'][userMessage[1]] = hxCount
-    console.log(hxCount)
     if(hxCount>=0){
     return `Subtracted 1 Hx from ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx+${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
     else {return `Subtracted 1 Hx from ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
