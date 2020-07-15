@@ -590,13 +590,12 @@ EXAMPLE: At the start of the game, you have Hx-2 with Lulu. Enter the command __
  automatically add to your **Help Someone** or **Interrupt Someone** moves, but you can enter __!helppc +name__\
  or __!intpc +name__ to use a stored Hx stat.\n\n\
  • If you want to remove a character entirely from your Hx list, enter __!removehx__ followed by the character\'s name.\n\n\
+ • If your score reaches Hx+4, the bot will automatically shift it to Hx+1 and tell you to mark EXP.\n\n\
 EXAMPLES:\n\
  • At the start of the game, you have Hx-2 with Lulu. Enter the command __!subhx lulu__ to add Lulu\
  to your Hx list, and bring your Hx with Lulu to Hx-1, then enter __!subhx lulu__ again to get to Hx-2.\n\n\
  • It\'s the end of the session and you have to add Hx+1 to your Hx with Bucky. Enter __!addhx bucky__ to shift\
  your Hx score up by one.\n\n\
- • If your score reaches Hx+4, the bot will automatically shift it to Hx+1 and tell\
- you to mark EXP.\n\n\
  • Your friend Snakebite just died. Though you\'ll never forget them, enter __!removehx snakebite__ to remove them\
  from your Hx list.\n\n\
  • You decide to **Help Someone** with your friend Lucky. You don\'t remember what your Hx score with them is, but you\
