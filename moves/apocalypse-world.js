@@ -14,6 +14,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - BASIC MOVES LIST: !basic\n\
  - OTHER MOVES LIST: !other\n\
  - CUSTOM MOVES: !custom\n\
+ - HX LIST: !hx\n\
  - SET APOCABOT PREFIX: !setprefix\n\
  - SET APOCABOT GAME: !setgame',
         method: function(){return this.text}
@@ -651,6 +652,50 @@ When it\'s not certain whether you\'re the cat or the mouse, roll+sharp.',
        fail: 'On a 6-, you\'re the mouse.',
        stat: 'sharp',
        method: functions.moveRoll
+   },
+   addHx: {
+      key: ['addhx'],
+      text: 'To add 1 to your Hx stat with another character, use the command __!addhx__ followed by the\
+ other character\'s name. Enter __!hx__ to view your Hx list.\n\n\
+EXAMPLE: It\'s the end of the session and you have to add Hx+1 to your Hx with Bucky. Enter __!addhx bucky__ to shift\
+ your Hx score up by one.',
+      method: functions.addHx
+   },
+   subHx: {
+      key: ['subhx'],
+      text: 'To subtract 1 from your Hx stat with another character, use the command __!subhx__ followed by the\
+ other character\'s name. Enter __!hx__ to view your Hx list.\n\n\
+EXAMPLE: At the start of the game, you have Hx-2 with Lulu. Enter the command __!subhx lulu__ to add Lulu\
+ to your Hx list, and bring your Hx with Lulu to Hx-1, then enter __!subhx lulu__ again to get to Hx-2.',
+      method: functions.subHx
+   },
+   printHx: {
+      key: ['hx'],
+      text: 'Every player\'s character has Hx, history, with every other player\'s character.\
+ Your Hx with someone says how well you know them.\n\n • To set your Hx stat with the other players,\
+ use the commands __!addhx__ and __!subhx__ followed by the other character\'s name.\n\n • Hx will not\
+ automatically add to your **Help or Interfere** move, but you can enter __!hoi +name__ to use a stored Hx stat.\n\n\
+ • If you want to remove a character entirely from your Hx list, enter __!removehx__ followed by the character\'s name.\n\n\
+EXAMPLES:\n\
+ • At the start of the game, you have Hx-2 with Lulu. Enter the command __!subhx lulu__ to add Lulu\
+ to your Hx list, and bring your Hx with Lulu to Hx-1, then enter __!subhx lulu__ again to get to Hx-2.\n\n\
+ • It\'s the end of the session and you have to add Hx+1 to your Hx with Bucky. Enter __!addhx bucky__ to shift\
+ your Hx score up by one.\n\n\
+ • If your score reaches Hx+4, the bot will automatically shift it to Hx+1 and tell\
+ you to mark EXP.\n\n\
+ • Your friend Snakebite just died. Though you\'ll never forget them, enter __!removehx snakebite__ to remove them\
+ from your Hx list.\n\n\
+ • You decide to **Help or Interfere** with Lucky. You don\'t remember what your Hx score with them is, but you\
+ can just enter __!hoi +lucky__ to automatically add your saved Hx score from the list.',
+      method: functions.printHx
+   },
+   removeHx: {
+      key: ['removehx'],
+      text: 'If you want to remove a character entirely from your Hx list, enter __!removehx__ followed by the character\'s name.\
+ Enter __!hx__ to view your Hx list.\n\n\
+EXAMPLE: Your friend Snakebite just died. Though you\'ll never forget them, enter __!removehx snakebite__ to remove them\
+ from your Hx list.',
+      method: functions.removeHx
    },
    customMove: {
        key: ['move'],

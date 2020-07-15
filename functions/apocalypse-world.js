@@ -1,7 +1,7 @@
 let storage
 require('../mungu.js').then(s => storage = s)
 
-module.exports = {deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
+module.exports = {addHx, subHx, printHx, removeHx, deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
 
 //functions
 function removePrefix(message, userData){
@@ -188,6 +188,10 @@ function moveRoll(userMessage, userId, channelId, userNickname, moves, userData,
     let moveText = ''
     let showStat = ''
     let input = userMessage[1];
+    if(userData[userId]['HX']){
+        for(let [name, hxCount] of Object.entries(userData[userId]['HX'])){
+        if(userMessage[1]===`+${name}`){input = hxCount}
+    }}
     input = parseInt(input);
     if(moves[i].stat === 'num'){
         if(!input){input = 0}
@@ -378,6 +382,69 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData)
     setErrors = setErrors.toString().split(",").join("\n")
     if(setErrors){return setErrors}
     else{return characterSheet(userMessage, userId, channelId, userNickname, moves, userData)}
+}
+
+function addHx(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.addHx.text}
+    if(!userData[userId]['HX']){userData[userId]['HX'] = {}}
+
+    let person = userData[userId]
+    let hxObj = person['HX']
+    let hxCount = 0
+    if(hxObj[userMessage[1]]) {
+        hxCount = userData[userId]['HX'][userMessage[1]]
+    }
+    hxCount++
+    if (hxCount == 4) {
+        hxCount = 1
+        message = `You hit Hx+4 with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nMark experience and your Hx with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)} is now __Hx+${hxCount}__.`
+    } else {
+        if(hxCount>=0){message = `Added 1 to your Hx with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx+${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
+        else {message = `Added 1 to your Hx with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
+    }
+
+    userData[userId]['HX'][userMessage[1]] = hxCount
+    if (message) {return message }
+}
+
+function subHx(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.subHx.text}
+    if(!userData[userId]['HX']){userData[userId]['HX'] = {}}
+
+    let person = userData[userId]
+    let hxObj = person['HX']
+    let hxCount = 0
+    if(hxObj[userMessage[1]]) {
+        hxCount = userData[userId]['HX'][userMessage[1]]
+    }
+    hxCount--;
+    userData[userId]['HX'][userMessage[1]] = hxCount
+    console.log(hxCount)
+    if(hxCount>=0){
+    return `Subtracted 1 Hx from ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx+${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
+    else {return `Subtracted 1 Hx from ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
+}
+
+function removeHx(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.subHx.text}
+    if(!userData[userId]['HX']){userData[userId]['HX'] = {}}
+
+    if(userData[userId]['HX'][userMessage[1]]) {
+        delete userData[userId]['HX'][userMessage[1]]
+        return `${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)} was removed from your Hx list.`
+    } else {return `${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)} is not on your Hx list.`}
+}
+
+function printHx(userMessage, userId, channelId, userNickname, moves, userData){
+    let statPrintout = ['Your Hx with:\n']
+    if(!userData[userId]['HX']){return 'You don\'t have Hx with anyone yet.\nEnter __!hx?__ to learn how to set Hx.'}
+
+            for(let [name, hxCount] of Object.entries(userData[userId]['HX'])){
+                if(hxCount>=0){statPrintout.push(`• ${name.charAt(0).toUpperCase() + name.slice(1)} Hx+${hxCount}`)}
+                else {statPrintout.push(`• ${name.charAt(0).toUpperCase() + name.slice(1)} Hx${hxCount}`)}
+            }
+    statPrintout = statPrintout.toString().split(",").join("\n")
+    return statPrintout
 }
 
 function newCustomMove(userMessage, userId, channelId, userNickname, moves, userData){
