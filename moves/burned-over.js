@@ -124,7 +124,9 @@ WARNING: Setting a new game will erase all current character sheets and data. If
  • burned-over\n\
  • dungeon-world\n\
  • masks\n\
+ • monsterhearts\n\
  • motw\n\
+ • the-sprawl\n\
  • uncharted-worlds\n\
 EXAMPLE: !setgame apocalypse-world\n\n\
 WARNING: Setting a new game will erase all current character sheets and data. If you\'d like\
