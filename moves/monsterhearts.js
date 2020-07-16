@@ -7,7 +7,7 @@ module.exports = moves = {
         text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
 ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - NEWCHARACTER: !newcharacter\n\
- - CHECK YOUR CHARACTER STATS: !character\n\
+ - CHECK CHARACTER STATS: !character\n\
  - SET CHARACTER STATS: !set\n\
  - SHIFT CHARACTER STATS: !shift\n\
  - ROLL SOME DICE: !roll\n\
@@ -373,7 +373,9 @@ may heal 1 Harm. If someone else is there with you, tending to your wounds delic
     },
     gainString: {
         key: ['gain', 'gainstring', 'addstring'],
-        text: 'To gain a string on someone, enter !gain <Name>.',
+        text: 'To gain a string on someone, enter !gain <Name>.\n\n\
+EXAMPLE: __!gain Lucky__ will give you one string on Lucky. If you enter __!gain Lucky__ again, you will now have\
+ two strings on Lucky. Enter __!character__ to see your list of strings.',
         method: functions.gainString
     },
     spendString: {
@@ -383,13 +385,18 @@ When you spend a String on someone, choose one:\n\
 • Tempt them to do what you want,\n\
 • Give them a Condition,\n\
 • Add 1 to your roll against them, or\n\
-• Add 1 to the harm you deal them.',
+• Add 1 to the harm you deal them.\n\n\
+EXAMPLE: __!spend Lucky__ will remove 1 from your strings on Lucky. If your strings reach 0,\
+ the character will be removed from your list.',
         method: functions.spendString
     },
     conditionMove: {
         key: ['condition', 'cond', 'con'],
-        text: 'Add or remove a Condition. To add a Condition, enter !condition add <Condition>. To remove\n\
-a condition, enter !condition remove <index number>.',
+        text: 'Add or remove a Condition. To add a Condition, enter !cond add <Condition>. To remove\n\
+a condition, enter !cond remove <index number>.\n\n\
+EXAMPLE: __!cond add drained__ will add the condition *Drained* to your list. To remove the condition,\
+ find its index number on your list with __!character__. If *Drained* is in position 1), then __!cond remove 1__\
+ will remove it from your list.',
         method: functions.conditionMove
     }
 }
