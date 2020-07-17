@@ -119,7 +119,7 @@ client.on('message', async message => {
                 counter = await storage.get('COUNTER')
                 if(!counter){counter = 0}
                 counter++
-                if((counter%25)===0){console.log(counter)}
+                if((counter%10)===0){console.log(counter)}
 
                 for await(let [key, value] of Object.entries(iconList)){
                     if(key === userData['GAME']){
