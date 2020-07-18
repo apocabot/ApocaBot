@@ -49,6 +49,7 @@ Special thanks to the friends and developers who inspired and helped this projec
 * https://github.com/evanfeenstra
 * https://github.com/brandonjackson
 * https://github.com/dyerw
+* Duan
 * Tam
 * Dobsonfly
 * Janilyn
