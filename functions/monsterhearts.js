@@ -674,6 +674,8 @@ function setExpOnAMiss(userMessage, userId, channelId, userNickname, moves, user
 
 function gainString(userMessage, userId, channelId, userNickname, moves, userData){
     if(!userMessage[1]){return moves.gainString.text}
+    if (userMessage[1].length > 30){return 'That name is too long. Try a shorter version.'}
+    userMessage[1] = userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)
 
     let person = userData[userId]
     if (!person) {return 'ERROR: No character defined. Please run the !newcharacter command to create a character first!'}
@@ -691,6 +693,8 @@ function gainString(userMessage, userId, channelId, userNickname, moves, userDat
 
 function spendString(userMessage, userId, channelId, userNickname, moves, userData){
     if(!userMessage[1]){return moves.gainString.text}
+    if (userMessage[1].length > 30){return 'That name is too long. Try a shorter version.'}
+    userMessage[1] = userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)
 
     let person = userData[userId]
     if (!person) {return 'ERROR: No character defined. Please run the !newcharacter command to create a character first!'}
@@ -705,6 +709,8 @@ function spendString(userMessage, userId, channelId, userNickname, moves, userDa
 
 function conditionMove(userMessage, userId, channelId, userNickname, moves, userData){
     if(!userMessage[1] || !userMessage[2]){ return moves.conditionMove.text }
+    if (userMessage[2].length > 30){return 'That condition is too long. Try a shorter version.'}
+    userMessage[2] = userMessage[2].charAt(0).toUpperCase() + userMessage[2].slice(1)
 
     if ("add +".includes(userMessage[1])) {
         let person = userData[userId]
