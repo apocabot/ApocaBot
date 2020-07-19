@@ -26,13 +26,18 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - PERSUADE AN NPC: !persuade\n\
  - FIGURE SOMEONE OUT: !figure\n\
  - MISLEAD, DISTRACT, OR TRICK: !mdt\n\
+ - KEEP YOUR COOL: !kyc\n\
  - LET IT OUT: !let\n\
  - LEND A HAND OR GET IN THE WAY: !lah OR !gitw\n\
  - HIT THE STREETS: !hit\n\
  - PUT A FACE TO A NAME: !put\n\
  - INVESTIGATE A PLACE OF POWER: !inv\n\
+ - DO SOMEONE A FAVOR: !favor\n\
+ - CASH IN A DEBT: !cashin\n\
  - REFUSE TO HONOR A DEBT: !refuse\n\
  - DROP SOMEONE\'S NAME: !drop\n\
+ - MARK CORRUPTION: !mark\n\
+ - CLEAR CORRUPTION: !clear\n\
  - SESSION INTRO: !intro\n\
  - SESSION END: !end',
        method: function(){return this.text}
@@ -60,7 +65,8 @@ Please consider supporting ApocaBot at patreon.com/apocabot to receive\
                 NIGHT: ['night', 0],
                 POWER: ['power', 0],
                 WILD: ['wild', 0],
-                HARM: ['harm', `0 / 5`]
+                HARM: ['harm', `0 / 5`],
+                CORRUPTION: ['corruption', 0]
         }
         },
     newCharacter: {
@@ -159,6 +165,9 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +blood (SPACES MATTER!)',
  • Inflict terrible harm\n\
  • Take something from them',
        mixed: 'On a 7–9, you inflict harm as established, and choose 1:\n\
+ • Inflict terrible harm\n\
+ • Take something from them\n\
+ And also choose 1 from below as well:\n\
  • They inflict harm on you\n\
  • You find yourself in a bad spot',
        fail: 'On a 6-, brace yourself...',
