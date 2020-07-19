@@ -190,9 +190,6 @@ EXAMPLE: !set dam+d4',
         key: ['hack', 'hackandslash', 'slash'],
         text: 'HACK AND SLASH: !hack\n\
 When you attack an enemy in melee, roll +STR.',
-        greatSuccess: 'On a 10+, you deal your damage to the enemy and avoid their attack.\
- At your option, you may choose to do +1d6 damage but expose yourself\
- to the enemy’s attack.',
         success: 'On a 10+, you deal your damage to the enemy and avoid their attack.\
  At your option, you may choose to do +1d6 damage but expose yourself\
  to the enemy’s attack.',
@@ -206,7 +203,6 @@ When you attack an enemy in melee, roll +STR.',
         key: ['volley'],
         text: 'VOLLEY: !volley\n\
  When you take aim and shoot at an enemy at range, roll +DEX.',
-        greatSuccess: 'On a 10+, you have a clear shot—deal your damage.',
         success: 'On a 10+, you have a clear shot—deal your damage.',
         mixed: 'On a 7–9, choose one (whichever you choose you deal your damage):\n\
  - You have to move to get the shot, placing you in danger as described by the GM\n\
@@ -227,7 +223,6 @@ When you act despite an imminent threat or suffer a calamity,\
  - by enduring, +CON \n - with quick thinking, +INT\n\
  - through mental fortitude, +WIS\n\
  - using charm or social grace, +CHA',
-        greatSuccess: 'On a 10+, you do what you set out to, the threat doesn’t come to bear.',
         success: 'On a 10+, you do what you set out to, the threat doesn’t come to bear.',
         mixed: 'On a 7–9, you stumble, hesitate, or flinch: the GM will offer you\
  a worse outcome, hard bargain, or ugly choice.',
@@ -240,12 +235,6 @@ When you act despite an imminent threat or suffer a calamity,\
         key: ['defend'],
         text: 'DEFEND: !defend\n\
 When you stand in defense of a person, item, or location under attack, roll +CON. You may:\n\
- - Redirect an attack from the thing you defend to yourself\n\
- - Halve the attack’s effect or damage\n\
- - Open up the attacker to an ally giving that ally +1 forward against the attacker\n\
- - Deal damage to the attacker equal to your level',
-        greatSuccess: 'On a 10+, hold 3. As long as you stand in defense,\
- when you or the thing you defend is attacked you may spend hold, 1 for 1, to choose an option:\n\
  - Redirect an attack from the thing you defend to yourself\n\
  - Halve the attack’s effect or damage\n\
  - Open up the attacker to an ally giving that ally +1 forward against the attacker\n\
@@ -271,8 +260,6 @@ When you stand in defense of a person, item, or location under attack, roll +CON
         key: ['spout', 'spoutlore', 'lore'],
         text: 'SPOUT LORE: !spout\n\
 When you consult your accumulated knowledge about something, roll +INT.',
-        greatSuccess: 'On a 10+, the GM will tell you something interesting\
- and useful about the subject relevant to your situation.',
         success: 'On a 10+, the GM will tell you something interesting\
  and useful about the subject relevant to your situation.',
         mixed: 'On a 7–9, the GM will only tell you something interesting —\
@@ -286,14 +273,6 @@ When you consult your accumulated knowledge about something, roll +INT.',
         key: ['discern', 'discernrealities', 'realities'],
         text: 'DISCERN REALITIES: !discern\n\
  When you closely study a situation or person, roll +WIS. You may ask:\n\
- - What happened here recently?\n\
- - What is about to happen?\n\
- - What should I be on the lookout for?\n\
- - What here is useful or valuable to me?\n\
- - Who’s really in control here?\n\
- - What here is not what it appears to be?',
-        greatSuccess: 'On a 10+, ask the GM 3 questions from the list below.\
- Take +1 forward when acting on the answers.\n\
  - What happened here recently?\n\
  - What is about to happen?\n\
  - What should I be on the lookout for?\n\
@@ -325,7 +304,6 @@ When you consult your accumulated knowledge about something, roll +INT.',
         key: ['parley'],
         text: 'PARLEY: !parley\n\
 When you have leverage on a GM Character and manipulate them, roll +CHA.',
-        greatSuccess: 'On a 10+, they do what you ask if you first promise what they ask of you.',
         success: 'On a 10+, they do what you ask if you first promise what they ask of you.',
         mixed: 'On a 7–9, they will do what you ask, but need some concrete assurance\
  of your promise, right now.',
@@ -339,7 +317,6 @@ When you have leverage on a GM Character and manipulate them, roll +CHA.',
         text: 'AID OR INTERFERE !aid +/-BOND\n\
 When you help or hinder someone you have a bond with, roll + the number of bonds\
  you have with that character',
-        greatSuccess: 'On a 10+ the character you chose takes +1 or -2, your choice.',
         success: 'On a 10+ the character you chose takes +1 or -2, your choice.',
         mixed: 'On a 7–9, the character you chose takes +1 or -2, your choice.\
  You also expose yourself to danger, retribution, or cost.',
@@ -354,7 +331,6 @@ When you help or hinder someone you have a bond with, roll + the number of bonds
 When you’re dying you catch a glimpse of what lies beyond the Black Gates of Death’s Kingdom\
  (the GM will describe it). Then roll (just roll, + NOTHING — yeah, Death doesn’t care\
  how tough or cool you are)',
-        greatSuccess: 'On a 10+, you’ve cheated Death — you’re in a bad spot but you’re still alive.',
         success: 'On a 10+, you’ve cheated Death — you’re in a bad spot but you’re still alive.',
         mixed: 'On a 7–9, Death himself will offer you a bargain. Take it and stabilize\
  or refuse and pass beyond the Black Gates into whatever fate awaits you.',
@@ -367,8 +343,6 @@ When you’re dying you catch a glimpse of what lies beyond the Black Gates of D
         key: ['take', 'watch', 'takewatch'],
         text: 'TAKE WATCH: !watch\n\
 When you’re on watch and something approaches the camp roll +WIS.',
-        greatSuccess: 'On a 10+, you’re able to wake the camp and prepare a response,\
- everyone in the camp takes +1 forward.',
         success: 'On a 10+, you’re able to wake the camp and prepare a response,\
  everyone in the camp takes +1 forward.',
         mixed: 'On a 7–9, you react just a moment too late; your companions in camp\
@@ -389,8 +363,6 @@ When you travel through hostile territory, choose one member of the party to be 
        name: 'Trailblazer',
         key: ['trailblazer'],
         text: 'TRAILBLAZER: !trailblazer',
-        greatSuccess: 'On a 10+, the trailblazer reduces the amount of time it takes\
- to reach your destination (the GM will say by how much).',
         success: 'On a 10+, the trailblazer reduces the amount of time it takes\
  to reach your destination (the GM will say by how much).',
         mixed: 'On a 7–9, the journey takes about as long as expected.',
@@ -402,8 +374,6 @@ When you travel through hostile territory, choose one member of the party to be 
        name: 'Scout',
         key: ['scout'],
         text: 'SCOUT: !scout',
-        greatSuccess: 'On a 10+, the scout will spot any trouble quick enough to let you\
- get the drop on it.',
         success: 'On a 10+, the scout will spot any trouble quick enough to let you\
  get the drop on it.',
         mixed: 'On a 7–9, no one gets the drop on you but you don’t get the drop on them either.',
@@ -415,7 +385,6 @@ When you travel through hostile territory, choose one member of the party to be 
        name: 'Quartermaster',
         key: ['quartermaster'],
         text: 'QUARTERMASTER: !quartermaster',
-        greatSuccess: 'On a 10+, the quartermaster reduces the number of rations required by one.',
         success: 'On a 10+, the quartermaster reduces the number of rations required by one.',
         mixed: 'On a 7–9, the normal number of rations are consumed.',
         fail: 'On a 6-, be prepared for the worst...',
@@ -428,11 +397,6 @@ When you travel through hostile territory, choose one member of the party to be 
         text: 'CAROUSE: !carouse +/-COIN\n\
 When you return triumphant and throw a big party, spend 100 coins and roll +1 for every\
  extra 100 coins spent. It\'s possible that:\n\
- - You befriend a useful NPC.\n\
- - You hear rumors of opportunity.\n\
- - You gain useful information\n\
- - You are not entangled, ensorcelled, or tricked.',
-        greatSuccess: 'On a 10+, choose 3.\n\
  - You befriend a useful NPC.\n\
  - You hear rumors of opportunity.\n\
  - You gain useful information\n\

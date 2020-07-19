@@ -49,12 +49,12 @@ Special thanks to the friends and developers who inspired and helped this projec
 * https://github.com/evanfeenstra
 * https://github.com/brandonjackson
 * https://github.com/dyerw
-* Duan
+* https://github.com/duanbailey
 * Tam
 * Dobsonfly
 * Janilyn
 * Rezart
 * AdriaticTitan45
 * Luinger
-* All my supporters on Patreon
+* All our supporters on Patreon
 * And many more...

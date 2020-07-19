@@ -119,8 +119,10 @@ client.on('message', async message => {
                 counter = await storage.get('COUNTER')
                 if(!counter){counter = 0}
                 counter++
-                if((counter%1)===0){console.log(counter)}
-                if(message.guild.name){console.log(message.guild.name)}
+                guildName = ''
+                if(message.guild.name){guildName = message.guild.name}
+                if((counter%1)===0){console.log(`${counter} - ${guildName}`)}
+                
 
                 for await(let [key, value] of Object.entries(iconList)){
                     if(key === userData['GAME']){
