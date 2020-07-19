@@ -166,7 +166,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
        name: 'Kick Some Ass',
         key: ['ksa', 'kickass', 'kicksome', 'kicksomeass', 'ass'],
         text: 'KICK SOME ASS: !kickass\nWhen you get into a fight and kick some ass.',
-        get greatSuccess(){return this.success},
         success: 'On a 10+, you and whatever you\'re fighting inflict harm on each other,\
  plus choose one extra effect:\n\
  - You gain the advantage: take +1 forward, or give +1 forward to another hunter\n\
@@ -182,7 +181,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
        name: 'Act Under Pressure',
         key: ['aup', 'act', 'actunder', 'underpressure', 'actunderpressure', 'pressure'],
         text: 'ACT UNDER PRESSURE: !act\nWhen you act under pressure.',
-        get greatSuccess(){return this.success},
         success: 'On a 10+, you do what you set out to do.',
         mixed: 'On a 7–9, the Keeper is going to give you a worse outcome, hard choice,\
  or price to pay.',
@@ -194,7 +192,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
        name: 'Help Out',
         key: ['helpout'],
         text: 'HELP OUT: !helpout\nWhen you help another hunter.',
-        get greatSuccess(){return this.success},
         success: 'On a 10+, your help grants them +1 to their roll.',
         mixed: 'On a 7–9, your help grants them +1 to their roll,\
  but you also expose yourself to trouble or danger.',
@@ -214,7 +211,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
  - What was it going to do?\n\
  - What is being concealed here?\n\
  - (type !phenom if investigating a phenomena)',
-        get greatSuccess(){return this.success},
         success: 'On a 10+, hold 2. One hold can be spent to ask the keeper\
  one of the following questions:\n\
  - What happened here?\n\
@@ -225,7 +221,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
  - What was it going to do?\n\
  - What is being concealed here?\n\
  - (type !phenom if investigating a phenomena)',
-        mixed: 'On a 10+, hold 1. One hold can be spent to ask the keeper\
+        mixed: 'On a 7-9, hold 1. One hold can be spent to ask the keeper\
  one of the following questions:\n\
  - What happened here?\n\
  - What sort of creature is it?\n\
@@ -244,7 +240,6 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         key: ['manipulate', 'manipulatesomeone'],
         text: 'MANIPULATE SOMEONE: !manipulate\n\
 Once you have given them a reason, tell them what you want them to do.',
-        get greatSuccess(){return this.success},
         success: 'On a 10+, they’ll do it for the reason you\
  gave them. If you asked too much, they’ll tell you the minimum it would\
  take for them to do it (or if there’s no way they’d do it).',
@@ -260,7 +255,6 @@ Once you have given them a reason, tell them what you want them to do.',
         key: ['manhunt', 'hunter', 'huntermanipulate'],
         text: 'MANIPULATE HUNTER: !hunter\n\
 Once you have given the other hunter a reason, tell them what you want them to do.',
-        get greatSuccess(){return this.success},
         success: 'On a 10+, if they do what you ask they mark\
  experience and get +1 forward.',
         mixed: 'On a 7–9, they mark experience if they do what you want.',
@@ -273,7 +267,6 @@ Once you have given the other hunter a reason, tell them what you want them to d
         key: ['protect', 'protectsomeone'],
         text: 'PROTECT SOMEONE: !protect\n\
 When you prevent harm to another character.',
-        get greatSuccess(){return this.success},
         success: 'On a 10+, you protect them okay, but\
  you\'ll suffer some or all of the harm they were going to get.\n\
  - You suffer little harm (-1 harm)\n\
@@ -297,7 +290,6 @@ When you look around and read a bad situation, you can ask:\n\
  - What\'s the biggest threat?\n\
  - What\'s most vulnerable to me?\n\
  - What\'s the best way to protect the victims?',
-        get greatSuccess(){return this.success},
         success: 'On a 10+, hold 3. One hold can be spent\
  to ask the Keeper one of the following questions (if you act on the answers,\
  you get +1 ongoing while the information is relevant):\n\
@@ -325,7 +317,6 @@ When you look around and read a bad situation, you can ask:\n\
         key: ['usemagic', 'magic'],
         text: 'USE MAGIC: !magic\n\
 When you use magic, say what you\'re trying to achieve and how you do the spell.',
-        get greatSuccess(){return this.success},
         success: 'On a 10+ the magic works without issue: choose your effect.\n\
  (type !effects for reference)',
         mixed: 'On a 7–9, it works imperfectly: choose your effect and a glitch.\
@@ -351,7 +342,6 @@ Use this when you want more than the Use Magic effects. Tell the Keeper what you
  - You need to use magic as part of the ritual, perhaps to summon a monster\
  communicate with something, or bar the portal you opened\n\
  - It will have a specific side-effect or danger.',
-        get greatSuccess(){return this.success},
         success: 'On a 10+ the magic works without issue: choose your effect.\n\
  (type !effects and/or !bigmagic? for reference)',
         mixed: 'On a 7–9, it works imperfectly: choose your effect and a glitch.\
@@ -408,7 +398,6 @@ THE KEEPER MAY SAY THAT:\n\
        text: 'EMPATH: !empath\n\
 When you open up your brain to feel the emotions of something right there\
  in front of you.',
-       get greatSuccess(){return this.success},
        success: 'On a 10+, you gain a clearn impression of their current\
  emotional state and intentions. Take +1 forward when acting on this knowledge.',
        mixed: 'On a 7-9, you gain a hazy impression of their current emotional\
@@ -422,7 +411,6 @@ When you open up your brain to feel the emotions of something right there\
        key: ['illum', 'illuminated'],
        text: 'ILLUMINATED: !illum\n\
 When you telepathically ask the Secret Masters for aid.',
-       get greatSuccess(){return this.success},
        success: 'On a 10+, the Secret Masters reveal a key fact, clue, or\
  technique that will help you.',
        mixed: 'On a 7-9, the Secret Masters need you to complete a task\
@@ -438,7 +426,6 @@ When you telepathically ask the Secret Masters for aid.',
        key: ['nolimits', 'limits'],
        text: 'NO LIMITS: !nolimits\n\
 When you push your physical body past its limits.',
-       get greatSuccess(){return this.success},
        success: 'On a 10+, your body obeys your will, to the limits of\
  physical possibility, for a moment.',
        mixed: 'On a 7-9, you do it but choose one consequence:\n\
@@ -460,7 +447,6 @@ When you channel your previous incarnations to discover something,\
  - What important hidden secret can a past life show me the way to?\n\
  - What did a past life learn too late to help them?\n\
  - What does a past life advise me to do now?',
-       get greatSuccess(){return this.success},
        success: 'On a 10+, a past life has something useful to offer.\
  Ask the Keeper two of the questions below:\n\
  - What did a past life discover about ______?\n\
@@ -484,7 +470,6 @@ When you channel your previous incarnations to discover something,\
        key: ['sensitive', 'sense'],
        text: 'SENSITIVE: !sensitive\n\
 When you open your brain to the psychic environment.',
-       get greatSuccess(){return this.success},
        success: 'On a 10+, you gain a definite impression (a vision\
  tangible aura, overheard thought, etc) about something important.',
        mixed: 'On a 7-9, you gain a hazy impression about something important.',
@@ -497,7 +482,6 @@ When you open your brain to the psychic environment.',
        key: ['trust', 'trustgut', 'trustyourgut', 'gut'],
        text: 'TRUST YOUR GUT: !trustgut\n\
 When you consult your instincts about what to do next.',
-       get greatSuccess(){return this.success},
        success: 'On a 10+, the Keeper will tell where you should go.\
  Wherever that is, it will be important. You get +1 ongoing on the way to this place.',
        mixed: 'On a 7-9, the Keeper will tell you a general direction to go.\
@@ -511,7 +495,6 @@ When you consult your instincts about what to do next.',
        key: ['telekinesis', 'tele'],
        text: 'TELEKINESIS: !tele\n\
 When you fling something with your mind.',
-       get greatSuccess(){return this.success},
        success: 'On a 10+, you move it. Choose two options and mark 1-harm\
  (anything not picked is not true):\n\
  - Something is held fast.\n\
@@ -538,7 +521,6 @@ When you fling something with your mind.',
        text: 'WEIRD SCIENCE: !weirdsci\n\
 When you create or adapt a device to analyse or deal with strangeness\
  say what it will do.',
-       get greatSuccess(){return this.success},
        success: 'On a 10+, you pick two requirements:\n\
  - It needs a rare and/or weird material.\n\
  - It won\'t be very reliable.\n\

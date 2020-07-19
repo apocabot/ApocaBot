@@ -230,9 +230,7 @@ function moveRoll(userMessage, userId, channelId, userNickname, moves, userData,
     }
     total = total + addOn;
     let grandTotal = total + modStat;
-    if (grandTotal >= 13){
-        moveText = moves[i].greatSuccess
-    } else if (grandTotal >= 10 && grandTotal <= 12){
+    if (grandTotal >= 10){
 		moveText = moves[i].success
 	} else if (9 >= grandTotal && grandTotal >= 7){
         moveText = moves[i].mixed
