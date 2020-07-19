@@ -264,12 +264,12 @@ function characterSheet(userMessage, userId, channelId, userNickname, moves, use
         if (key==='STRINGS') {
             statPrintout.push('Strings:')
             for(let [name, stringCount] of Object.entries(value)){
-                statPrintout.push(`• ${name} (${stringCount})`)
+                statPrintout.push(`• ${capitalize(name)} (${stringCount})`)
             }
         } else if (key==='CONDITIONS') {
             statPrintout.push('Conditions:')
             for(const [i, phrase] of Object.entries(value)) {
-                statPrintout.push(`${parseInt(i)+1}) ${phrase}`)
+                statPrintout.push(`${parseInt(i)+1}) ${capitalize(phrase)}`)
             }
         } else {
             statPrintout.push(`${key}: ${value}`)
@@ -675,7 +675,6 @@ function setExpOnAMiss(userMessage, userId, channelId, userNickname, moves, user
 function gainString(userMessage, userId, channelId, userNickname, moves, userData){
     if(!userMessage[1]){return moves.gainString.text}
     if (userMessage[1].length > 30){return 'That name is too long. Try a shorter version.'}
-    userMessage[1] = userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)
 
     let person = userData[userId]
     if (!person) {return 'ERROR: No character defined. Please run the !newcharacter command to create a character first!'}
@@ -687,30 +686,28 @@ function gainString(userMessage, userId, channelId, userNickname, moves, userDat
     stringCount++
     userData[userId]['STRINGS'][userMessage[1]] = stringCount
 
-    message = `Gained a string on ${userMessage[1]}. You have ${stringCount} strings on them now.`
+    message = `Gained a string on ${capitalize(userMessage[1])}. You have ${stringCount} strings on them now.`
     if (message) {return message }
 }
 
 function spendString(userMessage, userId, channelId, userNickname, moves, userData){
     if(!userMessage[1]){return moves.gainString.text}
     if (userMessage[1].length > 30){return 'That name is too long. Try a shorter version.'}
-    userMessage[1] = userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)
 
     let person = userData[userId]
     if (!person) {return 'ERROR: No character defined. Please run the !newcharacter command to create a character first!'}
-    if (!person['STRINGS'][userMessage[1]]) { return `No strings on ${userMessage[1]} to spend.`}
+    if (!person['STRINGS'][userMessage[1]]) { return `No strings on ${capitalize(userMessage[1])} to spend.`}
 
     stringCount = person['STRINGS'][userMessage[1]]
     stringCount--;
     if (stringCount == 0) { delete userData[userId]['STRINGS'][userMessage[1]]}
     else { userData[userId]['STRINGS'][userMessage[1]] = stringCount }
-    return `Spent a string on ${userMessage[1]}. You have ${stringCount} strings on them now.\n\n${moves.spendString.text}`
+    return `Spent a string on ${capitalize(userMessage[1])}. You have ${stringCount} strings on them now.\n\n${moves.spendString.text}`
 }
 
 function conditionMove(userMessage, userId, channelId, userNickname, moves, userData){
     if(!userMessage[1] || !userMessage[2]){ return moves.conditionMove.text }
-    if (userMessage[2].length > 30){return 'That condition is too long. Try a shorter version.'}
-    userMessage[2] = userMessage[2].charAt(0).toUpperCase() + userMessage[2].slice(1)
+    if (userMessage.slice(2).join(" ").length > 30){return 'That condition is too long. Try a shorter version.'}
 
     if ("add +".includes(userMessage[1])) {
         let person = userData[userId]
@@ -719,7 +716,7 @@ function conditionMove(userMessage, userId, channelId, userNickname, moves, user
         phrase = userMessage.slice(2).join(" ")
 
         userData[userId]['CONDITIONS'].push(phrase)
-        return `Added condition: ${phrase}.`
+        return `Added condition: ${capitalize(phrase)}.`
 
     } else if ("remove -".includes(userMessage[1])) {
         index = parseInt(userMessage[2]) - 1
@@ -728,10 +725,15 @@ function conditionMove(userMessage, userId, channelId, userNickname, moves, user
         let person = userData[userId]
         if (!person) {return 'ERROR: No character defined. Please run the !newcharacter command to create a character first!'}
         if (!person['CONDITIONS']) { person['CONDITIONS'] = [] }
+        if (person['CONDITIONS'].length == 0) {return `${person["NAME"]} doesn't have any conditions.`}
         if (index > person['CONDITIONS'].length - 1 || index < 0) { return `ERROR: Invalid number selected. Pick a number from 1-${person['CONDITIONS'].length}`}
         
         phrase = userData[userId]['CONDITIONS'][index]
         userData[userId]['CONDITIONS'].splice(index,1)
-        return `Removed condition ${phrase}.`
+        return `Removed condition ${capitalize(phrase)}.`
     }
+}
+
+function capitalize(phrase) {
+    return phrase.charAt(0).toUpperCase() + phrase.slice(1)
 }
