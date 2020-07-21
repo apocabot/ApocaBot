@@ -1,7 +1,7 @@
 let storage
 require('../mungu.js').then(s => storage = s)
 
-module.exports = {newCorp, newWeapon, newDrone, newNpc, deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
+module.exports = {addLinks, subLinks, removeLinks, printLinks, newCorp, newWeapon, newDrone, newNpc, deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
 
 //functions
 function removePrefix(message, userData){
@@ -188,6 +188,10 @@ function moveRoll(userMessage, userId, channelId, userNickname, moves, userData,
     let moveText = ''
     let showStat = ''
     let input = userMessage[1];
+    if(userData[userId]['LINKS']){
+        for(let [name, linksCount] of Object.entries(userData[userId]['LINKS'])){
+        if(userMessage[1]===`+${name}`){input = linksCount}
+    }}
     input = parseInt(input);
     if(moves[i].stat === 'num'){
         if(!input){input = 0}
@@ -265,7 +269,9 @@ function newCharacter(userMessage, userId, channelId, userNickname, moves, userD
 function characterSheet(userMessage, userId, channelId, userNickname, moves, userData){
     statPrintout = ['Here are your CHARACTER STATS:'];
     for(let [key, value] of Object.entries(userData[userId])){
-        statPrintout.push(`${key}: ${value}`)
+        if(key !== "LINKS"){
+            statPrintout.push(`${key}: ${value}`)
+        }        
     }
     statPrintout = statPrintout.toString().split(",").join("\n")
     return statPrintout
@@ -381,6 +387,68 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData)
     setErrors = setErrors.toString().split(",").join("\n")
     if(setErrors){return setErrors}
     else{return characterSheet(userMessage, userId, channelId, userNickname, moves, userData)}
+}
+
+function addLinks(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.addLinks.text}
+    if(!userData[userId]['LINKS']){userData[userId]['LINKS'] = {}}
+
+    let person = userData[userId]
+    let linksObj = person['LINKS']
+    let linksCount = 0
+    if(linksObj[userMessage[1]]) {
+        linksCount = userData[userId]['LINKS'][userMessage[1]]
+    }
+    linksCount++
+    if (linksCount == 4) {
+        linksCount = 0
+        message = `You hit Links+4 with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nMark experience and your Links with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)} is now __Links+${linksCount}__.`
+    } else {
+        if(linksCount>=0){message = `Added 1 Link with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Links+${linksCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
+        else {message = `Added 1 to your Links with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Links${linksCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
+    }
+
+    userData[userId]['LINKS'][userMessage[1]] = linksCount
+    if (message) {return message }
+}
+
+function subLinks(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.subLinks.text}
+    if(!userData[userId]['LINKS']){userData[userId]['LINKS'] = {}}
+
+    let person = userData[userId]
+    let linksObj = person['LINKS']
+    let linksCount = 0
+    if(linksObj[userMessage[1]]) {
+        linksCount = userData[userId]['LINKS'][userMessage[1]]
+    }
+    linksCount--;
+    userData[userId]['LINKS'][userMessage[1]] = linksCount
+    if(linksCount>=0){
+    return `Subtracted 1 Link from ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Links+${linksCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
+    else {return `Subtracted 1 Link from ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Links${linksCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
+}
+
+function removeLinks(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.removeLinks.text}
+    if(!userData[userId]['LINKS']){userData[userId]['LINKS'] = {}}
+
+    if(userData[userId]['LINKS'][userMessage[1]]) {
+        delete userData[userId]['LINKS'][userMessage[1]]
+        return `${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)} was removed from your Links.`
+    } else {return `${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)} is not on your Links.`}
+}
+
+function printLinks(userMessage, userId, channelId, userNickname, moves, userData){
+    let statPrintout = ['Your Links with:\n']
+    if(!userData[userId]['LINKS']){return 'You don\'t have any Links with anyone yet.\nEnter __!links?__ to learn how to set Links.'}
+
+            for(let [name, linksCount] of Object.entries(userData[userId]['LINKS'])){
+                if(linksCount>=0){statPrintout.push(`• ${name.charAt(0).toUpperCase() + name.slice(1)} Links+${linksCount}`)}
+                else {statPrintout.push(`• ${name.charAt(0).toUpperCase() + name.slice(1)} Links${linksCount}`)}
+            }
+    statPrintout = statPrintout.toString().split(",").join("\n")
+    return statPrintout
 }
 
 function newCustomMove(userMessage, userId, channelId, userNickname, moves, userData){

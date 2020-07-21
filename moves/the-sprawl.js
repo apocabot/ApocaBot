@@ -14,6 +14,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - BASIC MOVES LIST: !basic\n\
  - MATRIX MOVES LIST: !matrix\n\
  - OTHER MOVES LIST: !other\n\
+ - LINKS: !links\n\
  - CUSTOM MOVES: !custom\n\
  - SET APOCABOT PREFIX: !setprefix\n\
  - SET APOCABOT GAME: !setgame',
@@ -547,6 +548,50 @@ Then it’s up to them.',
  how it causes a problem.',
        stat: 'edge',
        method: functions.moveRoll
+   },
+   addLinks: {
+      key: ['addlink', 'addlinks'],
+      text: 'To add 1 to your Links stat with another character, use the command __!addlink__ followed by the\
+ other character\'s name. Enter __!links__ to view your Links list.\n\n\
+EXAMPLE: It\'s the end of the session and you have to add Links+1 to your Links with Bucky. Enter __!addlink bucky__ to shift\
+ your Links score up by one.',
+      method: functions.addLinks
+   },
+   subLinks: {
+      key: ['sublink', 'sublinks'],
+      text: 'To subtract 1 from your Links stat with another character, use the command __!sublink__ followed by the\
+ other character\'s name. Enter __!links__ to view your Links list.\n\n\
+EXAMPLE: You accidentally have too many Links with Lulu! Enter the command __!sublink lulu__ to shift your Links score\
+ with Lulu down by one.',
+      method: functions.subLinks
+   },
+   printLinks: {
+      key: ['link', 'links'],
+      text: 'Having Links with people doesn\'t mean that you\'re friends, or even that you regularly work together\
+  (although either or both may be true). It means that you are professionally aware of that person;\
+ you know how they operate.\n\n • To set your Links stat with the other players,\
+ use the commands __!addlink__ and __!sublink__ followed by the other character\'s name.\n\n • Links will not\
+ automatically add to your **Help or Interfere** move, but you can enter __!hoi +name__ to use a stored Links stat.\n\n\
+ • If you want to remove a character entirely from your Links list, enter __!removelink__ followed by the character\'s name.\n\n\
+ • If your score reaches Links+4, the bot will automatically shift it to Links+0 and tell you to mark EXP.\n\n\
+EXAMPLES:\n\
+ • It\'s the end of the session and you have to add Links+1 to your Links with Bucky. Enter __!addlink bucky__ to shift\
+ your Links score up by one.\n\n\
+ • You accidentally have too many Links with Lulu! Enter the command __!sublink lulu__ to shift your Links score\
+ with Lulu down by one.\n\n\
+ • Your friend EagleEye just died. Though you\'ll never forget them, enter __!removelink eagleeye__ to remove them\
+ from your Links list.\n\n\
+ • You decide to **Help or Interfere** with Lucky. You don\'t remember what your Links score with them is, but you\
+ can just enter __!hoi +lucky__ to automatically add your saved Links score from the list.',
+      method: functions.printLinks
+   },
+   removeLinks: {
+      key: ['removelink', 'removelinks'],
+      text: 'If you want to remove a character entirely from your Links list, enter __!removelink__ followed by the character\'s name.\
+ Enter __!links__ to view your Links list.\n\n\
+EXAMPLE: Your friend EagleEye just died. Though you\'ll never forget them, enter __!removelink eagleeye__ to remove them\
+ from your Links list.',
+      method: functions.removeLinks
    },
    customMove: {
        key: ['move'],

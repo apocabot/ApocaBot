@@ -427,7 +427,7 @@ function subHx(userMessage, userId, channelId, userNickname, moves, userData){
 }
 
 function removeHx(userMessage, userId, channelId, userNickname, moves, userData){
-    if(!userMessage[1]){return moves.subHx.text}
+    if(!userMessage[1]){return moves.removeHx.text}
     if(!userData[userId]['HX']){userData[userId]['HX'] = {}}
 
     if(userData[userId]['HX'][userMessage[1]]) {
