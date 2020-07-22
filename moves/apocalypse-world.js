@@ -679,6 +679,7 @@ EXAMPLE: At the start of the game, you have Hx-2 with Lulu. Enter the command __
  automatically add to your **Help or Interfere** move, but you can enter __!hoi +name__ to use a stored Hx stat.\n\n\
  • If you want to remove a character entirely from your Hx list, enter __!removehx__ followed by the character\'s name.\n\n\
  • If your score reaches Hx+4, the bot will automatically shift it to Hx+1 and tell you to mark EXP.\n\n\
+ • If your score reaches Hx-3, the bot will automatically shift it to Hx+0 and tell you to mark EXP.\n\n\
 EXAMPLES:\n\
  • At the start of the game, you have Hx-2 with Lulu. Enter the command __!subhx lulu__ to add Lulu\
  to your Hx list, and bring your Hx with Lulu to Hx-1, then enter __!subhx lulu__ again to get to Hx-2.\n\n\
