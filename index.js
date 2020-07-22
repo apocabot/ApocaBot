@@ -131,6 +131,7 @@ client.on('message', async message => {
                 for await(let [key, value] of Object.entries(iconList)){
                     if(key === userData['GAME']){
                         userData['gameIcon'] = value
+                        break
                     }
                 }
                 if(userMessage[0] === 'setgame'){

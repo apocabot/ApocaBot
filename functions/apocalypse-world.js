@@ -386,6 +386,11 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData)
     else{return characterSheet(userMessage, userId, channelId, userNickname, moves, userData)}
 }
 
+function signedValue(number) {
+    if(number>=0) { return `+${number}` }
+    return `${number}`
+}
+
 function addHx(userMessage, userId, channelId, userNickname, moves, userData){
     if(!userMessage[1]){return moves.addHx.text}
     if(!userData[userId]['HX']){userData[userId]['HX'] = {}}
@@ -401,8 +406,7 @@ function addHx(userMessage, userId, channelId, userNickname, moves, userData){
         hxCount = 1
         message = `You hit Hx+4 with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nMark experience and your Hx with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)} is now __Hx+${hxCount}__.`
     } else {
-        if(hxCount>=0){message = `Added 1 to your Hx with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx+${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
-        else {message = `Added 1 to your Hx with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
+        message = `Added 1 to your Hx with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx${signedValue(hxCount)}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`
     }
 
     userData[userId]['HX'][userMessage[1]] = hxCount
@@ -420,10 +424,15 @@ function subHx(userMessage, userId, channelId, userNickname, moves, userData){
         hxCount = userData[userId]['HX'][userMessage[1]]
     }
     hxCount--;
+    if (hxCount == -3) {
+        hxCount = 0
+        message = `You hit Hx-3 with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nMark experience and your Hx with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)} is now __Hx+${hxCount}__.`
+    } else {
+        message = `Subtracted 1 Hx from ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx${signedValue(hxCount)}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`
+    }
+    
     userData[userId]['HX'][userMessage[1]] = hxCount
-    if(hxCount>=0){
-    return `Subtracted 1 Hx from ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx+${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
-    else {return `Subtracted 1 Hx from ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
+    if (message) {return message }
 }
 
 function removeHx(userMessage, userId, channelId, userNickname, moves, userData){
@@ -440,10 +449,10 @@ function printHx(userMessage, userId, channelId, userNickname, moves, userData){
     let statPrintout = ['Your Hx with:\n']
     if(!userData[userId]['HX']){return 'You don\'t have Hx with anyone yet.\nEnter __!hx?__ to learn how to set Hx.'}
 
-            for(let [name, hxCount] of Object.entries(userData[userId]['HX'])){
-                if(hxCount>=0){statPrintout.push(`• ${name.charAt(0).toUpperCase() + name.slice(1)} Hx+${hxCount}`)}
-                else {statPrintout.push(`• ${name.charAt(0).toUpperCase() + name.slice(1)} Hx${hxCount}`)}
-            }
+    for(let [name, hxCount] of Object.entries(userData[userId]['HX'])){
+        if(hxCount>=0){statPrintout.push(`• ${name.charAt(0).toUpperCase() + name.slice(1)} Hx+${hxCount}`)}
+        else {statPrintout.push(`• ${name.charAt(0).toUpperCase() + name.slice(1)} Hx${hxCount}`)}
+    }
     statPrintout = statPrintout.toString().split(",").join("\n")
     return statPrintout
 }
