@@ -702,7 +702,8 @@ function spendString(userMessage, userId, channelId, userNickname, moves, userDa
     stringCount--;
     if (stringCount == 0) { delete userData[userId]['STRINGS'][userMessage[1]]}
     else { userData[userId]['STRINGS'][userMessage[1]] = stringCount }
-    return `Spent a string on ${capitalize(userMessage[1])}. You have ${stringCount} strings on them now.\n\n${moves.spendString.text}`
+    return `Spent a string on ${capitalize(userMessage[1])}. You have ${stringCount} strings on them now.\n\n\
+When you spend a String on someone, choose one:\n • Tempt them to do what you want,\n • Give them a Condition,\n • Add 1 to your roll against them, or\n • Add 1 to the harm you deal them.`
 }
 
 function conditionMove(userMessage, userId, channelId, userNickname, moves, userData){
