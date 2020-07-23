@@ -272,16 +272,19 @@ When you *comfort or support someone*, roll + Mundane.',
         key: ['pierce', 'piercemask', 'piercethemask', 'ptm'],
         text: 'PIERCE THE MASK: !pierce\n\
  When you *pierce someone’s mask* to see the person beneath, roll + Mundane. You can ask:\n\
+ • What are you really planning?\n\
  • What do you want me to do?\n\
  • What do you intend to do?\n\
  • How could I get your character to ______?\n\
  • How could I gain Influence over you?',
         success: 'On a 10+, ask 3:\n\
+ • What are you really planning?\n\
  • What do you want me to do?\n\
  • What do you intend to do?\n\
  • How could I get your character to ______?\n\
  • How could I gain Influence over you?',
         mixed: 'On a 7-9, ask 1:\n\
+ • What are you really planning?\n\
  • What do you want me to do?\n\
  • What do you intend to do?\n\
  • How could I get your character to ______?\n\
