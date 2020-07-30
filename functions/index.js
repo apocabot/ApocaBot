@@ -6,5 +6,6 @@ var monsterhearts = require("./monsterhearts")
 var motw = require("./motw")
 var theSprawl = require("./the-sprawl")
 var unchartedWorlds = require("./uncharted-worlds")
+var urbanShadows = require("./urban-shadows")
 
-module.exports = {apocalypseWorld, burnedOver, dungeonWorld, masks, monsterhearts, motw, theSprawl, unchartedWorlds}
+module.exports = {apocalypseWorld, burnedOver, dungeonWorld, masks, monsterhearts, motw, theSprawl, unchartedWorlds, urbanShadows}

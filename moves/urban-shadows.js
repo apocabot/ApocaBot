@@ -38,6 +38,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - DROP SOMEONE\'S NAME: !drop\n\
  - MARK CORRUPTION: !mark\n\
  - CLEAR CORRUPTION: !clear\n\
+ - LEAD A GANG INTO BATTLE: !battle\n\
  - SESSION INTRO: !intro\n\
  - SESSION END: !end',
        method: function(){return this.text}
@@ -261,6 +262,16 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
         stat: 'mind',
         method: functions.moveRoll
     },
+    keepYourCool: {
+        name: 'Keep Your Cool',
+        key: ['kyc', 'cool'],
+        text: 'When things get real and you keep your cool, tell the MC what situation you want to avoid and roll with Spirit.',
+        success: 'On a 10+, all\'s well.',
+        mixed: 'On a 7-9, the MC will tell you what it\'s gonna cost you.',
+        fail: 'On a 6-, brace yourself...',
+        stat: 'spirit',
+        method: functions.moveRoll
+    },
     letItOut: {
         name: 'Let It Out',
         key: ['let', 'letout', 'letitout'],
@@ -324,9 +335,34 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
         stat: 'stat',
         method: functions.moveRoll
     },
+    doSomeoneAFavor: {
+        name: 'Do Someone A Favor',
+        key: ['favor', 'dofavor', 'doafavor', 'dosomeoneafavor'],
+        text: 'When you do someone a favor, they owe you a Debt.',
+        method: function(){return this.text},
+    },
+    cashInADebt: {
+        name: 'Cash In A Debt',
+        key: ['cash'],
+        text: 'When you cash in a Debt, remind your debtor why they owe you in order to...\n\
+    \n\...make a PC:\n\n\
+ • Do you a favor at moderate cost\n\
+ • Lend a hand to your efforts\n\
+ • Get in the way of someone else\n\
+ • Answer a question honestly\n\
+ • Erase a Debt they hold on someone else\n\n\
+ ...make an NPC:\n\n\
+ • Answer a question honestly about their Faction\n\
+ • Introduce you to a powerful member of their Faction\n\
+ • Give you a worthy and useful gift without cost\n\
+ • Erase a Debt they hold on someone\n\
+ • Give you a Debt they have on someone else\n\
+ • Give you +3 to persuade them (choose before rolling)',
+        method: function(){return this.text}
+    },
     refuseToHonorADebt: {
         name: 'Refuse To Honor A Debt',
-        key: ['refuse', 'honor', 'debt', 'refusetohonordebt'],
+        key: ['refuse', 'honor', 'refusetohonordebt'],
         text: 'When you refuse to honor a debt, roll with Heart.',
         success: 'On a 10+, you weasel out of the current deal, but still owe the Debt.',
         mixed: 'On a 7–9, you weasel out of the current deal, but still owe the Debt. Choose 1:\n\n\
@@ -352,6 +388,41 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
         stat: 'stat',
         method: functions.moveRoll
     },
+    markCorruptionOrFaction: {
+        name: 'Mark Corruption or Faction',
+        key: ['mark'],
+        text: 'Mark either a faction stat or corruption.\n\n\
+Marking corruption will check off a box in your corruption track; when you\'ve checked off all five boxes,\
+you unlock a corruption advance and clear your corruption track to start anew.\n\
+When you make a Faction move, trigger an intimacy move, cash in a Debt, or honor a Debt, mark the Faction \
+involved. When you\'ve marked all four Factions, erase the marks and advance.',
+        method: functions.markCorruptionOrFaction
+    },
+
+    clearCorruptionOrFaction: {
+        name: 'Clear Corruption or Faction',
+        key: ['clear'],
+        text: 'Clear your corruption track of all corruption or reset a faction.',
+        method: functions.clearCorruptionOrFaction
+    },
+    leadAGroupIntoBattle: {
+        name: 'Lead a Group Into Battle',
+        key: ['lead', 'battle'],
+        text: 'When you lead a group into battle against another group, roll with Blood.',
+        success: 'On a 10+, trade harm as established, and pick 3:\n\
+• Your group suffers little harm\n\
+• Your group inflicts terrible harm\n\
+• Your group seizes a vital position\n\
+• Your group avoids collateral damage',
+        mixed: 'On a 7-9, choose, choose 2:\n\
+• Your group suffers little harm\n\
+• Your group inflicts terrible harm\n\
+• Your group seizes a vital position\n\
+• Your group avoids collateral damage',
+        fail: 'On a 6-, brace yourself...',
+        stat: 'blood',
+        method: functions.moveRoll
+    },
     sessionIntro: {
         name: 'Session Intro',
         key: ['intro', 'sessionintro'],
@@ -367,7 +438,7 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
         stat: 'stat',
         method: functions.moveRoll
     },
-    sessionIntro: {
+    sessionEnd: {
         name: 'Session End',
         key: ['end', 'sessionend'],
         text: 'At the end of every session:\n\n\
