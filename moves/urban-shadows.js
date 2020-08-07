@@ -13,7 +13,9 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - ROLL SOME DICE: !roll\n\
  - BASIC MOVES LIST: !basic\n\
  - CUSTOM MOVES: !custom\n\
- - DEBTS LIST: !debt\n\
+ - DEBT LIST: !debts\n\
+ - ADD/REMOVE DEBT OWED TO YOU: !owedToMe\n\
+ - ADD/REMOVE DEBT YOU OWE: !owedToThem\n\
  - SET APOCABOT PREFIX: !setprefix\n\
  - SET APOCABOT GAME: !setgame',
         method: function(){return this.text}
@@ -33,7 +35,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - PUT A FACE TO A NAME: !put\n\
  - INVESTIGATE A PLACE OF POWER: !inv\n\
  - DO SOMEONE A FAVOR: !favor\n\
- - CASH IN A DEBT: !cashin\n\
+ - CASH IN A DEBT: !cash\n\
  - REFUSE TO HONOR A DEBT: !refuse\n\
  - DROP SOMEONE\'S NAME: !drop\n\
  - MARK CORRUPTION: !mark\n\
@@ -343,7 +345,7 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
     },
     cashInADebt: {
         name: 'Cash In A Debt',
-        key: ['cash'],
+        key: ['cash','cashin'],
         text: 'When you cash in a Debt, remind your debtor why they owe you in order to...\n\
     \n\...make a PC:\n\n\
  • Do you a favor at moderate cost\n\
@@ -395,14 +397,21 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
 Marking corruption will check off a box in your corruption track; when you\'ve checked off all five boxes,\
 you unlock a corruption advance and clear your corruption track to start anew.\n\
 When you make a Faction move, trigger an intimacy move, cash in a Debt, or honor a Debt, mark the Faction \
-involved. When you\'ve marked all four Factions, erase the marks and advance.',
+involved. When you\'ve marked all four Factions, erase the marks and advance.\n\n\
+EXAMPLES:\n\
+__!mark corrupt__ will mark corruption.\n\
+__!mark mort__ will mark the Mortality faction.',
         method: functions.markCorruptionOrFaction
     },
 
     clearCorruptionOrFaction: {
         name: 'Clear Corruption or Faction',
         key: ['clear'],
-        text: 'Clear your corruption track of all corruption or reset a faction.',
+        text: 'Clear your corruption track of all corruption or reset a faction.\n\n\
+EXAMPLES:\n\
+__!clear corrupt__ will clear your corruption track.\n\
+__!clear night__ will clear the Night faction.\n\
+__!clear factions__ or __!clear all__ will clear all factions.',
         method: functions.clearCorruptionOrFaction
     },
     leadAGroupIntoBattle: {
@@ -448,6 +457,35 @@ involved. When you\'ve marked all four Factions, erase the marks and advance.',
  • If you did someone a favor without redress, tell the group; they owe you a Debt.',
         method: function(){return this.text}
     },
+    debts: {
+        key: ['debts'],
+        text: 'Displays the debts that are owed to you and the debts that you owe.\n\n\
+        To add or remove debts owed to you, enter __!owedtome?__.\n\
+        To add or remove debts you owe to others, enter __!owedtothem?__.',
+        method: functions.debts
+    },
+    owedToMe: {
+        key: ['owedtome'],
+        text: 'Use this command to add or remove debts that someone owes you.\n\n\
+        EXAMPLES:\n\
+        __!owedtome add Chris__ will add a debt that Chris owes you.\n\
+        __!owedtome add Varin 2__ will add 2 debts that Varin owes you.\n\
+        __!owedtome remove Livinia__ will remove a debt from the amount that Livinia owes you.\n\
+        __!owedtome remove Trillium 3__ will remove 3 debts from the amount that Trillium owes you.\n\
+        __!owedtome clear__ will remove all debts that are owed to you.',
+        method: functions.owedToMe
+    },
+    owedToThem: {
+        key: ['owedtothem'],
+        text: 'Use this command to add or remove debts that you owe to others.\n\n\
+        EXAMPLES:\n\
+        __!owedtothem add Chris__ will add a debt that you owe Chris.\n\
+        __!owedtothem add Livinia 3__ will add 3 debts that you owe Livinia.\n\
+        __!owedtothem remove Trillium__ will remove a debt from the amount that you owe Trillium.\n\
+        __!owedtothem remove Varin 2__ will remove 2 debts from the amount that you owe Varin.\n\
+        __!owedtothem clear__ will remove all debts that you owe to others.',
+        method: functions.owedToThem
+    },
    customMove: {
        key: ['move'],
        text: 'To use a custom move, enter the command __!move__ followed by the custom command\
@@ -478,7 +516,5 @@ To see a list of all custom moves, type __!movelist__.\nTo delete a custom move,
  Enter __!newmove?__ to learn about creating new custom moves, __!deletemove?__ to learn\
  about deleting custom moves, and __!move?__ to learn about using custom moves in your game.',
        method: functions.moveList
-   },
-
-
+   }
 }

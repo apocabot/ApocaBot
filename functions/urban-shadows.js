@@ -1,7 +1,7 @@
 let storage
 require('../mungu.js').then(s => storage = s)
 
-module.exports = {deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll, markCorruptionOrFaction, clearCorruptionOrFaction}
+module.exports = {deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll, markCorruptionOrFaction, clearCorruptionOrFaction, debts, owedToMe, owedToThem}
 
 //functions
 function removePrefix(message, userData){
@@ -264,12 +264,13 @@ function characterSheet(userMessage, userId, channelId, userNickname, moves, use
     for(let [key, value] of Object.entries(userData[userId])){
         if(key != 'factions') {
             if(/MORTALITY|NIGHT|POWER|WILD/.test(key)){
-                statPrintout.push(`${key}: ${value} ${userData[userId]['factions'].includes(key.toLowerCase())?'•':''}`)
+                const marked = userData[userId]['factions'] && userData[userId]['factions'].includes(key.toLowerCase())
+                statPrintout.push(`(${marked?'•':' '}) ${key}: ${value}`)
             } else if(key === 'CORRUPTION') {
-                    const maxValue = 5;
-                    statPrintout.push(`${key}: ${value} / ${maxValue}`)
-            } else {
-                    statPrintout.push(`${key}: ${value}`)
+                const maxValue = 5;
+                statPrintout.push(`${key}: ${value} / ${maxValue}`)
+            } else if(key !== 'OWEDTOME' && key !== 'OWEDTOTHEM'){
+                statPrintout.push(`${key}: ${value}`)
             }
         }
     }
@@ -394,6 +395,141 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData)
     setErrors = setErrors.toString().split(",").join("\n")
     if(setErrors){return setErrors}
     else{return characterSheet(userMessage, userId, channelId, userNickname, moves, userData)}
+}
+
+function debts(userMessage, userId, channelId, userNickname, moves, userData){
+    let OwedToMePrintout
+    let OwedToThemPrintout
+
+    if (userData[userId]['OWEDTOME'] && Object.keys(userData[userId]['OWEDTOME']).length !== 0) {
+        let owedToMeList = []
+        for(let [key, value] of Object.entries(userData[userId]['OWEDTOME'])){
+            owedToMeList.push(`${capitalize(key)}: ${value}`)   
+        }
+        OwedToMePrintout = `DEBTS OWED TO ME:\n • ${owedToMeList.join("\n• ")}`
+    } else {
+        OwedToMePrintout = 'DEBTS OWED TO ME:\n -- None --'
+    }
+    
+    if (userData[userId]['OWEDTOTHEM'] && Object.keys(userData[userId]['OWEDTOTHEM']).length !== 0){
+        let owedToThemList = []
+        for(let [key, value] of Object.entries(userData[userId]['OWEDTOTHEM'])){
+            owedToThemList.push(`${capitalize(key)}: ${value}`)
+        }
+        OwedToThemPrintout = `DEBTS I OWE:\n • ${owedToThemList.join("\n• ")}`
+    } else {
+        OwedToThemPrintout = 'DEBTS I OWE:\n -- None --'
+    }
+
+    return `Enter __!debts?__ to learn about adding/removing debts.\n\n${OwedToMePrintout}\n\n${OwedToThemPrintout}`
+}
+
+function owedToMe(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.owedToMe.text}
+    if (userMessage[2] && userMessage[2].length > 30){return 'That name is too long. Try a shorter version.'}
+    if (!userData[userId]['OWEDTOME']){userData[userId]['OWEDTOME'] = {}}
+    let OwedToMeMessage = ''
+    let _myDebts = 1
+
+    if(userMessage[1] === "add"){
+        if (userMessage.length == 4 ) {
+            _myDebts = parseInt(userMessage[3])
+            if (isNaN(_myDebts) || _myDebts < 1) { return moves.owedToMe.text }
+        } else {
+            _myDebts = 1
+        }
+        
+        if(!userData[userId]['OWEDTOME'][userMessage[2]]) {
+            userData[userId]['OWEDTOME'][userMessage[2]] = _myDebts
+        } else {
+            userData[userId]['OWEDTOME'][userMessage[2]] += _myDebts;
+        }
+        total = userData[userId]['OWEDTOME'][userMessage[2]]
+        OwedToMeMessage = `${capitalize(userMessage[2])} owes you ${total} debt${total==1?'':'s'}.`
+
+    } else if (userMessage[1] === "remove"){
+        if (userMessage.length == 4){
+            _myDebts = parseInt(userMessage[3])
+            if (isNaN(_myDebts) || _myDebts < 1) { return moves.owedToMe.text }
+        } else {
+            _myDebts = 1
+        }
+
+        if(userData[userId]['OWEDTOME'][userMessage[2]]){
+            if (userData[userId]['OWEDTOME'][userMessage[2]] < _myDebts){
+                total = userData[userId]['OWEDTOME'][userMessage[2]]
+                return `${capitalize(userMessage[2])} only owes you ${total} debt${total==1?'':'s'}. Please enter a valid number of debts to remove.` 
+            } else {
+                userData[userId]['OWEDTOME'][userMessage[2]] -= _myDebts
+            }
+        } else {
+            return `Couldn't find ${capitalize(userMessage[2])}`
+        }
+        total = userData[userId]['OWEDTOME'][userMessage[2]]
+        OwedToMeMessage = `${capitalize(userMessage[2])} owes you ${total} debt${total==1?'':'s'}.`
+        if (userData[userId]['OWEDTOME'][userMessage[2]] == 0) { delete userData[userId]['OWEDTOME'][userMessage[2]] }
+    } else if (userMessage[1] === "clear"){
+        if (userData[userId]['OWEDTOME']) {
+            delete userData[userId]['OWEDTOME']
+        }
+        return "Cleared all debts that are owed to you."
+    }
+
+    if(OwedToMeMessage){return OwedToMeMessage} else {return moves.owedToMe.text}
+}
+
+function owedToThem(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.owedToThem.text}
+    if (userMessage[2] && userMessage[2].length > 30){return 'That name is too long. Try a shorter version.'}
+    if (!userData[userId]['OWEDTOTHEM']){userData[userId]['OWEDTOTHEM'] = {}}
+    let OwedToThemMessage = ''
+    let _myDebts = 1
+
+    if(userMessage[1] === "add"){
+        if (userMessage.length == 4 ) {
+            _myDebts = parseInt(userMessage[3])
+            if (isNaN(_myDebts) || _myDebts < 1) { return moves.owedToMe.text }
+        } else {
+            _myDebts = 1
+        }
+        
+        if(!userData[userId]['OWEDTOTHEM'][userMessage[2]]) {
+            userData[userId]['OWEDTOTHEM'][userMessage[2]] = _myDebts
+        } else {
+            userData[userId]['OWEDTOTHEM'][userMessage[2]] += _myDebts;
+        }
+        total = userData[userId]['OWEDTOTHEM'][userMessage[2]]
+        OwedToThemMessage = `You owe ${capitalize(userMessage[2])} ${total} debt${total==1?'':'s'}.`
+
+    } else if (userMessage[1] === "remove"){
+        if (userMessage.length == 4){
+            _myDebts = parseInt(userMessage[3])
+            if (isNaN(_myDebts) || _myDebts < 1) { return moves.owedToMe.text }
+        } else {
+            _myDebts = 1
+        }
+
+        if(userData[userId]['OWEDTOTHEM'][userMessage[2]]){
+            if (userData[userId]['OWEDTOTHEM'][userMessage[2]] < _myDebts){
+                total = userData[userId]['OWEDTOTHEM'][userMessage[2]]
+                return `You only owe ${total} debt${total==1?'':'s'} to ${capitalize(userMessage[2])}. Please enter a valid number of debts to remove.` 
+            } else {
+                userData[userId]['OWEDTOTHEM'][userMessage[2]] -= _myDebts
+            }
+        } else {
+            return `Couldn't find ${capitalize(userMessage[2])}`
+        }
+        total = userData[userId]['OWEDTOTHEM'][userMessage[2]]
+        OwedToThemMessage = `You owe ${capitalize(userMessage[2])} ${total} debt${total==1?'':'s'}.`
+        if (userData[userId]['OWEDTOTHEM'][userMessage[2]] == 0) { delete userData[userId]['OWEDTOTHEM'][userMessage[2]] }
+    } else if (userMessage[1] === "clear"){
+        if (userData[userId]['OWEDTOTHEM']) {
+            delete userData[userId]['OWEDTOTHEM']
+        }
+        return "Cleared all debts that are owed to others."
+    }
+
+    if(OwedToThemMessage){return OwedToThemMessage} else {return moves.owedToThem.text}
 }
 
 function newCustomMove(userMessage, userId, channelId, userNickname, moves, userData){
@@ -620,24 +756,24 @@ function deleteMove(userMessage, userId, channelId, userNickname, moves, userDat
     let deleteCamelName
     userMessage = userMessage.slice(1).join(' ')
     if(nameRegex.test(userMessage)){
-            userMessage = userMessage.slice(1)
-            userMessage = userMessage.slice(0, -1)
-            for(moveCamelName in userData['CUSTOM']){
-                function toCamelCase(sentenceCase) {
-                    var out = "";
-                    sentenceCase.split(" ").forEach(function (el, idx) {
-                        var add = el.toLowerCase();
-                        out += (idx === 0 ? add : add[0].toUpperCase() + add.slice(1));
-                    });
-                    return out;
-                }
-                deleteCamelName = toCamelCase(userMessage)
+        userMessage = userMessage.slice(1)
+        userMessage = userMessage.slice(0, -1)
+        for(moveCamelName in userData['CUSTOM']){
+            function toCamelCase(sentenceCase) {
+                var out = "";
+                sentenceCase.split(" ").forEach(function (el, idx) {
+                    var add = el.toLowerCase();
+                    out += (idx === 0 ? add : add[0].toUpperCase() + add.slice(1));
+                });
+                return out;
+            }
+            deleteCamelName = toCamelCase(userMessage)
 
-                if(moveCamelName === deleteCamelName){
-                    delete userData['CUSTOM'][moveCamelName]
-                    nameCheck = ''
-                }
-    }
+            if(moveCamelName === deleteCamelName){
+                delete userData['CUSTOM'][moveCamelName]
+                nameCheck = ''
+            }
+        }
     }
 
     if(nameCheck){return nameCheck}
@@ -743,4 +879,8 @@ function clearCorruptionOrFaction(userMessage, userId, channelId, userNickname, 
     if (message) { return message}
 
     return moves.clearCorruptionOrFaction.text
+}
+
+function capitalize(phrase) {
+    return phrase.charAt(0).toUpperCase() + phrase.slice(1)
 }
