@@ -5,7 +5,8 @@ var masks = require("./masks")
 var monsterhearts = require("./monsterhearts")
 var motw = require("./motw")
 var theSprawl = require("./the-sprawl")
+var theVeil = require("./the-veil.js")
 var unchartedWorlds = require("./uncharted-worlds")
 var urbanShadows = require("./urban-shadows")
 
-module.exports = {apocalypseWorld, burnedOver, dungeonWorld, masks, monsterhearts, motw, theSprawl, unchartedWorlds, urbanShadows}
+module.exports = {apocalypseWorld, burnedOver, dungeonWorld, masks, monsterhearts, motw, theSprawl, theVeil, unchartedWorlds, urbanShadows}

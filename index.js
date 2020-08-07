@@ -40,6 +40,7 @@ client.on('message', async message => {
         'monsterhearts',
         'motw',
         'the-sprawl',
+        'the-veil',
         'uncharted-worlds',
         'urban-shadows'
     ];
@@ -51,6 +52,7 @@ client.on('message', async message => {
         "monsterhearts":"https://i.imgur.com/T6tTf9N.jpg",
         "motw": "https://i.imgur.com/a9Bi8zM.jpg",
         "the-sprawl": "https://i.imgur.com/qwbb6vQ.jpg",
+        "the-veil": "https://i.imgur.com/ML1mEvp.jpg",
         "uncharted-worlds": "https://i.imgur.com/MJB1dGn.png",
         "urban-shadows": "https://i.imgur.com/Cmgo3Cf.jpg"
     }
