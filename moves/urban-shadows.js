@@ -300,7 +300,7 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
         success: 'On a 10+, give them a +1 or -2 to their roll.',
         mixed: 'On a 7–9, give them a +1 or -2 to their roll and you expose yourself to danger, entanglement, or cost.',
         fail: 'On a 6-, brace yourself...',
-        stat: 'stat',
+        stat: 'faction',
         method: functions.moveRoll
     },
     hitTheStreets: {
@@ -312,7 +312,7 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
  • Whoever you\'re going to is juggling their own problems\n\
  • Whatever you need is more costly than anticipated',
         fail: 'On a 6-, brace yourself...',
-        stat: 'stat',
+        stat: 'faction',
         method: functions.moveRoll
     },
     putAFaceToAName: {
@@ -323,7 +323,7 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
  You’ve also dealt with them before; learn something interesting and useful about them or they owe you a Debt.',
         mixed: 'On a 7–9, you know their reputation; the GM tells you what most people know about them.',
         fail: 'On a 6-, you don’t know them or you owe them; the MC will tell you which',
-        stat: 'stat',
+        stat: 'faction',
         method: functions.moveRoll
     },
     investigateAPlaceOfPower: {
@@ -334,7 +334,7 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
  ask the MC one question about the schemes and politics of the Faction in question',
         mixed: 'On a 7–9, you see below the surface to the reality underneath.',
         fail: 'On a 6-, brace yourself...',
-        stat: 'stat',
+        stat: 'faction',
         method: functions.moveRoll
     },
     doSomeoneAFavor: {
@@ -387,7 +387,7 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
  You also keep the Debt and mark their Faction.',
         mixed: 'On a 7–9, their name carries weight and gives you an opening or opportunity.',
         fail: 'On a 6-, erase the Debt and brace yourself...',
-        stat: 'stat',
+        stat: 'faction',
         method: functions.moveRoll
     },
     markCorruptionOrFaction: {
@@ -444,7 +444,7 @@ __!clear factions__ or __!clear all__ will clear all factions.',
         mixed: 'On a 7–9, you’re neck deep in it: you owe someone in that Fac- tion a Debt,\
  and someone in that Faction owes a Debt to you.',
         fail: 'On a 6-, you’re caught flat-footed, unprepared, or unaware: the MC will tell you who is coming at you.',
-        stat: 'stat',
+        stat: 'faction',
         method: functions.moveRoll
     },
     sessionEnd: {

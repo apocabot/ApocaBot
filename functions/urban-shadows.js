@@ -195,6 +195,11 @@ function moveRoll(userMessage, userId, channelId, userNickname, moves, userData,
     } else if(moves[i].stat === 'stat'){
         if(!userMessage[1]){return 'You need to add a +STAT to your command'}
         modStat = userData[userId][userMessage[1].slice(1).toUpperCase()]
+    } else if(moves[i].stat === 'faction'){
+        if(!userMessage[1] || !isFaction(userMessage[1])){
+            return 'You need to add a +FACTION to your command'
+        }
+        modStat = userData[userId][userMessage[1].slice(1).toUpperCase()]
     } else {
         modStat = userData[userId][moves[i].stat.toUpperCase()];
         showStat = ` ${moves[i].stat.toUpperCase()}`
@@ -463,7 +468,7 @@ function owedToMe(userMessage, userId, channelId, userNickname, moves, userData)
                 userData[userId]['OWEDTOME'][userMessage[2]] -= _myDebts
             }
         } else {
-            return `Couldn't find ${capitalize(userMessage[2])}`
+            return `Couldn't find ${capitalize(userMessage[2])}.`
         }
         total = userData[userId]['OWEDTOME'][userMessage[2]]
         OwedToMeMessage = `${capitalize(userMessage[2])} owes you ${total} debt${total==1?'':'s'}.`
@@ -517,7 +522,7 @@ function owedToThem(userMessage, userId, channelId, userNickname, moves, userDat
                 userData[userId]['OWEDTOTHEM'][userMessage[2]] -= _myDebts
             }
         } else {
-            return `Couldn't find ${capitalize(userMessage[2])}`
+            return `Couldn't find ${capitalize(userMessage[2])}.`
         }
         total = userData[userId]['OWEDTOTHEM'][userMessage[2]]
         OwedToThemMessage = `You owe ${capitalize(userMessage[2])} ${total} debt${total==1?'':'s'}.`
@@ -883,4 +888,8 @@ function clearCorruptionOrFaction(userMessage, userId, channelId, userNickname, 
 
 function capitalize(phrase) {
     return phrase.charAt(0).toUpperCase() + phrase.slice(1)
+}
+
+function isFaction(tag) {
+    return /MORTALITY|MORT|POWER|NIGHT|WILD/.test(tag.toUpperCase())
 }
