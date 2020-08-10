@@ -144,6 +144,7 @@ WARNING: Setting a new game will erase all current character sheets and data. If
  • motw\n\
  • the-sprawl\n\
  • uncharted-worlds\n\
+ • urban-shadows\n\
 EXAMPLE: !setgame apocalypse-world\n\n\
 WARNING: Setting a new game will erase all current character sheets and data. If you\'d like\
  to play a different game with ApocaBot and keep all your current data, simply create a new\

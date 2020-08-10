@@ -41,7 +41,8 @@ client.on('message', async message => {
         'motw',
         'the-sprawl',
         'the-veil',
-        'uncharted-worlds'
+        'uncharted-worlds',
+        'urban-shadows'
     ];
     let iconList = {
         "apocalypse-world": "https://i.imgur.com/axsiHTi.png",
@@ -52,7 +53,8 @@ client.on('message', async message => {
         "motw": "https://i.imgur.com/a9Bi8zM.jpg",
         "the-sprawl": "https://i.imgur.com/qwbb6vQ.jpg",
         "the-veil": "https://i.imgur.com/ML1mEvp.jpg",
-        "uncharted-worlds": "https://i.imgur.com/MJB1dGn.png"
+        "uncharted-worlds": "https://i.imgur.com/MJB1dGn.png",
+        "urban-shadows": "https://i.imgur.com/Cmgo3Cf.jpg"
     }
 
     //load existing userData
@@ -77,7 +79,7 @@ client.on('message', async message => {
                 if(!gameSetMessage){
                     let embed = new Discord.MessageEmbed()
                             .setColor(000000)
-                            .setDescription("To begin using ApocaBot, enter the command __!setgame__ followed by a space and one of the supported games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • monsterhearts\n • motw\n • the-sprawl\n • uncharted-worlds\nEXAMPLE: !setgame apocalypse-world")
+                            .setDescription("To begin using ApocaBot, enter the command __!setgame__ followed by a space and one of the supported games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • monsterhearts\n • motw\n • the-sprawl\n • uncharted-worlds\n • urban-shadows\nEXAMPLE: !setgame apocalypse-world")
                             .setThumbnail("https://i.imgur.com/a5p2OaU.png")
                     message.channel.send({embed})
                 } else {
@@ -90,7 +92,7 @@ client.on('message', async message => {
             }   else if(message.content.startsWith('!')) { 
                 let embed = new Discord.MessageEmbed()
                             .setColor(000000)
-                            .setDescription("Welcome to ApocaBot, a Discord Bot for Powered by the Apocalypse (PbtA) games.\nApocaBot currently supports the following games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • monsterhearts\n • motw\n • the-sprawl\n • uncharted-worlds\nTo begin using ApocaBot, enter the command __!setgame__ followed by the hyphenated name of the PbtA game you\'ll be playing.\nEXAMPLE: !setgame apocalypse-world *or* !setgame motw")
+                            .setDescription("Welcome to ApocaBot, a Discord Bot for Powered by the Apocalypse (PbtA) games.\nApocaBot currently supports the following games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • monsterhearts\n • motw\n • the-sprawl\n • uncharted-worlds\n • urban-shadows\nTo begin using ApocaBot, enter the command __!setgame__ followed by the hyphenated name of the PbtA game you\'ll be playing.\nEXAMPLE: !setgame apocalypse-world *or* !setgame motw")
                             .setThumbnail("https://i.imgur.com/a5p2OaU.png")
                 message.channel.send({embed})
                 return

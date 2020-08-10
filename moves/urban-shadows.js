@@ -13,7 +13,9 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - ROLL SOME DICE: !roll\n\
  - BASIC MOVES LIST: !basic\n\
  - CUSTOM MOVES: !custom\n\
- - DEBTS LIST: !debt\n\
+ - DEBT LIST: !debts\n\
+ - ADD/REMOVE DEBT OWED TO YOU: !owedToMe\n\
+ - ADD/REMOVE DEBT YOU OWE: !owedToThem\n\
  - SET APOCABOT PREFIX: !setprefix\n\
  - SET APOCABOT GAME: !setgame',
         method: function(){return this.text}
@@ -26,13 +28,19 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - PERSUADE AN NPC: !persuade\n\
  - FIGURE SOMEONE OUT: !figure\n\
  - MISLEAD, DISTRACT, OR TRICK: !mdt\n\
+ - KEEP YOUR COOL: !kyc\n\
  - LET IT OUT: !let\n\
  - LEND A HAND OR GET IN THE WAY: !lah OR !gitw\n\
  - HIT THE STREETS: !hit\n\
  - PUT A FACE TO A NAME: !put\n\
  - INVESTIGATE A PLACE OF POWER: !inv\n\
+ - DO SOMEONE A FAVOR: !favor\n\
+ - CASH IN A DEBT: !cash\n\
  - REFUSE TO HONOR A DEBT: !refuse\n\
  - DROP SOMEONE\'S NAME: !drop\n\
+ - MARK CORRUPTION: !mark\n\
+ - CLEAR CORRUPTION: !clear\n\
+ - LEAD A GANG INTO BATTLE: !battle\n\
  - SESSION INTRO: !intro\n\
  - SESSION END: !end',
        method: function(){return this.text}
@@ -60,7 +68,8 @@ Please consider supporting ApocaBot at patreon.com/apocabot to receive\
                 NIGHT: ['night', 0],
                 POWER: ['power', 0],
                 WILD: ['wild', 0],
-                HARM: ['harm', `0 / 5`]
+                HARM: ['harm', `0 / 5`],
+                CORRUPTION: ['corruption', 0]
         }
         },
     newCharacter: {
@@ -159,6 +168,9 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +blood (SPACES MATTER!)',
  • Inflict terrible harm\n\
  • Take something from them',
        mixed: 'On a 7–9, you inflict harm as established, and choose 1:\n\
+ • Inflict terrible harm\n\
+ • Take something from them\n\
+ And also choose 1 from below as well:\n\
  • They inflict harm on you\n\
  • You find yourself in a bad spot',
        fail: 'On a 6-, brace yourself...',
@@ -252,6 +264,16 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
         stat: 'mind',
         method: functions.moveRoll
     },
+    keepYourCool: {
+        name: 'Keep Your Cool',
+        key: ['kyc', 'cool'],
+        text: 'When things get real and you keep your cool, tell the MC what situation you want to avoid and roll with Spirit.',
+        success: 'On a 10+, all\'s well.',
+        mixed: 'On a 7-9, the MC will tell you what it\'s gonna cost you.',
+        fail: 'On a 6-, brace yourself...',
+        stat: 'spirit',
+        method: functions.moveRoll
+    },
     letItOut: {
         name: 'Let It Out',
         key: ['let', 'letout', 'letitout'],
@@ -278,7 +300,7 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
         success: 'On a 10+, give them a +1 or -2 to their roll.',
         mixed: 'On a 7–9, give them a +1 or -2 to their roll and you expose yourself to danger, entanglement, or cost.',
         fail: 'On a 6-, brace yourself...',
-        stat: 'stat',
+        stat: 'faction',
         method: functions.moveRoll
     },
     hitTheStreets: {
@@ -290,7 +312,7 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
  • Whoever you\'re going to is juggling their own problems\n\
  • Whatever you need is more costly than anticipated',
         fail: 'On a 6-, brace yourself...',
-        stat: 'stat',
+        stat: 'faction',
         method: functions.moveRoll
     },
     putAFaceToAName: {
@@ -301,7 +323,7 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
  You’ve also dealt with them before; learn something interesting and useful about them or they owe you a Debt.',
         mixed: 'On a 7–9, you know their reputation; the GM tells you what most people know about them.',
         fail: 'On a 6-, you don’t know them or you owe them; the MC will tell you which',
-        stat: 'stat',
+        stat: 'faction',
         method: functions.moveRoll
     },
     investigateAPlaceOfPower: {
@@ -312,12 +334,37 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
  ask the MC one question about the schemes and politics of the Faction in question',
         mixed: 'On a 7–9, you see below the surface to the reality underneath.',
         fail: 'On a 6-, brace yourself...',
-        stat: 'stat',
+        stat: 'faction',
         method: functions.moveRoll
+    },
+    doSomeoneAFavor: {
+        name: 'Do Someone A Favor',
+        key: ['favor', 'dofavor', 'doafavor', 'dosomeoneafavor'],
+        text: 'When you do someone a favor, they owe you a Debt.',
+        method: function(){return this.text},
+    },
+    cashInADebt: {
+        name: 'Cash In A Debt',
+        key: ['cash','cashin'],
+        text: 'When you cash in a Debt, remind your debtor why they owe you in order to...\n\
+    \n\...make a PC:\n\n\
+ • Do you a favor at moderate cost\n\
+ • Lend a hand to your efforts\n\
+ • Get in the way of someone else\n\
+ • Answer a question honestly\n\
+ • Erase a Debt they hold on someone else\n\n\
+ ...make an NPC:\n\n\
+ • Answer a question honestly about their Faction\n\
+ • Introduce you to a powerful member of their Faction\n\
+ • Give you a worthy and useful gift without cost\n\
+ • Erase a Debt they hold on someone\n\
+ • Give you a Debt they have on someone else\n\
+ • Give you +3 to persuade them (choose before rolling)',
+        method: function(){return this.text}
     },
     refuseToHonorADebt: {
         name: 'Refuse To Honor A Debt',
-        key: ['refuse', 'honor', 'debt', 'refusetohonordebt'],
+        key: ['refuse', 'honor', 'refusetohonordebt'],
         text: 'When you refuse to honor a debt, roll with Heart.',
         success: 'On a 10+, you weasel out of the current deal, but still owe the Debt.',
         mixed: 'On a 7–9, you weasel out of the current deal, but still owe the Debt. Choose 1:\n\n\
@@ -340,7 +387,49 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
  You also keep the Debt and mark their Faction.',
         mixed: 'On a 7–9, their name carries weight and gives you an opening or opportunity.',
         fail: 'On a 6-, erase the Debt and brace yourself...',
-        stat: 'stat',
+        stat: 'faction',
+        method: functions.moveRoll
+    },
+    markCorruptionOrFaction: {
+        name: 'Mark Corruption or Faction',
+        key: ['mark'],
+        text: 'Mark either a faction stat or corruption.\n\n\
+Marking corruption will check off a box in your corruption track; when you\'ve checked off all five boxes,\
+you unlock a corruption advance and clear your corruption track to start anew.\n\
+When you make a Faction move, trigger an intimacy move, cash in a Debt, or honor a Debt, mark the Faction \
+involved. When you\'ve marked all four Factions, erase the marks and advance.\n\n\
+EXAMPLES:\n\
+__!mark corrupt__ will mark corruption.\n\
+__!mark mort__ will mark the Mortality faction.',
+        method: functions.markCorruptionOrFaction
+    },
+
+    clearCorruptionOrFaction: {
+        name: 'Clear Corruption or Faction',
+        key: ['clear'],
+        text: 'Clear your corruption track of all corruption or reset a faction.\n\n\
+EXAMPLES:\n\
+__!clear corrupt__ will clear your corruption track.\n\
+__!clear night__ will clear the Night faction.\n\
+__!clear factions__ or __!clear all__ will clear all factions.',
+        method: functions.clearCorruptionOrFaction
+    },
+    leadAGroupIntoBattle: {
+        name: 'Lead a Group Into Battle',
+        key: ['lead', 'battle'],
+        text: 'When you lead a group into battle against another group, roll with Blood.',
+        success: 'On a 10+, trade harm as established, and pick 3:\n\
+• Your group suffers little harm\n\
+• Your group inflicts terrible harm\n\
+• Your group seizes a vital position\n\
+• Your group avoids collateral damage',
+        mixed: 'On a 7-9, choose, choose 2:\n\
+• Your group suffers little harm\n\
+• Your group inflicts terrible harm\n\
+• Your group seizes a vital position\n\
+• Your group avoids collateral damage',
+        fail: 'On a 6-, brace yourself...',
+        stat: 'blood',
         method: functions.moveRoll
     },
     sessionIntro: {
@@ -355,10 +444,10 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
         mixed: 'On a 7–9, you’re neck deep in it: you owe someone in that Fac- tion a Debt,\
  and someone in that Faction owes a Debt to you.',
         fail: 'On a 6-, you’re caught flat-footed, unprepared, or unaware: the MC will tell you who is coming at you.',
-        stat: 'stat',
+        stat: 'faction',
         method: functions.moveRoll
     },
-    sessionIntro: {
+    sessionEnd: {
         name: 'Session End',
         key: ['end', 'sessionend'],
         text: 'At the end of every session:\n\n\
@@ -367,6 +456,35 @@ If you\'re in their Faction, ask an additional question, even on a miss.',
  • If someone did you a favor at a cost, tell the group; you owe them a Debt.\n\
  • If you did someone a favor without redress, tell the group; they owe you a Debt.',
         method: function(){return this.text}
+    },
+    debts: {
+        key: ['debts'],
+        text: 'Displays the debts that are owed to you and the debts that you owe.\n\n\
+        To add or remove debts owed to you, enter __!owedtome?__.\n\
+        To add or remove debts you owe to others, enter __!owedtothem?__.',
+        method: functions.debts
+    },
+    owedToMe: {
+        key: ['owedtome'],
+        text: 'Use this command to add or remove debts that someone owes you.\n\n\
+        EXAMPLES:\n\
+        __!owedtome add Chris__ will add a debt that Chris owes you.\n\
+        __!owedtome add Varin 2__ will add 2 debts that Varin owes you.\n\
+        __!owedtome remove Livinia__ will remove a debt from the amount that Livinia owes you.\n\
+        __!owedtome remove Trillium 3__ will remove 3 debts from the amount that Trillium owes you.\n\
+        __!owedtome clear__ will remove all debts that are owed to you.',
+        method: functions.owedToMe
+    },
+    owedToThem: {
+        key: ['owedtothem'],
+        text: 'Use this command to add or remove debts that you owe to others.\n\n\
+        EXAMPLES:\n\
+        __!owedtothem add Chris__ will add a debt that you owe Chris.\n\
+        __!owedtothem add Livinia 3__ will add 3 debts that you owe Livinia.\n\
+        __!owedtothem remove Trillium__ will remove a debt from the amount that you owe Trillium.\n\
+        __!owedtothem remove Varin 2__ will remove 2 debts from the amount that you owe Varin.\n\
+        __!owedtothem clear__ will remove all debts that you owe to others.',
+        method: functions.owedToThem
     },
    customMove: {
        key: ['move'],
@@ -398,7 +516,5 @@ To see a list of all custom moves, type __!movelist__.\nTo delete a custom move,
  Enter __!newmove?__ to learn about creating new custom moves, __!deletemove?__ to learn\
  about deleting custom moves, and __!move?__ to learn about using custom moves in your game.',
        method: functions.moveList
-   },
-
-
+   }
 }

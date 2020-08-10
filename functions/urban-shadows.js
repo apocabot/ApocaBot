@@ -1,7 +1,7 @@
 let storage
 require('../mungu.js').then(s => storage = s)
 
-module.exports = {addHx, subHx, printHx, removeHx, deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll}
+module.exports = {deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll, markCorruptionOrFaction, clearCorruptionOrFaction, debts, owedToMe, owedToThem}
 
 //functions
 function removePrefix(message, userData){
@@ -188,16 +188,17 @@ function moveRoll(userMessage, userId, channelId, userNickname, moves, userData,
     let moveText = ''
     let showStat = ''
     let input = userMessage[1];
-    if(userData[userId]['HX']){
-        for(let [name, hxCount] of Object.entries(userData[userId]['HX'])){
-        if(userMessage[1]===`+${name}`){input = hxCount}
-    }}
     input = parseInt(input);
     if(moves[i].stat === 'num'){
         if(!input){input = 0}
         modStat = input
     } else if(moves[i].stat === 'stat'){
         if(!userMessage[1]){return 'You need to add a +STAT to your command'}
+        modStat = userData[userId][userMessage[1].slice(1).toUpperCase()]
+    } else if(moves[i].stat === 'faction'){
+        if(!userMessage[1] || !isFaction(userMessage[1])){
+            return 'You need to add a +FACTION to your command'
+        }
         modStat = userData[userId][userMessage[1].slice(1).toUpperCase()]
     } else {
         modStat = userData[userId][moves[i].stat.toUpperCase()];
@@ -266,7 +267,17 @@ function newCharacter(userMessage, userId, channelId, userNickname, moves, userD
 function characterSheet(userMessage, userId, channelId, userNickname, moves, userData){
     statPrintout = ['Here are your CHARACTER STATS:'];
     for(let [key, value] of Object.entries(userData[userId])){
-        statPrintout.push(`${key}: ${value}`)
+        if(key != 'factions') {
+            if(/MORTALITY|NIGHT|POWER|WILD/.test(key)){
+                const marked = userData[userId]['factions'] && userData[userId]['factions'].includes(key.toLowerCase())
+                statPrintout.push(`(${marked?'•':' '}) ${key}: ${value}`)
+            } else if(key === 'CORRUPTION') {
+                const maxValue = 5;
+                statPrintout.push(`${key}: ${value} / ${maxValue}`)
+            } else if(key !== 'OWEDTOME' && key !== 'OWEDTOTHEM'){
+                statPrintout.push(`${key}: ${value}`)
+            }
+        }
     }
     statPrintout = statPrintout.toString().split(",").join("\n")
     return statPrintout
@@ -311,16 +322,23 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
                         slashVal = parseInt(slashVal.substring(0)) + i
                         if(isNaN(slashVal)){shiftPrintout.push(moves.shift.error)}
                         if(slashVal<0){slashVal=0}
-                            if(slashVal < 5){
-                                userData[userId][key] = `${slashVal} / 5`
-                            } else if(slashVal > 4){
-                                userData[userId][key] = `${slashVal} / 5 IMPROVE!`
-                            }
-                            shiftPrintout.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
+                        if(slashVal < 5){
+                            userData[userId][key] = `${slashVal} / 5`
+                        } else if(slashVal > 4){
+                            userData[userId][key] = `${slashVal} / 5 IMPROVE!`
+                        }
+                        shiftPrintout.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
+                    } else if(value[0]==='corruption'){
+                        let maxValue = 5
+                        userData[userId][key] = slashVal + i;
+                        shiftPrintout.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
+                        if(userData[userId][key] >= maxValue){
+                            shiftPrintout += '\n\Unlock a corruption advance and *clear* your corruption track.'
+                        }
                     } else{
                         userData[userId][key] = slashVal + i;
                         shiftPrintout.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
-                          }    
+                    }    
                 }
             }
         })
@@ -384,66 +402,139 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData)
     else{return characterSheet(userMessage, userId, channelId, userNickname, moves, userData)}
 }
 
-function addHx(userMessage, userId, channelId, userNickname, moves, userData){
-    if(!userMessage[1]){return moves.addHx.text}
-    if(!userData[userId]['HX']){userData[userId]['HX'] = {}}
+function debts(userMessage, userId, channelId, userNickname, moves, userData){
+    let OwedToMePrintout
+    let OwedToThemPrintout
 
-    let person = userData[userId]
-    let hxObj = person['HX']
-    let hxCount = 0
-    if(hxObj[userMessage[1]]) {
-        hxCount = userData[userId]['HX'][userMessage[1]]
-    }
-    hxCount++
-    if (hxCount == 4) {
-        hxCount = 1
-        message = `You hit Hx+4 with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nMark experience and your Hx with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)} is now __Hx+${hxCount}__.`
+    if (userData[userId]['OWEDTOME'] && Object.keys(userData[userId]['OWEDTOME']).length !== 0) {
+        let owedToMeList = []
+        for(let [key, value] of Object.entries(userData[userId]['OWEDTOME'])){
+            owedToMeList.push(`${capitalize(key)}: ${value}`)   
+        }
+        OwedToMePrintout = `DEBTS OWED TO ME:\n • ${owedToMeList.join("\n• ")}`
     } else {
-        if(hxCount>=0){message = `Added 1 to your Hx with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx+${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
-        else {message = `Added 1 to your Hx with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
+        OwedToMePrintout = 'DEBTS OWED TO ME:\n -- None --'
+    }
+    
+    if (userData[userId]['OWEDTOTHEM'] && Object.keys(userData[userId]['OWEDTOTHEM']).length !== 0){
+        let owedToThemList = []
+        for(let [key, value] of Object.entries(userData[userId]['OWEDTOTHEM'])){
+            owedToThemList.push(`${capitalize(key)}: ${value}`)
+        }
+        OwedToThemPrintout = `DEBTS I OWE:\n • ${owedToThemList.join("\n• ")}`
+    } else {
+        OwedToThemPrintout = 'DEBTS I OWE:\n -- None --'
     }
 
-    userData[userId]['HX'][userMessage[1]] = hxCount
-    if (message) {return message }
+    return `Enter __!debts?__ to learn about adding/removing debts.\n\n${OwedToMePrintout}\n\n${OwedToThemPrintout}`
 }
 
-function subHx(userMessage, userId, channelId, userNickname, moves, userData){
-    if(!userMessage[1]){return moves.subHx.text}
-    if(!userData[userId]['HX']){userData[userId]['HX'] = {}}
+function owedToMe(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.owedToMe.text}
+    if (userMessage[2] && userMessage[2].length > 30){return 'That name is too long. Try a shorter version.'}
+    if (!userData[userId]['OWEDTOME']){userData[userId]['OWEDTOME'] = {}}
+    let OwedToMeMessage = ''
+    let _myDebts = 1
 
-    let person = userData[userId]
-    let hxObj = person['HX']
-    let hxCount = 0
-    if(hxObj[userMessage[1]]) {
-        hxCount = userData[userId]['HX'][userMessage[1]]
-    }
-    hxCount--;
-    userData[userId]['HX'][userMessage[1]] = hxCount
-    if(hxCount>=0){
-    return `Subtracted 1 Hx from ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx+${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
-    else {return `Subtracted 1 Hx from ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.\n\nYou now have __Hx${hxCount}__ with ${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)}.`}
-}
+    if(userMessage[1] === "add"){
+        if (userMessage.length == 4 ) {
+            _myDebts = parseInt(userMessage[3])
+            if (isNaN(_myDebts) || _myDebts < 1) { return moves.owedToMe.text }
+        } else {
+            _myDebts = 1
+        }
+        
+        if(!userData[userId]['OWEDTOME'][userMessage[2]]) {
+            userData[userId]['OWEDTOME'][userMessage[2]] = _myDebts
+        } else {
+            userData[userId]['OWEDTOME'][userMessage[2]] += _myDebts;
+        }
+        total = userData[userId]['OWEDTOME'][userMessage[2]]
+        OwedToMeMessage = `${capitalize(userMessage[2])} owes you ${total} debt${total==1?'':'s'}.`
 
-function removeHx(userMessage, userId, channelId, userNickname, moves, userData){
-    if(!userMessage[1]){return moves.subHx.text}
-    if(!userData[userId]['HX']){userData[userId]['HX'] = {}}
+    } else if (userMessage[1] === "remove"){
+        if (userMessage.length == 4){
+            _myDebts = parseInt(userMessage[3])
+            if (isNaN(_myDebts) || _myDebts < 1) { return moves.owedToMe.text }
+        } else {
+            _myDebts = 1
+        }
 
-    if(userData[userId]['HX'][userMessage[1]]) {
-        delete userData[userId]['HX'][userMessage[1]]
-        return `${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)} was removed from your Hx list.`
-    } else {return `${userMessage[1].charAt(0).toUpperCase() + userMessage[1].slice(1)} is not on your Hx list.`}
-}
-
-function printHx(userMessage, userId, channelId, userNickname, moves, userData){
-    let statPrintout = ['Your Hx with:\n']
-    if(!userData[userId]['HX']){return 'You don\'t have Hx with anyone yet.\nEnter __!hx?__ to learn how to set Hx.'}
-
-            for(let [name, hxCount] of Object.entries(userData[userId]['HX'])){
-                if(hxCount>=0){statPrintout.push(`• ${name.charAt(0).toUpperCase() + name.slice(1)} Hx+${hxCount}`)}
-                else {statPrintout.push(`• ${name.charAt(0).toUpperCase() + name.slice(1)} Hx${hxCount}`)}
+        if(userData[userId]['OWEDTOME'][userMessage[2]]){
+            if (userData[userId]['OWEDTOME'][userMessage[2]] < _myDebts){
+                total = userData[userId]['OWEDTOME'][userMessage[2]]
+                return `${capitalize(userMessage[2])} only owes you ${total} debt${total==1?'':'s'}. Please enter a valid number of debts to remove.` 
+            } else {
+                userData[userId]['OWEDTOME'][userMessage[2]] -= _myDebts
             }
-    statPrintout = statPrintout.toString().split(",").join("\n")
-    return statPrintout
+        } else {
+            return `Couldn't find ${capitalize(userMessage[2])}.`
+        }
+        total = userData[userId]['OWEDTOME'][userMessage[2]]
+        OwedToMeMessage = `${capitalize(userMessage[2])} owes you ${total} debt${total==1?'':'s'}.`
+        if (userData[userId]['OWEDTOME'][userMessage[2]] == 0) { delete userData[userId]['OWEDTOME'][userMessage[2]] }
+    } else if (userMessage[1] === "clear"){
+        if (userData[userId]['OWEDTOME']) {
+            delete userData[userId]['OWEDTOME']
+        }
+        return "Cleared all debts that are owed to you."
+    }
+
+    if(OwedToMeMessage){return OwedToMeMessage} else {return moves.owedToMe.text}
+}
+
+function owedToThem(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.owedToThem.text}
+    if (userMessage[2] && userMessage[2].length > 30){return 'That name is too long. Try a shorter version.'}
+    if (!userData[userId]['OWEDTOTHEM']){userData[userId]['OWEDTOTHEM'] = {}}
+    let OwedToThemMessage = ''
+    let _myDebts = 1
+
+    if(userMessage[1] === "add"){
+        if (userMessage.length == 4 ) {
+            _myDebts = parseInt(userMessage[3])
+            if (isNaN(_myDebts) || _myDebts < 1) { return moves.owedToMe.text }
+        } else {
+            _myDebts = 1
+        }
+        
+        if(!userData[userId]['OWEDTOTHEM'][userMessage[2]]) {
+            userData[userId]['OWEDTOTHEM'][userMessage[2]] = _myDebts
+        } else {
+            userData[userId]['OWEDTOTHEM'][userMessage[2]] += _myDebts;
+        }
+        total = userData[userId]['OWEDTOTHEM'][userMessage[2]]
+        OwedToThemMessage = `You owe ${capitalize(userMessage[2])} ${total} debt${total==1?'':'s'}.`
+
+    } else if (userMessage[1] === "remove"){
+        if (userMessage.length == 4){
+            _myDebts = parseInt(userMessage[3])
+            if (isNaN(_myDebts) || _myDebts < 1) { return moves.owedToMe.text }
+        } else {
+            _myDebts = 1
+        }
+
+        if(userData[userId]['OWEDTOTHEM'][userMessage[2]]){
+            if (userData[userId]['OWEDTOTHEM'][userMessage[2]] < _myDebts){
+                total = userData[userId]['OWEDTOTHEM'][userMessage[2]]
+                return `You only owe ${total} debt${total==1?'':'s'} to ${capitalize(userMessage[2])}. Please enter a valid number of debts to remove.` 
+            } else {
+                userData[userId]['OWEDTOTHEM'][userMessage[2]] -= _myDebts
+            }
+        } else {
+            return `Couldn't find ${capitalize(userMessage[2])}.`
+        }
+        total = userData[userId]['OWEDTOTHEM'][userMessage[2]]
+        OwedToThemMessage = `You owe ${capitalize(userMessage[2])} ${total} debt${total==1?'':'s'}.`
+        if (userData[userId]['OWEDTOTHEM'][userMessage[2]] == 0) { delete userData[userId]['OWEDTOTHEM'][userMessage[2]] }
+    } else if (userMessage[1] === "clear"){
+        if (userData[userId]['OWEDTOTHEM']) {
+            delete userData[userId]['OWEDTOTHEM']
+        }
+        return "Cleared all debts that are owed to others."
+    }
+
+    if(OwedToThemMessage){return OwedToThemMessage} else {return moves.owedToThem.text}
 }
 
 function newCustomMove(userMessage, userId, channelId, userNickname, moves, userData){
@@ -462,7 +553,7 @@ function newCustomMove(userMessage, userId, channelId, userNickname, moves, user
     let customMoveMessage = []
     const nameRegex = /^[nN][aA][mM][eE]\+"[\s\S]+$/
     const commandRegex = /^[cC][oO][mM][mM][aA][nN][dD]\+"[a-zA-Z]+$/
-    const rollRegex = /^[rR][oO][lL][lL]\+"\d+d\d+\s\+(cool|hard|hot|sharp|weird|COOL|HARD|HOT|SHARP|WEIRD)$/
+    const rollRegex = /^[rR][oO][lL][lL]\+"\d+d\d+\s\+(blood|heart|mind|spirit|mortality|night|power|wild|BLOOD|HEART|MIND|SPIRIT|MORTALITY|NIGHT|POWER|WILD)$/
     const textRegex =  /^[tT][eE][xX][tT]\+"[\s\S]+$/
     const successRegex = /^[sS][uU][cC][cC][eE][sS][sS]\+"[\s\S]+$/
     const mixedRegex = /^[mM][iI][xX][eE][dD]\+"[\s\S]+$/
@@ -670,27 +761,135 @@ function deleteMove(userMessage, userId, channelId, userNickname, moves, userDat
     let deleteCamelName
     userMessage = userMessage.slice(1).join(' ')
     if(nameRegex.test(userMessage)){
-            userMessage = userMessage.slice(1)
-            userMessage = userMessage.slice(0, -1)
-            for(moveCamelName in userData['CUSTOM']){
-                function toCamelCase(sentenceCase) {
-                    var out = "";
-                    sentenceCase.split(" ").forEach(function (el, idx) {
-                        var add = el.toLowerCase();
-                        out += (idx === 0 ? add : add[0].toUpperCase() + add.slice(1));
-                    });
-                    return out;
-                }
-                deleteCamelName = toCamelCase(userMessage)
+        userMessage = userMessage.slice(1)
+        userMessage = userMessage.slice(0, -1)
+        for(moveCamelName in userData['CUSTOM']){
+            function toCamelCase(sentenceCase) {
+                var out = "";
+                sentenceCase.split(" ").forEach(function (el, idx) {
+                    var add = el.toLowerCase();
+                    out += (idx === 0 ? add : add[0].toUpperCase() + add.slice(1));
+                });
+                return out;
+            }
+            deleteCamelName = toCamelCase(userMessage)
 
-                if(moveCamelName === deleteCamelName){
-                    delete userData['CUSTOM'][moveCamelName]
-                    nameCheck = ''
-                }
-    }
+            if(moveCamelName === deleteCamelName){
+                delete userData['CUSTOM'][moveCamelName]
+                nameCheck = ''
+            }
+        }
     }
 
     if(nameCheck){return nameCheck}
     else{return `You deleted the Custom Move: ${deleteCamelName.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); })}`}
 
+}
+
+function markCorruption(userMessage, userId, channelId, userNickname, moves, userData){
+    return shift(['mark','corruption+1'], userId, channelId, userNickname, moves, userData)
+}
+
+function clearCorruption(userMessage, userId, channelId, userNickname, moves, userData){
+    return setStats(['set','corruption+0'], userId, channelId, userNickname, moves, userData)
+}
+
+function markCorruptionOrFaction(userMessage, userId, channelId, userNickname, moves, userData){
+    if(userMessage.length < 2) { return moves.markCorruptionOrFaction.text }
+    const corruptRegex = RegExp('^c$|corrupt|corruption')
+    const factionRegex = RegExp('^m$|mort|mortality|^n$|night|^p$|pow|power|^w$|wild')
+    if(corruptRegex.test(userMessage[1])){
+        return markCorruption(userMessage, userId, channelId, userNickname, moves, userData)
+    }
+    else if(factionRegex.test(userMessage[1])){
+        if (!userData[userId]['factions']) { userData[userId]['factions'] = []; }
+        let faction;
+        let message;
+        switch(userMessage[1]) {
+            case "m":
+            case "mort":
+            case "mortality":
+                faction = "mortality";
+                break;
+            case "n":
+            case "night":
+                faction = "night";
+                break;
+            case "p":
+            case "pow":
+            case "power":
+                faction = "power";
+                break;
+            case "w":
+            case "wild":
+                faction = "wild"
+        }
+        if (userData[userId]['factions'].includes(faction)) {
+            message = `${faction} already marked.`
+        } else {
+            userData[userId]['factions'].push(faction)
+            message = `Marked ${faction}.`
+        }
+        if(userData[userId]['factions'].length == 4) {
+            message += ' All factions marked. Clear the marks and advance.'
+        }
+        if (message) { return message}
+    }
+    return moves.markCorruptionOrFaction.text
+}
+
+function clearCorruptionOrFaction(userMessage, userId, channelId, userNickname, moves, userData){
+    if(userMessage.length < 2) { return moves.clearCorruptionOrFaction.text }
+    const corruptRegex = RegExp('^c$|corrupt|corruption')
+    const factionRegex = RegExp('^m$|mort|mortality|^n$|night|^p$|pow|power|^w$|wild')
+    if(corruptRegex.test(userMessage[1])){
+        return clearCorruption(userMessage, userId, channelId, userNickname, moves, userData)
+    }
+    else if(factionRegex.test(userMessage[1])){
+        if (!userData[userId]['factions']) { userData[userId]['factions'] = []; }
+        let faction;
+        let message;
+        switch(userMessage[1]) {
+            case "m":
+            case "mort":
+            case "mortality":
+                faction = "mortality";
+                break;
+            case "n":
+            case "night":
+                faction = "night";
+                break;
+            case "p":
+            case "pow":
+            case "power":
+                faction = "power";
+                break;
+            case "w":
+            case "wild":
+                faction = "wild"
+                break;
+        }
+        const index = userData[userId]['factions'].indexOf(faction);
+        if (index > -1) {
+            userData[userId]['factions'].splice(index, 1);
+            message = `Cleared ${faction}.`
+        } else {
+            message = `${faction} already cleared.`
+        }
+    } else if (/^a$|all|^f$|faction|factions/.test(userMessage[1])) {
+        userData[userId]['factions']= [];
+        message = "All factions cleared."
+    }
+    
+    if (message) { return message}
+
+    return moves.clearCorruptionOrFaction.text
+}
+
+function capitalize(phrase) {
+    return phrase.charAt(0).toUpperCase() + phrase.slice(1)
+}
+
+function isFaction(tag) {
+    return /MORTALITY|MORT|POWER|NIGHT|WILD/.test(tag.toUpperCase())
 }
