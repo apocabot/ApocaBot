@@ -130,6 +130,7 @@ WARNING: Setting a new game will erase all current character sheets and data. If
  • monsterhearts\n\
  • motw\n\
  • the-sprawl\n\
+ • the-veil\n\
  • uncharted-worlds\n\
  • urban-shadows\n\
 EXAMPLE: !setgame apocalypse-world\n\n\

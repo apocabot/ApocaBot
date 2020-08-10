@@ -79,7 +79,7 @@ client.on('message', async message => {
                 if(!gameSetMessage){
                     let embed = new Discord.MessageEmbed()
                             .setColor(000000)
-                            .setDescription("To begin using ApocaBot, enter the command __!setgame__ followed by a space and one of the supported games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • monsterhearts\n • motw\n • the-sprawl\n • uncharted-worlds\n • urban-shadows\nEXAMPLE: !setgame apocalypse-world")
+                            .setDescription("To begin using ApocaBot, enter the command __!setgame__ followed by a space and one of the supported games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • monsterhearts\n • motw\n • the-sprawl\n • the-veil\n\ • uncharted-worlds\n • urban-shadows\nEXAMPLE: !setgame apocalypse-world")
                             .setThumbnail("https://i.imgur.com/a5p2OaU.png")
                     message.channel.send({embed})
                 } else {
@@ -92,7 +92,7 @@ client.on('message', async message => {
             }   else if(message.content.startsWith('!')) { 
                 let embed = new Discord.MessageEmbed()
                             .setColor(000000)
-                            .setDescription("Welcome to ApocaBot, a Discord Bot for Powered by the Apocalypse (PbtA) games.\nApocaBot currently supports the following games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • monsterhearts\n • motw\n • the-sprawl\n • uncharted-worlds\n • urban-shadows\nTo begin using ApocaBot, enter the command __!setgame__ followed by the hyphenated name of the PbtA game you\'ll be playing.\nEXAMPLE: !setgame apocalypse-world *or* !setgame motw")
+                            .setDescription("Welcome to ApocaBot, a Discord Bot for Powered by the Apocalypse (PbtA) games.\nApocaBot currently supports the following games:\n • apocalypse-world\n • burned-over\n • dungeon-world\n • masks\n • monsterhearts\n • motw\n • the-sprawl\n • the-veil\n\ • uncharted-worlds\n • urban-shadows\nTo begin using ApocaBot, enter the command __!setgame__ followed by the hyphenated name of the PbtA game you\'ll be playing.\nEXAMPLE: !setgame apocalypse-world *or* !setgame motw")
                             .setThumbnail("https://i.imgur.com/a5p2OaU.png")
                 message.channel.send({embed})
                 return

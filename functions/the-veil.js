@@ -391,7 +391,6 @@ function newCharacter(userMessage, userId, channelId, userNickname, moves, userD
     person.SPIKE = ['', false]
     userData[userId] = person;
     storage.set(channelId, userData);
-    console.log(userData[userId])
     return 'CREATED A BLANK CHARACTER: Type __!set?__ to learn\
  how to set your character stats.\n' + characterSheet(userMessage, userId, channelId, userNickname, moves, userData)
 }
@@ -414,7 +413,6 @@ function characterSheet(userMessage, userId, channelId, userNickname, moves, use
     }
     statPrintout.push(`PREP: ${userData['PREP']}`)
     statPrintout = statPrintout.toString().split(",").join("\n")
-    console.log(userData[userId])
     return statPrintout
 }
 
@@ -447,8 +445,6 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
                     if(value[0]==='name'){
                         shiftPrintout.push(moves.shift.error); return
                     } else if(value[0]==='harm'){
-                        console.log(userData[userId][key])
-                        console.log(i)
                         let slashVal = userData[userId][key]
                         let oldStat = userData[userId][key]
                         slashVal = parseInt(slashVal.substring(0)) + i
@@ -580,7 +576,6 @@ function spikeState(userMessage, userId, channelId, userNickname, moves, userDat
             }
         })
     }
-    console.log(shiftPrintout)
     if (!changeCheck){return moves.spikeState.text}
     else{return shiftPrintout}
 }
