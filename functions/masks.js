@@ -257,7 +257,7 @@ function moveRoll(userMessage, userId, channelId, userNickname, moves, userData,
     }
     if (userMessage[0] === 'unleash' && userData[userId]['CONDITIONS'].includes('Hopeless')){
         conditions += -2;
-        result.push(` *(-2 Hopeless)v`)
+        result.push(` *(-2 Hopeless)*`)
     }
     if (userMessage[0] === 'defend' && userData[userId]['CONDITIONS'].includes('Insecure')){
         conditions += -2;
@@ -283,7 +283,7 @@ function moveRoll(userMessage, userId, channelId, userNickname, moves, userData,
 			modStat = Math.abs(modStat);
 			rollText = `You rolled [${result} ] = ${total} - ${modStat}${showStat}. That’s ${grandTotal}.`}
         return `__${moves[i].name}__\n${rollText}\n\n${moveText}`
-        }
+}
 
 function newCharacter(userMessage, userId, channelId, userNickname, moves, userData){
     if(!userData['TEAM']){userData['TEAM'] = 0}
