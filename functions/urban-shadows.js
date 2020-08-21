@@ -299,25 +299,23 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
                     if(value[0]==='name'){
                         shiftPrintout.push(moves.shift.error); return
                     } else if(value[0]==='harm'){
-                        if(userData[userId][key] === `It's 0 o'clock`){slashVal = 0}
-                        else if(userData[userId][key] === `It's 3 o'clock`){slashVal = 1}
-                        else if(userData[userId][key] === `It's 6 o'clock`){slashVal = 2}
-                        else if(userData[userId][key] === `It's 9 o'clock`){slashVal = 3}
-                        else if(userData[userId][key] === `It's 10 o'clock. This is serious.`){slashVal = 4}
-                        else if(userData[userId][key] === `It's 11 o'clock. Things are looking bad.`){slashVal = 5}
-                        else if(userData[userId][key] === `It's 12 o'clock. Life has become untenable.`){slashVal = 6}
-                        slashVal = slashVal + i
+                        let slashVal = userData[userId][key]
+                        let oldStat = userData[userId][key]
+                        slashVal = parseInt(slashVal.substring(0)) + i
                         if(isNaN(slashVal)){shiftPrintout.push(moves.shift.error)}
                         if(slashVal<0){slashVal=0}
-                        if(slashVal>6){slashVal=6}
-                        if(slashVal <= 0){userData[userId][key] = `It's 0 o'clock`}
-                        else if (slashVal === 1){userData[userId][key] = `It's 3 o'clock`}
-                        else if (slashVal === 2){userData[userId][key] = `It's 6 o'clock`}
-                        else if (slashVal === 3){userData[userId][key] = `It's 9 o'clock`}
-                        else if (slashVal === 4){userData[userId][key] = `It's 10 o'clock. This is serious.`}
-                        else if (slashVal === 5){userData[userId][key] = `It's 11 o'clock. Things are looking bad.`}
-                        else if (slashVal >= 6){userData[userId][key] = `It's 12 o'clock. Life has become untenable.`}
-                            shiftPrintout.push(`${key}: ${userData[userId][key]}`)
+                            if(slashVal < 1){
+                                userData[userId][key] = `${slashVal} / 5`
+                            } else if(slashVal === 1){
+                                userData[userId][key] = `${slashVal} / 5 Faint Harm`
+                            } else if(slashVal > 1 && slashVal < 4){
+                                userData[userId][key] = `${slashVal} / 5 Grievous Harm`
+                            } else if(slashVal > 3 && slashVal < 6){
+                                userData[userId][key] = `${slashVal} / 5 Critical Harm!`
+                            } else if(slashVal > 5){
+                                userData[userId][key] = `${slashVal} / 5 YOU ARE DEAD!`
+                            }
+                            shiftPrintout.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
                     } else if(value[0]==='exp'){
                         slashVal = parseInt(slashVal.substring(0)) + i
                         if(isNaN(slashVal)){shiftPrintout.push(moves.shift.error)}
@@ -365,14 +363,11 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData)
                     i = parseInt(i)
                     if(isNaN(i)){setErrors.push(moves.set.error)}
                     if(i<0){i=0}
-                    if(i>6){i=6}
-                        if(i === 0){i = `It's 0 o'clock`}
-                        else if (i === 1){i = `It's 3 o'clock`}
-                        else if (i === 2){i = `It's 6 o'clock`}
-                        else if (i === 3){i = `It's 9 o'clock`}
-                        else if (i === 4){i = `It's 10 o'clock. This is serious.`}
-                        else if (i === 5){i = `It's 11 o'clock. Things are looking bad.`}
-                        else if (i === 6){i = `It's 12 o'clock. Life has become untenable.`}
+                        if(i < 1){i = `${i} / 5`}
+                        else if(i === 1){i = `${i} / 5 Faint Harm`}
+                        else if(i > 1 && i < 4){i = `${i} / 5 Grievous Harm`}
+                        else if (i > 3 && i < 6){i = `${i} / 5 Critical Harm`}
+                        else if (i > 5){i = `${i} / 5 YOU ARE DEAD!`}
                     if(!i){setErrors.push(moves.set.error)}
                     else{userData[userId][key] = i}
                 } else if (value[0]==="exp"){
