@@ -17,7 +17,7 @@ EXAMPLE: `!setgame dungeon-world` *or* `!setgame motw`
 
 Once you've selected a game, you'll be able to access the game `!menu`, or `!setprefix` to change the bot prefix (ApocaBot defaults to commands with the prefix `!`). From the menu you can find all the other game commands, and any command information can be looked up with the format `!command?` (prefix/command/?).  
 
-Before you can *use* any of the commands (like `!roll`), you must create a character sheet. If you try to use a command before setting up a character sheet the bot will propt you to enter `!newcharacter` and learn how to `!set` your stats. After you've done so, you will have access to all the bot commands, dice roller with stat integration, and game info.  
+Before you can *use* any of the commands (like `!roll`), you must create a character sheet. If you try to use a command before setting up a character sheet the bot will prompt you to enter `!newcharacter` and learn how to `!set` your stats. After you've done so, you will have access to all the bot commands, dice roller with stat integration, and game info.  
 
 ### Generic Commands
 
