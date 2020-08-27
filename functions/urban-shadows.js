@@ -421,7 +421,7 @@ function debts(userMessage, userId, channelId, userNickname, moves, userData){
         OwedToThemPrintout = 'DEBTS I OWE:\n -- None --'
     }
 
-    return `Enter __!debts?__ to learn about adding/removing debts.\n\n${OwedToMePrintout}\n\n${OwedToThemPrintout}`
+    return `Enter __!debts?__ to learn how to add or remove debts.\n\n${OwedToMePrintout}\n\n${OwedToThemPrintout}`
 }
 
 function owedToMe(userMessage, userId, channelId, userNickname, moves, userData){
