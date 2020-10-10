@@ -1,4 +1,4 @@
-const url = process.env.MONGODB_URI
+const url = process.env.DB_URI
 const dbName = 'heroku_42fh9g7w'
 const collectionName = 'userData'
 var mungu = require('mungu')
