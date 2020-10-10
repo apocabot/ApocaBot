@@ -12,6 +12,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - SHIFT CHARACTER STATS: !shift\n\
  - ROLL SOME DICE: !roll\n\
  - BASIC MOVES LIST: !basic\n\
+ - OTHER MOVES LIST: !other\n\
  - CUSTOM MOVES: !custom\n\
  - DEBT LIST: !debts\n\
  - ADD/REMOVE DEBT OWED TO YOU: !owedToMe\n\
@@ -30,7 +31,12 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - MISLEAD, DISTRACT, OR TRICK: !mdt\n\
  - KEEP YOUR COOL: !kyc\n\
  - LET IT OUT: !let\n\
- - LEND A HAND OR GET IN THE WAY: !lah OR !gitw\n\
+ - LEND A HAND OR GET IN THE WAY: !lah OR !gitw',
+       method: function(){return this.text}
+   },
+   otherMoves: {
+       key: ['other', 'othermoves'],
+       text: 'OTHER MOVES:\n\n\
  - HIT THE STREETS: !hit\n\
  - PUT A FACE TO A NAME: !put\n\
  - INVESTIGATE A PLACE OF POWER: !inv\n\
