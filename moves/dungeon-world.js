@@ -581,7 +581,7 @@ To see a list of all custom moves, type __!movelist__.\nTo delete a custom move,
  • !newmove\n\
  • name+"Move Name"\n\
  • command+"movecommand"\n\
- • roll+"xdy +stat"\n\
+ • roll+"xdy +stat" __OR__ roll+"xdy" (for statless rolls)\n\
  • text+"Description of move"\n\
  • success+"this happens when you succeed..."\n\
  • mixed+"this happens on a mixed success..."\n\

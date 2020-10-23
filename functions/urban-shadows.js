@@ -548,7 +548,7 @@ function newCustomMove(userMessage, userId, channelId, userNickname, moves, user
     let customMoveMessage = []
     const nameRegex = /^[nN][aA][mM][eE]\+"[\s\S]+$/
     const commandRegex = /^[cC][oO][mM][mM][aA][nN][dD]\+"[a-zA-Z]+$/
-    const rollRegex = /^[rR][oO][lL][lL]\+"\d+d\d+\s\+(blood|heart|mind|spirit|mortality|night|power|wild|BLOOD|HEART|MIND|SPIRIT|MORTALITY|NIGHT|POWER|WILD)$/
+    const rollRegex = /^[rR][oO][lL][lL]\+"\d+d\d+(\s*|\s\+(blood|heart|mind|spirit|mortality|night|power|wild|BLOOD|HEART|MIND|SPIRIT|MORTALITY|NIGHT|POWER|WILD))$/
     const textRegex =  /^[tT][eE][xX][tT]\+"[\s\S]+$/
     const successRegex = /^[sS][uU][cC][cC][eE][sS][sS]\+"[\s\S]+$/
     const mixedRegex = /^[mM][iI][xX][eE][dD]\+"[\s\S]+$/
