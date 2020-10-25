@@ -15,6 +15,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - ADULT MOVES LIST: !adult\n\
  - CUSTOM MOVES: !custom\n\
  - ADD/REMOVE INFLUENCE: !inf\n\
+ - SET POTENTIAL ON A MISS: !potOnMiss\n\
  - SET APOCABOT PREFIX: !setprefix\n\
  - SET APOCABOT GAME: !setgame',
         method: function(){return this.text}
@@ -514,6 +515,13 @@ To remove their influence over you:\n\
 To remove your influence over them:\n\
  • Enter __!overthem remove name__ (where *name* in the other character\'s name)',
        method: functions.overThem
+   },
+   setExpOnAMiss: {
+       key: ['potonmiss', 'potentialonamiss', 'potentialonmiss', 'potonamiss'],
+       text: 'Set the rule for Potential on a Miss.\n\nTo set the rule, enter __!potOnMiss__ followed by yes or no.\n\
+• yes: Whenever a miss is rolled using a move command, a reminder will be displayed to mark Potential.\n\
+• no: No reminder will be displayed.',
+       method: functions.setExpOnAMiss
    },
     customMove: {
        key: ['move'],

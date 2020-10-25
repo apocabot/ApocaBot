@@ -655,15 +655,19 @@ function setExpOnAMiss(userMessage, userId, channelId, userNickname, moves, user
     if(!userMessage[1]){return moves.setExpOnAMiss.text}
 
     let message
-    if ('yes y on'.includes(userMessage[1])){
+    if (['yes', 'y', 'on'].includes(userMessage[1])){
         if(!userData['EXP_ON_MISS']) { 
             userData['EXP_ON_MISS'] = true
             message = "Turned on 'Experience on a miss' rule." 
+        } else {
+            message = "'Experience on a miss' is already turned on."
         }
-    } else if ('no n off'.includes(userMessage[1])){
+    } else if (['no', 'n', 'off'].includes(userMessage[1])){
         if(userData['EXP_ON_MISS']) { 
             delete userData['EXP_ON_MISS']
             message = "Turned off 'Experience on a miss' rule."
+        } else {
+            message = "'Experience on a miss' is already turned off."
         }
     } else {
         return moves.setExpOnAMiss.text

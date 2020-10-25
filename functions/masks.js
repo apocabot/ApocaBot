@@ -1,7 +1,7 @@
 let storage
 require('../mungu.js').then(s => storage = s)
 
-module.exports = {influence, overMe, overThem, deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll, markCondition, clearCondition}
+module.exports = {setExpOnAMiss, influence, overMe, overThem, deleteMove, moveList, customMove, newCustomMove, setGame, setPrefix, removePrefix, xdyRoll, roll, newCharacter, characterSheet, setStats, shift, moveRoll, markCondition, clearCondition}
 
 //functions
 function removePrefix(message, userData){
@@ -278,6 +278,7 @@ function moveRoll(userMessage, userId, channelId, userNickname, moves, userData,
         moveText = moves[i].mixed
     } else if (6 >= grandTotal ){
         moveText =  moves[i].fail
+        if (userData['EXP_ON_MISS']) {moveText = moveText.concat(`\n__Mark Potential!__`)}
     }
     if (modStat >= 0){
 			rollText = `You rolled [${result} ] = ${total} + ${modStat}${showStat}. That’s ${grandTotal}.`}
@@ -620,6 +621,31 @@ function overThem(userMessage, userId, channelId, userNickname, moves, userData)
     }
 
         if(overThemMessage){return overThemMessage} else {return moves.overThem.text}
+}
+
+function setExpOnAMiss(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userMessage[1]){return moves.setExpOnAMiss.text}
+
+    let message
+    if (['yes', 'y', 'on'].includes(userMessage[1])){
+        if(!userData['EXP_ON_MISS']) { 
+            userData['EXP_ON_MISS'] = true
+            message = "Turned on 'Potential on a Miss' rule." 
+        } else {
+            message = "'Potential on a Miss' is already turned on."
+        }
+    } else if (['no', 'n', 'off'].includes(userMessage[1])){
+        if(userData['EXP_ON_MISS']) { 
+            delete userData['EXP_ON_MISS']
+            message = "Turned off 'Potential on a Miss' rule."
+        } else {
+            message = "'Potential on a Miss' is already turned off."
+        }
+    } else {
+        return moves.setExpOnAMiss.text
+    }
+
+    if (message) { return message }
 }
 
 function newCustomMove(userMessage, userId, channelId, userNickname, moves, userData){
