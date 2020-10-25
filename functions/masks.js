@@ -147,7 +147,9 @@ function xdyRoll(userMessage, userId, channelId, userNickname, moves, userData){
     for(let [key, value] of Object.entries(moves.abilities.stats)){
         userMessage.forEach(i => {
             if(i.startsWith(value[0]) || i.startsWith(`+${value[0]}`)){
-                modStat = parseInt(userData[userId][key])
+                if(value[0] === 'con'){
+                    modStat=userData[userId]['CONDITIONS'].split(" ").length-1
+                } else {modStat = parseInt(userData[userId][key])}
                 grandTotal.push(modStat)
                 if(modStat>=0){
                     modStatMessage = modStatMessage.concat(` + ${modStat} ${key}`);
@@ -636,7 +638,7 @@ function newCustomMove(userMessage, userId, channelId, userNickname, moves, user
     let customMoveMessage = []
     const nameRegex = /^[nN][aA][mM][eE]\+"[\s\S]+$/
     const commandRegex = /^[cC][oO][mM][mM][aA][nN][dD]\+"[a-zA-Z]+$/
-    const rollRegex = /^[rR][oO][lL][lL]\+"\d+d\d+(\s*|\s\+(dan|fre|sav|sup|mun|DAN|FRE|SAV|SUP|MUN))$/
+    const rollRegex = /^[rR][oO][lL][lL]\+"\d+d\d+(\s*|\s\+(dan|fre|sav|sup|mun|con|cond|DAN|FRE|SAV|SUP|MUN|CON|COND))$/
     const textRegex =  /^[tT][eE][xX][tT]\+"[\s\S]+$/
     const successRegex = /^[sS][uU][cC][cC][eE][sS][sS]\+"[\s\S]+$/
     const mixedRegex = /^[mM][iI][xX][eE][dD]\+"[\s\S]+$/

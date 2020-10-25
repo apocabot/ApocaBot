@@ -66,7 +66,7 @@ Please consider supporting ApocaBot at patreon.com/apocabot to receive\
                 SAVIOR: ['sav', 0],
                 SUPERIOR: ['sup', 0],
                 MUNDANE: ['mun', 0],
-                CONDITIONS: ['mark', ''],
+                CONDITIONS: ['con', ''],
                 POTENTIAL: ['pot', '0 / 5']
         },
     },
