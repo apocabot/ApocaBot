@@ -175,7 +175,8 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
  - You suffer less harm (-1 harm)\n\
  - You force them where you want them',
         mixed: 'On a 7–9, you and whatever you\'re fighting inflict harm on each other.',
-        fail: 'On a 6-, be prepared for the worst...',
+        fail: 'On a 6-, you get your ass kicked instead. You suffer harm or get captured\n\
+ etc., but don`t inflict harm.',
         stat: 'tough',
         method: functions.moveRoll
     },
@@ -186,7 +187,7 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         success: 'On a 10+, you do what you set out to do.',
         mixed: 'On a 7–9, the Keeper is going to give you a worse outcome, hard choice,\
  or price to pay.',
-        fail: 'On a 6-, be prepared for the worst...',
+        fail: 'On a 6-, things go to hell. The pressure overwhelms the Hunter.',
         stat: 'cool',
         method: functions.moveRoll
     },
@@ -197,7 +198,9 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
         success: 'On a 10+, your help grants them +1 to their roll.',
         mixed: 'On a 7–9, your help grants them +1 to their roll,\
  but you also expose yourself to trouble or danger.',
-        fail: 'On a 6-, be prepared for the worst...',
+        fail: 'On a 6-, you expose yourself to trouble or danger, without helping.\n\
+ This could be the same danger as threatens the Hunter you are attempting to help or\n\
+ something else entirely.',
         stat: 'cool',
         method: functions.moveRoll
     },
@@ -233,7 +236,8 @@ EXAMPLE: !roll 2d6 +1  OR  !roll 2d6 +charm (SPACES MATTER!)',
  - What was it going to do?\n\
  - What is being concealed here?\n\
  - (type !phenom if investigating a phenomena)',
-        fail: 'On a 6-, be prepared for the worst...',
+        fail: 'On a 6-, the hunter reveals some information to the monster, or whoever\n\
+ you are talking to. The Keeper (GM) may ask the player or Hunter questions they have to answer.',
         stat: 'sharp',
         method: functions.moveRoll
     },
@@ -248,7 +252,7 @@ Once you have given them a reason, tell them what you want them to do.',
         mixed: 'On a 7–9, they’ll do it, but only if you do something\
  for them right now to show that you mean it. If you asked too much,\
  they’ll tell you what, if anything, it would take for them to do it.',
-        fail: 'On a 6-, be prepared for the worst...',
+        fail: 'On a 6-, your approach is completely wrong. You have offended or angered them.',
         stat: 'charm',
         method: functions.moveRoll
     },
@@ -260,7 +264,8 @@ Once you have given the other hunter a reason, tell them what you want them to d
         success: 'On a 10+, if they do what you ask they mark\
  experience and get +1 forward.',
         mixed: 'On a 7–9, they mark experience if they do what you want.',
-        fail: 'On a 6-, be prepared for the worst...',
+        fail: 'On a 6-, it`s up to that Hunter to decide how badly you offend or annoy them.\
+ They mark experience if they don`t do what you asked.',
         stat: 'charm',
         method: functions.moveRoll
     },
@@ -277,7 +282,8 @@ When you prevent harm to another character.',
  - You hold the enemy back',
         mixed: 'On a 7-9, you protect them okay, but\
  you\'ll suffer some or all of the harm they were going to get.',
-        fail: 'On a 6-, be prepared for the worst...',
+        fail: 'On a 6-, you make things worse. The victim or Hunter will most likely\n\
+ be harmed, as well as receive a hard move reaction from the Keeper.',
         stat: 'tough',
         method: functions.moveRoll
     },
@@ -310,7 +316,8 @@ When you look around and read a bad situation, you can ask:\n\
  - What\'s the biggest threat?\n\
  - What\'s most vulnerable to me?\n\
  - What\'s the best way to protect the victims?',
-        fail: 'On a 6-, be prepared for the worst...',
+        fail: 'On a 6-, your Hunter has misread the situation, or has revealed tactical\n\
+ details to their enemies. The Keeper may ask the player or Hunter questions they have to answer.',
         stat: 'sharp',
         method: functions.moveRoll
     },

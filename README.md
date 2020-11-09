@@ -23,7 +23,7 @@ Before you can *use* any of the commands (like `!roll`), you must create a chara
 
  * `!newcharacter` - Use this command to create a new blank character or to zero out your character stats. Each player must create their own character. Sometimes creating a new blank character sheet will be necessary for updates in the bot to be visible.
  * `!character` - Enter this command at any time to check on your character stats.
- * `!set stat+value` - To set your character stats, enter the command `!set` followed by all the STAT MODIFIERS you want to set. Use the stat name +/- stat value. Unentered stats will default to zero or their existing value. If you enter `name+nickname` it will enter your Disord Channel nickname.  
+ * `!set stat+value` - To set your character stats, enter the command `!set` followed by all the STAT MODIFIERS you want to set. Use the stat name +/- stat value. Unentered stats will default to zero or their existing value. If you enter `name+nickname` it will enter your Discord Channel nickname.  
  Example: `!set name+bambino str+1 wis+2 cha-1 ... etc`
  * `!shift stat+value` - Use this command to change your character stats by a certain amount. This is useful if you want to subtract from your hp, or when leveling up. The stat will shift up or down by the value amount.  
  Example: `!shift hp-5` will remove 5 from your character's current hp.

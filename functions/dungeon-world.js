@@ -7,7 +7,10 @@ module.exports = {deleteMove, moveList, customMove, newCustomMove, setGame, setP
 function removePrefix(message, userData){
     query = false
     newMoveRegex = /([nN][eE][wW][mM][oO][vV][eE])/
-    if(newMoveRegex.test(message)){
+    gearRegex = /([gG][eE][aA][rR])/
+    noteRegex = /([Nn][Oo][Tt][Ee])/
+    notesRegex = /([Nn][Oo][Tt][Ee][Ss])/
+    if(newMoveRegex.test(message) || gearRegex.test(message) || noteRegex.test(message) || notesRegex.test(message)){
         let prefixed = message.split(" ");
         if (prefixed[0] === userData['PREFIX']) {
             prefixed.shift();
@@ -260,9 +263,16 @@ function newCharacter(userMessage, userId, channelId, userNickname, moves, userD
 }
 
 function characterSheet(userMessage, userId, channelId, userNickname, moves, userData){
+    console.log(userData[userId])
     statPrintout = ['Here are your CHARACTER STATS:'];
     for(let [key, value] of Object.entries(userData[userId])){
-        statPrintout.push(`${key}: ${value}`)
+        if (key==='GEAR') {
+            statPrintout.push('GEAR: !gear')
+        }
+        else if (key==='NOTES') {
+            statPrintout.push('NOTES: !notes')
+        }
+        else {statPrintout.push(`${key}: ${value}`)}
     }
     statPrintout = statPrintout.toString().split(",").join("\n")
     return statPrintout
