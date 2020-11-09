@@ -6,15 +6,16 @@ module.exports = moves = {
     menu: {
         key: ['help', 'menu'],
         text: 'ALL APOCABOT COMMANDS BEGIN WITH PREFIX (default ! ).\n\
-ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
+ADD SUFFIX ? TO ANY COMMAND FOR MORE INFO:\n\n\
  - NEWCHARACTER: !newcharacter\n\
  - CHECK YOUR CHARACTER STATS: !character\n\
  - SET CHARACTER STATS: !set\n\
  - SHIFT CHARACTER STATS: !shift\n\
+ - GEAR / NOTES: !gear / !notes\n\
  - ROLL SOME DICE: !roll\n\
  - BASIC MOVES LIST: !basic\n\
  - SPECIAL MOVES LIST: !special\n\
- - TPW MOVES LIST: !tpw\n\
+ - THE PERILOUS WILDS MOVES: !tpw\n\
  - CUSTOM MOVES: !custom\n\
  - SET APOCABOT PREFIX: !setprefix\n\
  - SET APOCABOT GAME: !setgame',
