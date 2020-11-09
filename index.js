@@ -32,6 +32,7 @@ client.on('message', async message => {
     const userId = message.member.id;
     const channelId = message.channel.id;
     const userNickname = message.member.nickname;
+    const userName = message.author.username;
     let gameList = [
         'apocalypse-world',
         'burned-over',
@@ -155,7 +156,7 @@ client.on('message', async message => {
                             message.channel.send({embed})
                             storage.set('COUNTER', counter)
                         } else {
-                            finalMessage = moves[i].method(userMessage, userId, channelId, userNickname, moves, userData, i, gameList)
+                            finalMessage = moves[i].method(userMessage, userId, channelId, userNickname, moves, userData, i, gameList, userName)
                             const embed = new Discord.MessageEmbed()
                             .setAuthor(messageName)
                             .setColor(000000)
