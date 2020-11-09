@@ -263,17 +263,13 @@ function newCharacter(userMessage, userId, channelId, userNickname, moves, userD
 }
 
 function characterSheet(userMessage, userId, channelId, userNickname, moves, userData){
-    console.log(userData[userId])
     statPrintout = ['Here are your CHARACTER STATS:'];
     for(let [key, value] of Object.entries(userData[userId])){
-        if (key==='GEAR') {
-            statPrintout.push('GEAR: !gear')
+        if (key!=='GEAR' || key!=="NOTES") {
+            statPrintout.push(`${key}: ${value}`)
         }
-        else if (key==='NOTES') {
-            statPrintout.push('NOTES: !notes')
-        }
-        else {statPrintout.push(`${key}: ${value}`)}
     }
+    statPrintout.push(['GEAR: !gear', 'NOTES: !notes'])
     statPrintout = statPrintout.toString().split(",").join("\n")
     return statPrintout
 }
