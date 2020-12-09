@@ -1,4 +1,5 @@
 const functions = require('./../functions/uncharted-worlds.js');
+const general = require('./../functions/general.js');
 
 //text library object
 module.exports = moves = {
@@ -10,6 +11,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - CHECK YOUR CHARACTER STATS: !character\n\
  - SET CHARACTER STATS: !set\n\
  - SHIFT CHARACTER STATS: !shift\n\
+ - GEAR / NOTES: !gear / !notes\n\
  - ROLL SOME DICE: !roll\n\
  - BASIC MOVES LIST: !basic\n\
  - ENTERPRISE MOVES LIST: !enterprise\n\
@@ -479,6 +481,30 @@ To see a list of all custom moves, type __!movelist__.\nTo delete a custom move,
  (name must be in quotes).\n\n\
 EXAMPLE: !deletemove "Fly High"',
        method: functions.deleteMove
+   },
+   gear: {
+       key: ['gear'],
+       text: 'GEAR: LIST, ADD, REMOVE, EDIT, MOVE, CLEAR\n\n • To view your Gear List, enter __!gear__ at any time\n\
+ • To Add an item, enter __!gear add <New Item>__\n • To Remove an item, enter __!gear remove <Index Number>__\n\
+ • To Edit an item in your Gear List, enter __!gear edit <Index Number> <Edited Text>__\n\
+ • To Move the position of an item, enter __!gear move x y__ (where x is the item you want to move, and y is the new location)\n\
+ • To remove all items enter __!gear clear all__\n\n\
+EXAMPLE: __!gear add Bowl of Sharing__ will add the item *Bowl of Sharing* to your Gear list.\nTo remove the item,\
+ find its index number on your list with __!gear__. If *Bowl of Sharing* is in position 1), then __!gear remove 1__\
+ will remove it from your Gear list.',
+       method: general.gear
+   },
+   notes: {
+       key: ['note', 'notes'],
+       text: 'NOTES: LIST, ADD, REMOVE, EDIT, MOVE, CLEAR\n\n • To view your Notes List, enter __!notes__ at any time\n\
+ • To Add a note, enter __!note add <New Item>__\n • To Remove a note, enter __!note remove <Index Number>__\n\
+ • To Edit an item in your Notes List, enter __!note edit <Index Number> <Edited Text>__\n\
+ • To Move the position of a note, enter __!note move x y__ (where x is the note you want to move, and y is the new location)\n\
+ • To remove all notes enter __!notes clear all__\n\n\
+EXAMPLE: __!note add Keeler is a suspect__ will add the note *Keeler is a suspect* to your Notes list.\nTo remove the note,\
+ find its index number on your list with __!notes__. If *Keeler is a suspect* is in position 1), then __!note remove 1__\
+ will remove it from your Notes list.',
+       method: general.notes
    }
     
 }
