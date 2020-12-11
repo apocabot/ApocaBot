@@ -305,11 +305,11 @@ function characterSheet(userMessage, userId, channelId, userNickname, moves, use
     statPrintout = ['Here are your CHARACTER STATS:'];
     delete userData[userId]['TEAM']
     for(let [key, value] of Object.entries(userData[userId])){
-        if(key !== "OVERME" && key !== "OVERTHEM"){
+        if(key !== "OVERME" && key !== "OVERTHEM" && key!=='GEAR' && key !=='NOTES'){
             statPrintout.push(`${key}: ${value}`)
         }
     }
-    statPrintout.push(`TEAM: ${userData['TEAM']}`)
+    statPrintout.push([`TEAM: ${userData['TEAM']}`, 'GEAR: !gear', 'NOTES: !notes'])
     statPrintout = statPrintout.toString().split(",").join("\n")
     return statPrintout
 }
