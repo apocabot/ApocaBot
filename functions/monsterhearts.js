@@ -348,7 +348,7 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
     else{return shiftMessage}
 }
 
-function setStats(userMessage, userId, channelId, userNickname, moves, userData){
+function setStats(userMessage, userId, channelId, userNickname, moves, userData, i, gameList, userName){
     if(!userMessage[1]){return moves.set.text}
     let errorMessage = []
 
@@ -361,7 +361,10 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData)
                 if(value[0]==="name"){
                     i = i.slice(value[0].length)
                     i = i.slice(1).toUpperCase()
-                    if(i==='NICKNAME'){i = userNickname};
+                    if(i==='NICKNAME'){
+                        if(userNickname){i = userNickname}
+                        else(i= userName)
+                    };
                     if(!i){errorMessage.push('INCORRECT NAME INPUT\nEXAMPLE: !set name+bambino *or* !set name+nickname')}
                     else{userData[userId][key] = i}
                 } else if (value[0]==="exp"){

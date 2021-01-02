@@ -57,7 +57,7 @@ ADD SUFFIX ? TO ANY COMMAND FOR MORE INFO:\n\n\
  - MAKE CAMP: !camp\n\
  - SCOUT AHEAD: !ahead\n\
  - NAVIGATE: !nav\n\
- - MANGAE PROVISIONS: !manage\n\
+ - MANAGE PROVISIONS: !manage\n\
  - HUNKER DOWN: !hunker\n\
  - FORGE AHEAD: !forge',
        method: function(){return this.text}

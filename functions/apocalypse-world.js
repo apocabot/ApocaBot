@@ -333,7 +333,7 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
     return shiftPrintout
 }
 
-function setStats(userMessage, userId, channelId, userNickname, moves, userData){
+function setStats(userMessage, userId, channelId, userNickname, moves, userData, i, gameList, userName){
     if(!userMessage[1]){return moves.set.text}
     let setErrors = []
     for(let [key, value] of Object.entries(moves.abilities.stats)){
@@ -342,7 +342,10 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData)
                 if(value[0]==="name"){
                     i = i.slice(value[0].length)
                     i = i.slice(1).toUpperCase()
-                    if(i==='NICKNAME'){i = userNickname};
+                    if(i==='NICKNAME'){
+                        if(userNickname){i = userNickname}
+                        else(i= userName)
+                    };
                     if(!i){setErrors.push(moves.set.error)}
                     else{userData[userId][key] = i}
                 } else if (value[0]==="harm"){
