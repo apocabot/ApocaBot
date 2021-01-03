@@ -370,10 +370,10 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData,
                         setErrors.push("Your lvl must be greater than 0")
                     } else {
                         userData[userId][key] = i 
+                        const newUserMaxXp = parseInt(i) + 7
+                        if(userXp < newUserMaxXp) {userData[userId]["XP"] = `${userXp} / ${newUserMaxXp}`}
+                        else if(userXp >= newUserMaxXp) {userData[userId]["XP"] = `${userXp} / ${newUserMaxXp} LVL UP!`}
                     }
-                    const newUserMaxXp = parseInt(i) + 7
-                    if(userXp < newUserMaxXp) {userData[userId]["XP"] = `${userXp} / ${newUserMaxXp}`}
-                    else if(userXp >= newUserMaxXp) {userData[userId]["XP"] = `${userXp} / ${newUserMaxXp} LVL UP!`}
                 } else {
                     i = i.slice(value[0].length)
                     i = parseInt(i)
