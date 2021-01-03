@@ -84,7 +84,9 @@ Please consider supporting ApocaBot at patreon.com/apocabot to receive\
                 WIS: ['wis', 0],
                 CHA: ['cha', 0],
                 DAM: ['dam', '!set dam+(d4 : d6 : d8 : d10 : d12)'],
-                HP: ['hp', 0]
+                HP: ['hp', 0],
+                XP: ['xp', "0 / 8"],
+                LVL: ['lvl', 1]
         }
         },
     newCharacter: {
@@ -110,12 +112,12 @@ Enter this command at any time to check on your character stats.',
     set: {
         key: ['set', 'setstats', 'statset'],
         text: 'SET STATS: !set stat+value ...\n\n• To set your character stats,\
- enter the command followed by all the stat modifiers you want to set.\n• Use the 3-letter\
+ enter the command __!set__ followed by all the stat modifiers you want to set.\n• Use the 2- or 3-letter\
  stat type +/- stat value.\n• Unentered stats will default to zero or their\
  existing value.\n• !set name+nickname will use your Discord channel nickname\
- as your character name.\n\n\
+ as your character name.\n• Your max XP will automatically change based on your LVL\n\n\
 EXAMPLE: **(You can copy/paste and edit the stats)**\n\
-!set name+Me str+0 dex+1 con-1 int-2 wis+2 cha+0 dam+d8 hp+19',
+!set name+Me str+0 dex+1 con-1 int-2 wis+2 cha+0 dam+d8 hp+19 xp+0 lvl+1',
         error: 'Incorrect input, use the format: !set name+bambino str+1 cha-1 etc...',
         method: functions.setStats
     },

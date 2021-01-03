@@ -263,12 +263,16 @@ function newCharacter(userMessage, userId, channelId, userNickname, moves, userD
 }
 
 function characterSheet(userMessage, userId, channelId, userNickname, moves, userData){
+    if(!userData[userId]["XP"]) userData[userId]["XP"] = "0 / 8"
+    if(!userData[userId]["LVL"]) userData[userId]["LVL"] = 1
+
     statPrintout = ['Here are your CHARACTER STATS:'];
     for(let [key, value] of Object.entries(userData[userId])){
         if (key!=='GEAR' && key !=='NOTES') {
         statPrintout.push(`${key}: ${value}`)
         }
     }
+
     statPrintout.push(['GEAR: !gear', 'NOTES: !notes'])
     statPrintout = statPrintout.toString().split(",").join("\n")
     return statPrintout
@@ -283,13 +287,39 @@ function shift(userMessage, userId, channelId, userNickname, moves, userData){
                 i = i.slice(value[0].length)
                 function hasNumber(string) {return /\d/.test(string)}
                 let stat = hasNumber(i)
-                let numerical = hasNumber(value)
-                if(stat && numerical){
+                const userLvl = userData[userId]["LVL"]
+                const userXp = parseInt(userData[userId]["XP"])
+                const userMaxXp = parseInt(userLvl) + 7
+
+                if(stat){
                     i = parseInt(i)
+                    let slashVal = userData[userId][key]
                     let oldStat = userData[userId][key]
-                    userData[userId][key] = userData[userId][key] + i,
+                    if(value[0]==='name'){
+                        shiftPrintout.push(moves.shift.error); return
+                    } else if(value[0]==='xp'){
+                    slashVal = parseInt(slashVal.substring(0)) + i
+                    if(isNaN(slashVal)){shiftPrintout.push(moves.shift.error)}
+                    if(slashVal<0){slashVal=0}
+                        if(slashVal < userMaxXp) {userData[userId][key] = `${slashVal} / ${userMaxXp}`}
+                        else if(slashVal >= userMaxXp) {userData[userId][key] = `${slashVal} / ${userMaxXp} LVL UP!`}
+                    shiftPrintout.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
+                } else if(value[0]==='lvl'){
+                    if((slashVal+i) < 1){
+                        shiftPrintout.push("Your Level can't be less than 1"); return
+                    }
+                    userData[userId][key] = slashVal + i,
+                    shiftPrintout.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
+
+                    const newUserMaxXp = parseInt(slashVal + i) + 7
+                    if(userXp < newUserMaxXp) {userData[userId]["XP"] = `${userXp} / ${newUserMaxXp}`}
+                    else if(userXp >= newUserMaxXp) {userData[userId]["XP"] = `${userXp} / ${newUserMaxXp} LVL UP!`}
+                } else {
+                    userData[userId][key] = slashVal + i,
                     shiftPrintout.push(`${key}: ${oldStat} \u00A0\u00A0=>\u00A0\u00A0 ${userData[userId][key]}`)
                 }
+
+                } 
             }
         })
     }
@@ -303,6 +333,9 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData,
     let setErrors = []
     for(let [key, value] of Object.entries(moves.abilities.stats)){
         userMessage.forEach(i => {
+            const userLvl = userData[userId]["LVL"]
+            const userXp = parseInt(userData[userId]["XP"])
+            const userMaxXp = parseInt(userLvl) + 7
             if(i.startsWith(value[0])){
                 if(value[0]==="name"){
                     i = i.slice(value[0].length)
@@ -319,6 +352,28 @@ function setStats(userMessage, userId, channelId, userNickname, moves, userData,
                     if(i==='d4' || i==='d6' || i==='d8' || i==='d10' || i==='d12'){
                         userData[userId][key] = i
                     } else {setErrors.push(moves.damage.error)}
+                } else if (value[0]==="xp"){
+                    i = i.slice(value[0].length)
+                    i = parseInt(i)
+                    if(isNaN(i)){setErrors.push(moves.set.error)}
+                    if(i<0){i=0}
+                        if(i < userMaxXp) {i = `${i} / ${userMaxXp}`}
+                        else if(i >= userMaxXp) {i = `${i} / ${userMaxXp} LVL UP!`}
+                    if(!i){setErrors.push(moves.set.error)}
+                    else{userData[userId][key] = i}
+                } else if (value[0]==="lvl"){
+                    i = i.slice(value[0].length)
+                    i = parseInt(i)
+                    if(isNaN(i)){
+                        setErrors.push(moves.set.error)
+                    } else if(i<1){
+                        setErrors.push("Your lvl must be greater than 0")
+                    } else {
+                        userData[userId][key] = i 
+                    }
+                    const newUserMaxXp = parseInt(i) + 7
+                    if(userXp < newUserMaxXp) {userData[userId]["XP"] = `${userXp} / ${newUserMaxXp}`}
+                    else if(userXp >= newUserMaxXp) {userData[userId]["XP"] = `${userXp} / ${newUserMaxXp} LVL UP!`}
                 } else {
                     i = i.slice(value[0].length)
                     i = parseInt(i)
