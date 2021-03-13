@@ -14,9 +14,6 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
  - BASIC MOVES LIST: !basic\n\
  - OTHER MOVES LIST: !other\n\
  - CUSTOM MOVES: !custom\n\
- - DEBT LIST: !debts\n\
- - ADD/REMOVE DEBT OWED TO YOU: !owedToMe\n\
- - ADD/REMOVE DEBT YOU OWE: !owedToThem\n\
  - SET APOCABOT PREFIX: !setprefix\n\
  - SET APOCABOT GAME: !setgame',
         method: function(){return this.text}
@@ -37,19 +34,40 @@ ADD SUFFIX ? TO ANY COMMAND FOR MOVE INFO:\n\n\
    otherMoves: {
        key: ['other', 'othermoves'],
        text: 'OTHER MOVES:\n\n\
- - HIT THE STREETS: !hit\n\
- - PUT A FACE TO A NAME: !put\n\
- - INVESTIGATE A PLACE OF POWER: !inv\n\
+ - DEBTS: !debts\n\
+ - FACTION MOVES LIST: !faction\n\
+ - CORRUPTION MOVES LIST: !corrupt\n\
  - DO SOMEONE A FAVOR: !favor\n\
  - CASH IN A DEBT: !cash\n\
  - REFUSE TO HONOR A DEBT: !refuse\n\
  - DROP SOMEONE\'S NAME: !drop\n\
- - MARK CORRUPTION: !mark\n\
- - CLEAR CORRUPTION: !clear\n\
  - LEAD A GANG INTO BATTLE: !battle\n\
  - SESSION INTRO: !intro\n\
  - SESSION END: !end',
        method: function(){return this.text}
+   },
+   faction: {
+       key: ['faction'],
+       text: 'The Faction stats (Mortality, Night, Power and Wild) describe your character\'s relationship\
+to the various political groupings in the game.\n\
+FACTION MOVES:\n\n\
+- HIT THE STREETS: !hit\n\
+- PUT A FACE TO A NAME: !put\n\
+- INVESTIGATE A PLACE OF POWER: !inv\n\n\
+Whenever you roll any of the above moves, trigger an intimacy move, cash in a Debt(!cash) or honor a Debt,\
+mark that faction using !mark. (for example !mark night)\n\
+If you want to clear a mark, use !clear (for example, !clear mort) \n\
+Once you\'ve marked all four factions, clear all marks (!clear factions) and advance.\n\
+When viewing your character sheet, marked faction stats are indicated with a bullet (•).',
+       method: function(){return this.text}
+   },
+   corruption: {
+        key: ['corruption'],
+        text: 'Marking corruption will check off a box in your corruption track; when you\'ve checked off all five\
+boxes, you unlock a corruption advance and clear your corruption track to start anew.\n\
+To mark corruption, use !mark corruption.\n\
+To clear your corruption track, use !clear corruption.',
+        method: function(){return this.text}
    },
    customMenu: {
        key: ['custom', 'custommoves'],
@@ -467,8 +485,8 @@ __!clear factions__ or __!clear all__ will clear all factions.',
     debts: {
         key: ['debts'],
         text: 'Displays the debts that are owed to you and the debts that you owe.\n\n\
-        To add or remove debts owed to you, enter __!owedtome?__.\n\
-        To add or remove debts you owe to others, enter __!owedtothem?__.',
+        To learn how to add or remove debts owed to you, enter __!owedtome?__.\n\
+        To learn how to add or remove debts you owe to others, enter __!owedtothem?__.',
         method: functions.debts
     },
     owedToMe: {
